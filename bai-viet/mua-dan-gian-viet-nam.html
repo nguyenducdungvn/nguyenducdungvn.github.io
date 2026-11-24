@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- HLV Sức Khỏe – bài tương tác (24/11/2026). Trang này được sinh bởi tools/make_guides.py: sửa ở đó hoặc ở js/guides/mua-dan-gian.js -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Múa dân gian Việt: tay, nón, quạt và vòng xòe | HLV Sức Khỏe</title>
+<meta name="description" content="Múa dân gian Việt cho người mới: múa nón, múa quạt, xòe khăn, múa xoang; hoa tay và cái nhún; so với ba lê; tự bước vào vòng xòe và thấy vòng đứt khi lệch nhịp. Xòe Thái được UNESCO ghi danh năm 2021.">
+<meta name="theme-color" content="#0f6a4b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Múa dân gian Việt: tay, nón và vòng xòe">
+<meta property="og:description" content="Vào vòng xòe, bước lệch nhịp để thấy vòng đứt, xem hoa tay, so dáng múa dân gian với ba lê.">
+<meta property="og:url" content="https://hlvsuckhoe.com/bai-viet/mua-dan-gian-viet-nam.html">
+<meta property="og:image" content="https://hlvsuckhoe.com/img/og/mua-dan-gian-viet-nam.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Múa dân gian Việt: tay, nón và vòng xòe">
+<meta property="og:site_name" content="HLV Sức Khỏe">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hlvsuckhoe.com/img/og/mua-dan-gian-viet-nam.jpg">
+<link rel="canonical" href="https://hlvsuckhoe.com/bai-viet/mua-dan-gian-viet-nam.html">
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,700;1,7..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/bai-viet.css">
+<link rel="stylesheet" href="../css/guide.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="../"><img src="../img/logo.svg" alt="">HLV Sức Khỏe</a>
+    <a class="back" href="../#goc-nghe-thuat">← Góc nghệ thuật</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="kicker">Nghệ thuật · Múa</span>
+    <h1>Múa dân gian Việt: <em>vòng xòe</em> luôn mở</h1>
+    <p class="dek">Mềm mà không yếu, thấp mà không nặng. Bài này cho bạn xem một người múa đổi nón, quạt, khăn, dáng xoang; phóng to cổ tay để thấy “hoa tay”; và bước vào một vòng xòe – nơi luật duy nhất là đi cùng nhịp với người bên cạnh.</p>
+    <div class="meta"><span>Nguyễn Đức Dũng</span><span>25/11/2026</span><span>Đọc và thử 6–12 phút</span></div>
+    <div class="post-actions" data-slug="mua-dan-gian-viet-nam"></div>
+  </div>
+
+  <div class="lensbar" id="lensBar" aria-label="Góc nhìn và tầng nội dung"></div>
+
+  <section class="stage" id="stage" aria-labelledby="stageH">
+    <div class="stage-head"><h2 id="stageH">Sân múa · người múa và vòng xòe do máy tự vẽ</h2><p>Bật loa · tiếng trống, chiêng tổng hợp bằng máy · chấm cam là bạn trong vòng xòe</p></div>
+    <div class="view" id="view"></div>
+    <div class="tools" id="tools">
+      <div class="row"><span class="lab">Điệu múa</span><button type="button" data-style="non" aria-pressed="true">Múa nón</button><button type="button" data-style="quat" aria-pressed="false">Múa quạt</button><button type="button" data-style="thai" aria-pressed="false">Xòe khăn</button><button type="button" data-style="xoang" aria-pressed="false">Múa xoang</button><button type="button" data-style="ballet" aria-pressed="false">So với ba lê</button></div><div class="row"><span class="lab">Vòng xòe</span><button type="button" data-ring="ok" aria-pressed="false" class="hot">▶ Bước đúng nhịp</button><button type="button" data-ring="off" aria-pressed="false" class="hot">▶ Bước lệch nhịp</button><button type="button" data-ring="join" aria-pressed="false">+ Mời thêm người</button><button type="button" data-stop="1" aria-pressed="false">■ Dừng</button></div><div class="row"><span class="lab">Chi tiết</span><button type="button" data-wrist="1" aria-pressed="false">🔍 Hoa tay</button></div>
+      <div class="readout" id="readout" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <article class="guide">
+    <noscript><p>Múa dân gian Việt: Nghệ thuật Xòe Thái được UNESCO ghi danh ngày 15/12/2021, gồm xòe nghi lễ, xòe vòng và xòe biểu diễn. Đặc trưng: gối nhún, cổ tay mềm, mắt theo tay. Bật JavaScript để xem minh họa và vào vòng xòe.</p></noscript>
+    <div id="guide"></div>
+    <p class="ask">Bài viết có ích? Bấm <b>Thích</b> và <b>Chia sẻ</b> cho người bạn cùng sở thích.</p>
+    <div class="post-actions" data-slug="mua-dan-gian-viet-nam"></div>
+    <h3 style="margin-top:2em">Đọc tiếp</h3>
+    <div class="more"><a href="nhac-co-dien-cho-nguoi-moi.html"><b>Nhạc cổ điển: nghệ thuật của thời gian</b><span>Nghệ thuật · âm nhạc</span></a><a href="hoi-hoa-cho-nguoi-moi.html"><b>Hội họa: học cách nhìn ánh sáng</b><span>Nghệ thuật · hội họa</span></a><a href="sang-tac-bai-hat-cho-nguoi-moi.html"><b>Sáng tác bài hát: tám chữ đầu tiên</b><span>Nghệ thuật · âm nhạc</span></a><a href="ba-le-cho-nguoi-moi.html"><b>Ba lê: đối thoại với trọng lực</b><span>Nghệ thuật · múa</span></a><a href="dem-guitar-bon-hop-am.html"><b>Đệm guitar bốn hợp âm</b><span>Nghệ thuật · âm nhạc</span></a><a href="khoi-dong-va-gian-co-dung-cach.html"><b>Khởi động và giãn cơ đúng cách</b><span>Thể thao · nên đọc trước khi ra sân</span></a></div>
+    <div class="src">
+      <p>Nguồn: UNESCO ghi danh Nghệ thuật Xòe Thái ngày 15/12/2021 tại kỳ họp thứ 16 (13–18/12/2021) – Báo Nhân Dân (chuyên trang Nghệ thuật Xòe Thái), Báo Văn Hóa, Báo Chính phủ, DTiNews (di sản thứ 14 của Việt Nam), công nhận di sản quốc gia năm 2013; ba loại xòe và tên gọi theo đạo cụ (Báo Văn Hóa) · Trống đồng Ngọc Lũ phát hiện năm 1893 (Bảo tàng Lịch sử Quốc gia) · Trường Múa Việt Nam thành lập 25/10/1959, nâng cấp thành Học viện Múa Việt Nam năm 2019 (Báo Văn Hóa, Đại Đoàn Kết) · Không gian văn hóa Cồng chiêng Tây Nguyên được UNESCO công nhận năm 2005. Các số đo bước chân, sải tay trong phần tính là ví dụ ước lượng.</p>
+      <p>Minh họa trong bài do HLV Sức Khỏe tự dựng bằng mã (không dùng ảnh, logo, tranh hay bản ghi có bản quyền). Bài viết mang tính giới thiệu, không thay thế huấn luyện viên hay lời khuyên y tế. HLV Sức Khỏe là trang cá nhân độc lập của Nguyễn Đức Dũng.</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap"><a href="../">← Về trang chủ HLV Sức Khỏe</a> · <a href="mailto:lienhe@hlvsuckhoe.com">lienhe@hlvsuckhoe.com</a></div>
+</footer>
+
+<script>
+(function(){var bar=document.getElementById('progress');function upd(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}window.addEventListener('scroll',upd,{passive:true});upd();})();
+</script>
+<script src="../js/guides/mua-dan-gian.js"></script>
+<script src="../js/guide.js"></script>
+<script src="../js/guides/stage-mua-dan-gian.js" defer></script>
+<script src="../js/config.js"></script>
+<script src="../js/post-actions.js" defer></script>
+<!-- Cloudflare Web Analytics (thống kê lượt xem, không cookie, không lưu IP) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1dd877b5432a4181b42a4b65990cb60c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

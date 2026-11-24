@@ -17,6 +17,8 @@ window.HLV_POSTS = [
   { slug: 'bong-da-cho-nguoi-moi', title: 'Bóng đá', icon: '⚽', spots: ['goc-the-thao'] },
   { slug: 'golf-cho-nguoi-moi', title: 'Golf', icon: '⛳', spots: ['goc-the-thao'] },
   { slug: 'boi-loi-cho-nguoi-moi', title: 'Bơi lội', icon: '🏊', spots: ['goc-the-thao'] },
+  { slug: 'dem-guitar-bon-hop-am', title: 'Đệm guitar', icon: '🎸', spots: ['am-nhac'] },
+  { slug: 'mua-dan-gian-viet-nam', title: 'Múa dân gian Việt', icon: '🪭', spots: ['goc-nghe-thuat'] },
   { slug: 'sang-tac-bai-hat-cho-nguoi-moi', title: 'Sáng tác bài hát', icon: '✍️', spots: ['am-nhac', 'goc-nghe-thuat'] },
   { slug: 'ba-le-cho-nguoi-moi', title: 'Ba lê', icon: '🩰', spots: ['goc-nghe-thuat'] },
   { slug: 'hoi-hoa-cho-nguoi-moi', title: 'Hội họa', icon: '🖼️', spots: ['goc-nghe-thuat'] },

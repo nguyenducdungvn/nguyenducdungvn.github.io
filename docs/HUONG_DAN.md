@@ -297,8 +297,13 @@ Không dùng ảnh vận động viên, logo giải đấu/CLB, tranh hay bản 
 ## Bản 2.2.0 – Sáng tác bài hát, Ba lê, bản sao dự phòng (25/11/2026)
 - Hai bài mới: `bai-viet/sang-tac-bai-hat-cho-nguoi-moi.html` (bàn viết bài hát, soát dấu thanh, kết lửng/kết trọn) và `bai-viet/ba-le-cho-nguoi-moi.html` (năm tư thế, xoay mở, thăng bằng, xoay vòng). Nội dung ở `js/guides/sang-tac.js`, `js/guides/ba-le.js`; minh họa ở `stage-sang-tac.js`, `stage-ba-le.js`; trang sinh bằng `python3 tools/make_guides.py`.
 - Đã thêm vào `js/posts.js` (vòng tròn quanh cây đàn và bức tranh), thẻ bài ở mục Bài viết, `sitemap.xml` (18 địa chỉ), ảnh chia sẻ `img/og/`.
-- Bản sao dự phòng trên GitHub: kho `nguyenducdungvn/nguyenducdung.github.io` (không có tệp CNAME). Cách đồng bộ: xem README của kho đó.
+- Bản sao dự phòng trên GitHub: xem mục 2.3.0 (đã đổi tên kho và tự đồng bộ).
 - Sau khi đăng bài mới: làm theo bản hướng dẫn “Yêu cầu Google lập chỉ mục bài mới (Search Console)”.
+
+## Bản 2.3.0 – Múa dân gian Việt, Đệm guitar, bản sao tự đồng bộ (25/11/2026)
+- Hai bài mới: `bai-viet/mua-dan-gian-viet-nam.html` (nón, quạt, xòe khăn, múa xoang, hoa tay, vòng xòe đúng/lệch nhịp, so với ba lê) và `bai-viet/dem-guitar-bon-hop-am.html` (G–D–Em–C, capo, ba điệu đàn, đổi hợp âm trễ, tiếng rè; tiếng dây Karplus–Strong). Nội dung: `js/guides/mua-dan-gian.js`, `js/guides/guitar.js`; minh họa: `stage-mua-dan-gian.js`, `stage-guitar.js`.
+- `posts.js?v=2.3.0` (guitar → góc Âm nhạc; múa dân gian → góc Nghệ thuật), 2 thẻ bài, sitemap 20 địa chỉ, 2 ảnh og. `tools/make_guides.py` nhận thêm khóa `date` cho từng bài.
+- **Bản sao dự phòng đổi tên thành `nguyenducdungvn/nguyenducdungvn.github.io`**, địa chỉ https://nguyenducdungvn.github.io/. Workflow `dong-bo.yml` trong kho đó tự chép từ kho này **6 tiếng một lần** (bỏ CNAME). Muốn đồng bộ ngay: kho bản sao → Actions → “Đồng bộ từ hlvsuckhoe-web” → Run workflow.
 
 ## Sự cố thường gặp
 

@@ -1,4 +1,4 @@
-# Sinh 7 trang bài tương tác (bóng đá, golf, bơi lội, nhạc cổ điển, hội họa, sáng tác bài hát, ba lê) từ một khung chung.
+# Sinh 9 trang bài tương tác (bóng đá, golf, bơi lội, nhạc cổ điển, hội họa, sáng tác bài hát, ba lê, múa dân gian, đệm guitar) từ một khung chung.
 # Chạy: python3 tools/make_guides.py  → ghi đè bai-viet/<slug>.html
 # Nội dung chữ nằm ở js/guides/<tên>.js (window.GUIDE); phần minh họa ở js/guides/stage-<tên>.js.
 # Muốn sửa tiêu đề, mô tả, nút công cụ, nguồn: sửa danh sách PAGES bên dưới rồi chạy lại.
@@ -20,7 +20,9 @@ SPORT_MORE = [('khoi-dong-va-gian-co-dung-cach', 'Khởi động và giãn cơ �
 ART_MORE = [('nhac-co-dien-cho-nguoi-moi', 'Nhạc cổ điển: nghệ thuật của thời gian', 'Nghệ thuật · âm nhạc'),
             ('hoi-hoa-cho-nguoi-moi', 'Hội họa: học cách nhìn ánh sáng', 'Nghệ thuật · hội họa'),
             ('sang-tac-bai-hat-cho-nguoi-moi', 'Sáng tác bài hát: tám chữ đầu tiên', 'Nghệ thuật · âm nhạc'),
-            ('ba-le-cho-nguoi-moi', 'Ba lê: đối thoại với trọng lực', 'Nghệ thuật · múa')]
+            ('ba-le-cho-nguoi-moi', 'Ba lê: đối thoại với trọng lực', 'Nghệ thuật · múa'),
+            ('mua-dan-gian-viet-nam', 'Múa dân gian Việt: tay, nón và vòng xòe', 'Nghệ thuật · múa'),
+            ('dem-guitar-bon-hop-am', 'Đệm guitar bốn hợp âm', 'Nghệ thuật · âm nhạc')]
 
 PAGES = [
  dict(slug='bong-da-cho-nguoi-moi', data='bong-da', stage='stage-bong-da.js', three=True, back='#goc-the-thao', backtxt='← Góc thể thao',
@@ -118,6 +120,34 @@ dict(slug='sang-tac-bai-hat-cho-nguoi-moi', data='sang-tac', stage='stage-sang-t
        +row('Thể loại', b('data-genre','ballet','Ba lê cổ điển',True)+b('data-genre','contemp','Đương đại')+b('data-genre','viet','Dân gian Việt')+b('data-genre','hiphop','Hip-hop')),
   noscript='Ba lê: Viện Hàn lâm Múa Hoàng gia được vua Louis XIV lập tháng 3/1661; năm tư thế chân do Pierre Beauchamp hệ thống hóa. Mũi chân xoay mở từ khớp hông, đầu gối luôn theo hướng mũi chân. Bật JavaScript để điều khiển vũ công minh họa.',
   src='Nguồn: Académie Royale de Danse thành lập tháng 3/1661 (Britannica – Paris Opéra Ballet; Wikipedia – Académie Royale de Danse, có tranh luận về vai trò của Beauchamp); Britannica – Pierre Beauchamp và năm tư thế; Britannica – Western dance (Feuillet, Chorégraphie, 1700; Louis XIV thôi múa năm 1669); Les Grands Ballets Canadiens – tư thế tay bổ sung thế kỷ 19, pointe khoảng 1820; La Sylphide (1832); Hồ thiên nga: ra mắt Bolshoi 4/3/1877, bản Petipa–Ivanov tại Mariinsky 27/1/1895 (Petipa Society; V&A) · Hướng dẫn mũi giày: Weiss và cộng sự, J Dance Med Sci 2009;13(3):90-2; AAP HealthyChildren – Ballet and Dance; Journal of Dance Medicine & Science 2025 (khảo sát giáo viên). Các số đo chân đế, trọng tâm, góc xoay trong mô phỏng là ví dụ ước lượng để minh họa.',
+  more=ART_MORE+SPORT_MORE[:1]),
+ dict(slug='mua-dan-gian-viet-nam', date='25/11/2026', data='mua-dan-gian', stage='stage-mua-dan-gian.js', three=False, back='#goc-nghe-thuat', backtxt='← Góc nghệ thuật',
+  title='Múa dân gian Việt: tay, nón, quạt và vòng xòe | HLV Sức Khỏe',
+  desc='Múa dân gian Việt cho người mới: múa nón, múa quạt, xòe khăn, múa xoang; hoa tay và cái nhún; so với ba lê; tự bước vào vòng xòe và thấy vòng đứt khi lệch nhịp. Xòe Thái được UNESCO ghi danh năm 2021.',
+  ogt='Múa dân gian Việt: tay, nón và vòng xòe', ogd='Vào vòng xòe, bước lệch nhịp để thấy vòng đứt, xem hoa tay, so dáng múa dân gian với ba lê.',
+  kicker='Nghệ thuật · Múa', h1='Múa dân gian Việt: <em>vòng xòe</em> luôn mở',
+  dek='Mềm mà không yếu, thấp mà không nặng. Bài này cho bạn xem một người múa đổi nón, quạt, khăn, dáng xoang; phóng to cổ tay để thấy “hoa tay”; và bước vào một vòng xòe – nơi luật duy nhất là đi cùng nhịp với người bên cạnh.',
+  read='Đọc và thử 6–12 phút', stitle='Sân múa · người múa và vòng xòe do máy tự vẽ', ssub='Bật loa · tiếng trống, chiêng tổng hợp bằng máy · chấm cam là bạn trong vòng xòe',
+  tools=row('Điệu múa', b('data-style','non','Múa nón',True)+b('data-style','quat','Múa quạt')+b('data-style','thai','Xòe khăn')+b('data-style','xoang','Múa xoang')+b('data-style','ballet','So với ba lê'))
+       +row('Vòng xòe', b('data-ring','ok','▶ Bước đúng nhịp',cls='hot')+b('data-ring','off','▶ Bước lệch nhịp',cls='hot')+b('data-ring','join','+ Mời thêm người')+b('data-stop','1','■ Dừng'))
+       +row('Chi tiết', '<button type="button" data-wrist="1" aria-pressed="false">🔍 Hoa tay</button>'),
+  noscript='Múa dân gian Việt: Nghệ thuật Xòe Thái được UNESCO ghi danh ngày 15/12/2021, gồm xòe nghi lễ, xòe vòng và xòe biểu diễn. Đặc trưng: gối nhún, cổ tay mềm, mắt theo tay. Bật JavaScript để xem minh họa và vào vòng xòe.',
+  src='Nguồn: UNESCO ghi danh Nghệ thuật Xòe Thái ngày 15/12/2021 tại kỳ họp thứ 16 (13–18/12/2021) – Báo Nhân Dân (chuyên trang Nghệ thuật Xòe Thái), Báo Văn Hóa, Báo Chính phủ, DTiNews (di sản thứ 14 của Việt Nam), công nhận di sản quốc gia năm 2013; ba loại xòe và tên gọi theo đạo cụ (Báo Văn Hóa) · Trống đồng Ngọc Lũ phát hiện năm 1893 (Bảo tàng Lịch sử Quốc gia) · Trường Múa Việt Nam thành lập 25/10/1959, nâng cấp thành Học viện Múa Việt Nam năm 2019 (Báo Văn Hóa, Đại Đoàn Kết) · Không gian văn hóa Cồng chiêng Tây Nguyên được UNESCO công nhận năm 2005. Các số đo bước chân, sải tay trong phần tính là ví dụ ước lượng.',
+  more=ART_MORE+SPORT_MORE[:1]),
+ dict(slug='dem-guitar-bon-hop-am', date='25/11/2026', data='guitar', stage='stage-guitar.js', three=False, back='#am-nhac', backtxt='← Góc âm nhạc',
+  title='Đệm guitar bốn hợp âm cho người mới | HLV Sức Khỏe',
+  desc='Đệm guitar cho người mới: bốn hợp âm G–D–Em–C (vòng I–V–vi–IV), capo, ba điệu quạt chả, rải dây, valse; nghe tiếng rè khi bấm xa phím và nhịp hụt khi đổi hợp âm trễ. Tiếng đàn tổng hợp ngay trong trình duyệt.',
+  ogt='Đệm guitar bốn hợp âm', ogd='G–D–Em–C, capo, ba điệu đàn – và vì sao đổi hợp âm trễ nửa phách là cả nhóm hát chựng lại.',
+  kicker='Nghệ thuật · Âm nhạc', h1='Đệm guitar: <em>bốn hợp âm</em>, một buổi tối',
+  dek='Không cần biết đọc nhạc. Bài này cho bạn bốn dáng tay trên một cần đàn vẽ đúng tỉ lệ, kẹp capo cho hợp giọng, đổi điệu quạt chả – rồi tự “gây lỗi” đổi hợp âm trễ và bấm xa phím để nghe vì sao người đệm giỏi không bao giờ dừng tay phải.',
+  read='Đọc và nghe 6–12 phút', stitle='Cần đàn guitar · khoảng cách phím tính đúng tỉ lệ', ssub='Bật loa · số trong chấm là ngón tay · tiếng dây đàn tổng hợp bằng máy',
+  tools=row('Hợp âm', b('data-ch','G','G',True)+b('data-ch','D','D')+b('data-ch','Em','Em')+b('data-ch','C','C'))
+       +row('Nghe', b('data-mode','ontime','▶ Đệm cả vòng')+b('data-mode','stop','■ Dừng'))
+       +row('Được – mất', b('data-mode','late','▶ Đổi hợp âm trễ',cls='hot')+'<button type="button" data-buzz="1" aria-pressed="false" class="hot">Bấm xa phím (rè)</button>')
+       +row('Điệu đàn', b('data-pat','pop','Quạt chả 4/4',True)+b('data-pat','arp','Rải dây')+b('data-pat','waltz','Valse 3/4'))
+       +row('Capo', b('data-capo','0','Không',True)+b('data-capo','2','Ngăn 2')+b('data-capo','3','Ngăn 3')),
+  noscript='Đệm guitar: bốn hợp âm G (320003), D (xx0232), Em (022000), C (x32010) là vòng I–V–vi–IV ở giọng Sol trưởng. Kẹp capo để đổi giọng, giữ tay phải đều nhịp. Bật JavaScript để nghe và xem cần đàn.',
+  src='Nguồn: Wikipedia – Guitar phím lõm (lục huyền cầm; guitar được người Việt đưa vào âm nhạc từ thế kỷ 19); Việt Nam News – “Sunken fret guitar still sings a different tune” (Nguyễn Vĩnh Bảo, Văn Vĩ, Út Bạch Lan); RFA – đàn kìm và đàn phím lõm trong giàn nhạc cải lương · Antonio de Torres Jurado (1817–1892), cây guitar cổ điển hiện đại, dây khoảng 650 mm (Wikipedia; bài viết của Siccas Guitars). Công thức vị trí phím theo bình quân 12 nửa cung. Tiếng đàn trong bài tổng hợp bằng thuật toán Karplus–Strong, không phải bản thu.',
   more=ART_MORE+SPORT_MORE[:1])
 ]
 
@@ -167,7 +197,7 @@ def page(p):
     <span class="kicker">{p['kicker']}</span>
     <h1>{p['h1']}</h1>
     <p class="dek">{p['dek']}</p>
-    <div class="meta"><span>Nguyễn Đức Dũng</span><span>{DATE}</span><span>{p['read']}</span></div>
+    <div class="meta"><span>Nguyễn Đức Dũng</span><span>{p.get('date', DATE)}</span><span>{p['read']}</span></div>
     <div class="post-actions" data-slug="{p['slug']}"></div>
   </div>
 

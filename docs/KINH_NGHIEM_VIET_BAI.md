@@ -63,3 +63,6 @@ Thêm vào mục 7 (Minh họa):
 - **Hình người tự vẽ bằng SVG + IK hai đốt** (`js/guides/stage-ba-le.js`): đặt vị trí cổ chân, máy tự tính đầu gối; đổi hướng gập gối bằng một dấu. Đủ để minh họa tư thế, thăng bằng, xoay vòng mà không cần ảnh hay 3D.
 - **Chấn thương là “mất” thật của môn múa**: ép xoay mở quá sức hông (gối xoắn), mũi giày khi chưa đủ điều kiện. Ghi hướng dẫn y khoa có nguồn (AAP, J Dance Med Sci 2009) trong hộp lưu ý.
 - **Khi các nguồn vênh nhau, biến chỗ vênh thành hộp tranh luận** (Beauchamp đứng đầu viện từ 1661 hay 1671; mốc “bài hát Việt đầu tiên” 1911 hay 1938).
+- **Bài “cộng đồng” (múa dân gian) lấy hòa nhịp làm được – mất**, không lấy động tác đẹp/xấu: lệch nhịp → vòng xòe đứt. Ghi rõ hai đời sống cộng đồng và sân khấu, không phán xét.
+- **Nhạc cụ: tình huống mất là lỗi người mới hay gặp nhất** (đổi hợp âm trễ, bấm xa phím). Âm thanh dây gảy tổng hợp bằng Karplus–Strong, khoảng cách phím vẽ đúng công thức 2^(−n/12).
+- Địa danh hành chính đã đổi sau sáp nhập tỉnh (2025) thì viết “tỉnh … cũ” hoặc ghi theo vùng, đừng viết “ngày nay”.
