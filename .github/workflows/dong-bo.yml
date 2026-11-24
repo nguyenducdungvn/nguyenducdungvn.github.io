@@ -1,0 +1,30 @@
+# Tự chép trang hlvsuckhoe.com (kho nguyenducdungvn/hlvsuckhoe-web) sang bản sao này, 6 tiếng một lần.
+# Bỏ qua tệp CNAME để bản sao chạy trên nguyenducdungvn.github.io; giữ nguyên README.md và thư mục .github của kho này.
+# Chạy ngay: tab Actions → "Đồng bộ từ hlvsuckhoe-web" → Run workflow.
+name: Đồng bộ từ hlvsuckhoe-web
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+  push:
+    paths: ['.github/workflows/dong-bo.yml']
+permissions:
+  contents: write
+concurrency: dong-bo
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lấy bản mới nhất của trang gốc
+        run: git clone --depth 1 https://github.com/nguyenducdungvn/hlvsuckhoe-web.git /tmp/src
+      - name: Chép sang bản sao (bỏ CNAME, README.md, .github)
+        run: rsync -a --delete --exclude .git --exclude CNAME --exclude README.md --exclude .github /tmp/src/ ./
+      - name: Ghi lại nếu có thay đổi
+        run: |
+          git config user.name "dong-bo-tu-dong"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "Không có gì mới"; exit 0; fi
+          git commit -m "Đồng bộ từ hlvsuckhoe-web ($(git -C /tmp/src rev-parse --short HEAD))"
+          git push
