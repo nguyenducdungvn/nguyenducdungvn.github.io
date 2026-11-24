@@ -231,6 +231,7 @@ SELECT k, n FROM totals WHERE k LIKE 'view:%' OR k LIKE 'like:%' ORDER BY k;
 | Chậu cây | Thân · Tâm · Trí (bài học tế bào, Sáu việc nhỏ, bảng vi chất) | `#goc-than-tam-tri`, `#vi-chat` |
 | Nệm thiền, nến | Thiền & hơi thở (thở 1 phút, hẹn giờ, BreathSync, bài 4–7–8) | `#thien` |
 | Thảm tập, tạ | Luyện tập (động tác hôm nay, HLV Sức Khỏe) | `#van-dong` |
+| Bình chữa cháy (góc dưới bên trái giá sách) | An toàn trong nhà (kiểm tra bếp gas 1 phút, số khẩn cấp 114/115/113, vòng tròn: Nổ khí gas hay nổ bình gas?) | `#goc-an-toan` |
 | Khung ảnh | Gia đình (việc nhỏ cùng nhau, lời hay, Tôi & Gia Đình) | `#goc-gia-dinh` |
 | Đàn guitar | Âm nhạc (bài hát hôm nay, 20 bài, đặt bài hát riêng) | `#am-nhac`, `#goc-sang-tac` |
 | Tranh treo tường | Hội họa (vòng tròn: Hội họa, Nhạc cổ điển) | `#goc-nghe-thuat` |
@@ -357,3 +358,9 @@ Không dùng ảnh vận động viên, logo giải đấu/CLB, tranh hay bản 
 - Ảnh `img/apps/kiem-dem-mua-2.jpg` (800×480, chụp màn hình Tập 1).
 - Game Mùa 2 dùng chung mã Cloudflare Web Analytics với trang chủ.
 - Khi ra màn hoặc tập mới: sửa câu "Đã có Màn 1" ở Góc giải đố và "Mới có Màn 1" ở kệ ứng dụng (Ctrl + F `kiemdem2`).
+
+## Bản 2.5.0 – Góc an toàn trong nhà, bài “Nổ khí gas hay nổ bình gas?” (25/11/2026)
+- Bài mới `bai-viet/no-khi-gas-va-no-binh-gas.html` (sinh bằng `tools/make_guides.py`; chữ ở `js/guides/khi-gas.js`, 3D ở `js/guides/stage-khi-gas.js`). Mở đầu bằng vụ nổ phố Nguyễn Văn Tuyết 24/11/2026 (Sở Y tế Hà Nội lúc 14 giờ: 6 tử vong, 10 bị thương; nguyên nhân sơ bộ của Công an TP Hà Nội). Năm góc nhìn: Lính cứu hỏa, Kỹ sư hóa, Người đứng bếp, Chủ quán ăn, Bác sĩ cấp cứu.
+- Minh họa 3D: căn bếp 4 × 3 × 2,8 m, lưới 20 × 14 × 15 ô nồng độ gas (gas nặng chìm xuống sàn); công tắc 1,3 m / ổ cắm 0,3 m để tự gây nổ; khóa van – mở cửa – ra ngoài; chỉ mở cửa sổ / chỉ mở cửa ra vào; đầu báo đặt thấp / cao; thước đo nồng độ theo độ cao; bãi đất trống mô phỏng bình gas bị lửa nung (BLEVE) theo thí nghiệm BAM 2017. Mọi số trong mô phỏng là ví dụ giả định.
+- Trang chủ: đồ vật mới **bình chữa cháy** ở góc dưới bên trái giá sách → mục `#goc-an-toan` (kiểm tra bếp gas, số khẩn cấp, danh sách bài tự sinh từ `js/posts.js`), nút “🧯 An toàn” trong dải Đi tới các góc, thẻ bài đầu danh sách, `posts.js?v=2.5.0`, `home.css?v=2.5.0` (`.safe-list`, `.sos`), sitemap 24 địa chỉ, ảnh og `img/og/no-khi-gas-va-no-binh-gas.jpg`.
+- Thêm bài vào góc an toàn: dòng mới trong `js/posts.js` với `spots: ['goc-an-toan']`.

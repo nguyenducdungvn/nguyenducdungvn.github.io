@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- HLV Sức Khỏe – bài tương tác (24/11/2026). Trang này được sinh bởi tools/make_guides.py: sửa ở đó hoặc ở js/guides/khi-gas.js -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nổ khí gas hay nổ bình gas? Hiểu đúng để giữ an toàn căn bếp | HLV Sức Khỏe</title>
+<meta name="description" content="Từ vụ nổ ở phố Nguyễn Văn Tuyết (Hà Nội, 24/11/2026): phân biệt nổ khí gas và nổ bình gas, vì sao gas đọng sát sàn, tia lửa nào đủ gây nổ, đặt đầu báo ở đâu, làm gì khi ngửi thấy mùi gas. Căn bếp 3D đúng tỉ lệ để tự thử.">
+<meta name="theme-color" content="#0f6a4b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nổ khí gas hay nổ bình gas?">
+<meta property="og:description" content="Căn bếp 3D: xem gas rò chìm xuống sàn, thử bật công tắc, đặt đầu báo, và xem vì sao không được kéo bình đang cháy ra đường.">
+<meta property="og:url" content="https://hlvsuckhoe.com/bai-viet/no-khi-gas-va-no-binh-gas.html">
+<meta property="og:image" content="https://hlvsuckhoe.com/img/og/no-khi-gas-va-no-binh-gas.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nổ khí gas hay nổ bình gas?">
+<meta property="og:site_name" content="HLV Sức Khỏe">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hlvsuckhoe.com/img/og/no-khi-gas-va-no-binh-gas.jpg">
+<link rel="canonical" href="https://hlvsuckhoe.com/bai-viet/no-khi-gas-va-no-binh-gas.html">
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,700;1,7..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/bai-viet.css">
+<link rel="stylesheet" href="../css/guide.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="../"><img src="../img/logo.svg" alt="">HLV Sức Khỏe</a>
+    <a class="back" href="../#goc-an-toan">← Góc an toàn</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="kicker">An toàn trong nhà · Mới · 3D</span>
+    <h1>Nổ khí gas hay nổ <em>bình gas</em>?</h1>
+    <p class="dek">Phần lớn vụ nổ trong nhà không phải chiếc bình vỡ tung, mà là một đám mây khí vô hình lặng lẽ lấp đầy căn phòng. Bài này cho bạn tự để dây dẫn rò trong một căn bếp 3D đúng tỉ lệ, đo gas theo từng độ cao, thử bật công tắc – rồi xem một bình gas bị lửa nung chịu được bao lâu.</p>
+    <div class="meta"><span>Nguyễn Đức Dũng</span><span>25/11/2026</span><span>Đọc và thử 6–12 phút</span></div>
+    <div class="post-actions" data-slug="no-khi-gas-va-no-binh-gas"></div>
+  </div>
+
+  <div class="lensbar" id="lensBar" aria-label="Góc nhìn và tầng nội dung"></div>
+
+  <section class="stage" id="stage" aria-labelledby="stageH">
+    <div class="stage-head"><h2 id="stageH">Căn bếp 3D · 4 × 3 m, trần 2,8 m</h2><p>Kéo để xoay · cuộn để phóng to · mỗi ô màu là 20 cm khối không khí · số liệu mô phỏng là ví dụ giả định</p></div>
+    <div class="view" id="view"></div>
+    <div class="tools" id="tools">
+      <div class="row"><span class="lab">Rò rỉ</span><button type="button" data-act="leak" aria-pressed="false" class="hot">▶ Cho dây dẫn rò</button><button type="button" data-act="valve">Khóa van</button><button type="button" data-open="door" aria-pressed="false">🚪 Cửa ra vào</button><button type="button" data-open="win" aria-pressed="false">🪟 Cửa sổ</button><button type="button" data-act="reset">Đặt lại</button></div><div class="row"><span class="lab">Được – mất</span><button type="button" data-act="switch" aria-pressed="false" class="hot">▶ Bật công tắc đèn</button><button type="button" data-act="plug" aria-pressed="false" class="hot">▶ Rút phích ổ cắm thấp</button><button type="button" data-act="safe" aria-pressed="false" class="hot">▶ Khóa van – mở cửa – ra ngoài</button></div><div class="row"><span class="lab">Bình gas</span><button type="button" data-act="bleve" aria-pressed="false" class="hot">▶ Bình nằm, lửa phụt xuống nền</button><button type="button" data-act="bleve-safe" aria-pressed="false" class="hot">▶ Bình đứng, trùm khăn ướt, khóa van</button></div><div class="row"><span class="lab">Lớp đo</span><button type="button" data-layers="1" aria-pressed="false">📏 Nồng độ theo độ cao</button><button type="button" data-det="low" aria-pressed="false">Đầu báo đặt thấp</button><button type="button" data-det="high" aria-pressed="false">Đầu báo đặt cao</button></div><div class="row"><span class="lab">Góc máy</span><button type="button" data-cam="all" aria-pressed="true">Toàn cảnh</button><button type="button" data-cam="side" aria-pressed="false">Mặt cắt</button><button type="button" data-cam="top" aria-pressed="false">Từ trên cao</button><button type="button" data-cam="door" aria-pressed="false">Mắt người ở cửa</button></div>
+      <div class="readout" id="readout" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <article class="guide">
+    <noscript><p>Có hai kiểu nổ: nổ khí gas (gas rò trộn với không khí ở khoảng 2–9,5% rồi gặp tia lửa) và nổ bình gas (vỏ bình bị lửa nung tới vỡ). Gas bình nặng hơn không khí nên đọng sát sàn. Ngửi thấy mùi gas: không bật tắt điện, khóa van nếu an toàn, mở cửa, ra ngoài rồi gọi 114. Bật JavaScript để xem căn bếp 3D.</p></noscript>
+    <div id="guide"></div>
+    <p class="ask">Bài viết có ích? Bấm <b>Thích</b> và <b>Chia sẻ</b> cho người bạn cùng sở thích.</p>
+    <div class="post-actions" data-slug="no-khi-gas-va-no-binh-gas"></div>
+    <h3 style="margin-top:2em">Đọc tiếp</h3>
+    <div class="more"><a href="tho-4-7-8-truoc-khi-ngu.html"><b>Thở 4–7–8 trước khi ngủ</b><span>Tập thở · giữ bình tĩnh</span></a><a href="boi-loi-cho-nguoi-moi.html"><b>Bơi lội: làm bạn với nước</b><span>Thể thao · an toàn dưới nước</span></a><a href="khoi-dong-va-gian-co-dung-cach.html"><b>Khởi động và giãn cơ đúng cách</b><span>Thể thao · nên đọc trước khi ra sân</span></a></div>
+    <div class="src">
+      <p>Nguồn: vụ nổ phố Nguyễn Văn Tuyết 24/11/2026 – Công an TP Hà Nội qua Nhân Dân, Tuổi Trẻ, Soha, Tiền Phong (thông tin lúc 10h30: 2 người tử vong, 11 người bị thương); báo cáo nhanh của Sở Y tế Hà Nội lúc 13–14 giờ qua VietNamNet, VOH, CAND (6 người tử vong, 10 người đang điều trị); nguyên nhân sơ bộ “cháy, nổ hỗn hợp khí gas và ô xi”, nhà đang cải tạo làm quán ăn – Báo Tin tức (TTXVN) · Vụ nổ cửa hàng gas đường Bùi Văn Ba, TP.HCM, 13/11/2026 – VnExpress, VOV · Giới hạn nổ, tỉ trọng hơi của LPG – NIOSH Pocket Guide và OSHA Chemical Data (LPG); bảng giới hạn cháy của Engineering ToolBox; năng lượng đánh lửa tối thiểu của propan – bảng của Dow · Quy định tạo mùi 1/5 LEL – OSHA 29 CFR 1910.110, NFPA 58 · BLEVE, áp suất propan ở 20 °C – Transport Canada “BLEVE – Response and Prevention” · Thí nghiệm 15 bình propan 11 kg – Krentel và cộng sự (BAM), IChemE Hazards 27, 2017 · Tỉ lệ nở lỏng – hơi khoảng 270 lần – Welding & Gases Today · Bộ dây, van nên thay sau 3–5 năm; van, dây kém chất lượng và bình giả là nguyên nhân chính – VnExpress dẫn Hiệp hội doanh nghiệp kinh doanh gas · Hướng dẫn xử lý rò gas, quạt ngang, gas nặng hơn không khí – Cảnh sát PCCC qua VOH; khăn ướt trùm cổ bình rồi khóa van – Công an quận Cầu Giấy qua An ninh Thủ đô; đầu báo rò gas, không dán số gọi gas lên bình – Công an tỉnh Bắc Giang, Cảnh sát PCCC TP.HCM qua SGGP; chống chuột cắn ống dẫn – tài liệu tuyên truyền PCCC của Hà Nội · Vụ nổ khí gas tại Shin Kong Mitsukoshi, Đài Trung, 13/2/2025 – Tuổi Trẻ, Wikipedia. Mô hình lan gas, lưu lượng rò, thời gian vỡ bình trong minh họa là ví dụ giả định; nguyên nhân chính thức của các vụ việc do cơ quan điều tra kết luận.</p>
+      <p>Minh họa trong bài do HLV Sức Khỏe tự dựng bằng mã (không dùng ảnh, logo, tranh hay bản ghi có bản quyền). Bài viết mang tính giới thiệu, không thay thế huấn luyện viên hay lời khuyên y tế. HLV Sức Khỏe là trang cá nhân độc lập của Nguyễn Đức Dũng.</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap"><a href="../">← Về trang chủ HLV Sức Khỏe</a> · <a href="mailto:lienhe@hlvsuckhoe.com">lienhe@hlvsuckhoe.com</a></div>
+</footer>
+
+<script>
+(function(){var bar=document.getElementById('progress');function upd(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}window.addEventListener('scroll',upd,{passive:true});upd();})();
+</script>
+<script src="../js/guides/khi-gas.js"></script>
+<script src="../js/guide.js"></script>
+<script type="importmap">{"imports":{"three":"../js/vendor/three/three.module.min.js","three/addons/":"../js/vendor/three/addons/"}}</script>
+<script type="module" src="../js/guides/stage-khi-gas.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/post-actions.js" defer></script>
+<!-- Cloudflare Web Analytics (thống kê lượt xem, không cookie, không lưu IP) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1dd877b5432a4181b42a4b65990cb60c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
