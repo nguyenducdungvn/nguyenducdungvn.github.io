@@ -1,5 +1,6 @@
 // Căn bếp 3D 4 × 3 m, trần 2,8 m (đúng tỉ lệ) + bãi đất trống mô phỏng bình gas bị lửa nung.
-// Mô hình lan gas: lưới 20 × 14 × 15 ô (mỗi ô 20 cm), gas nặng hơn không khí nên chìm và loang sát sàn.
+// Mô hình lan gas: lưới 20 × 14 × 15 ô (mỗi ô 20 cm), gas nặng hơn không khí nên chìm và loang sát sàn, khuếch tán rối dâng dần lên;
+// cửa ra vào mở thì lớp gas sát sàn chảy ra theo dòng trọng lực. Tia lửa gây nổ khi ô chứa nó hoặc ô sát bên nằm trong khoảng 2–9,5%.
 // Mọi con số trong mô phỏng (lưu lượng rò 0,8 lít hơi/giây, tốc độ lan, thời gian vỡ bình) là ví dụ giả định để minh họa.
 import { makeScene, THREE, mat, label, bindGroup, press, flatLine, circlePts } from './three-kit.js';
 
@@ -100,7 +101,7 @@ else {
   function drawCells() {
     for (var k = 0; k < NZ; k++) for (var j = 0; j < NY; j++) for (var i = 0; i < NX; i++) {
       var a = I(i, j, k), v = c[a], s = 0;
-      if (st.burn) { var bt = st.burn.t[a]; if (bt >= 0) { var age = st.burn.age - bt; if (age >= 0 && age < 1.6) { s = 1.05 - age * .3; COL.copy(cW).lerp(cO, Math.min(1, age * 2.2)); } } }
+      if (st.burn) { var bt = st.burn.t[a]; if (bt >= 0) { var age = st.burn.age - bt; if (age >= 0 && age < 2.2) { s = 1.08 - age * .25; COL.copy(cW).lerp(cO, Math.min(1, age * 1.6)); if (age > 1.2) COL.lerp(new THREE.Color(0x8a1d00), (age - 1.2)); } } }
       else if (v > .2) { s = .3 + .7 * Math.min(1, v / LEL); if (v < LEL) COL.copy(cY).lerp(cO, Math.max(0, (v - 1) / 1.5) * .5); else if (v <= UEL) COL.copy(cO); else COL.copy(cP); }
       V3.set((i + .5) * DX, (j + .5) * DX, (k + .5) * DX); SC.setScalar(s || 1e-4); M4.compose(V3, Q, SC); cells.setMatrixAt(a, M4); if (s) cells.setColorAt(a, COL);
     }
@@ -109,8 +110,8 @@ else {
   function stepGas(dt) {
     if (st.leak) c[LEAK_IDX] += st.rate * dt / CV * 100;
     for (var k = 0; k < NZ; k++) for (var i = 0; i < NX; i++) for (var j = 1; j < NY; j++) { // gas nặng: chìm xuống
-      var a = I(i, j, k), b = I(i, j - 1, k), w = Math.min(.05, .0015 + .0025 * c[a]), m = c[a] * Math.min(.45, w * dt / DX) * Math.max(0, 1 - c[b] / 100); c[a] -= m; c[b] += m; }
-    var open = (st.win ? 1 : 0) + (st.door ? 1 : 0), dh0 = .004 + (open ? .006 : 0), dv = .003 + (open ? .002 : 0), f = dt / (DX * DX);
+      var a = I(i, j, k), b = I(i, j - 1, k), w = Math.min(.03, .001 + .0015 * c[a]), m = c[a] * Math.min(.45, w * dt / DX) * Math.max(0, 1 - c[b] / 100); c[a] -= m; c[b] += m; }
+    var open = (st.win ? 1 : 0) + (st.door ? 1 : 0), dh0 = .004 + (open ? .006 : 0), dv = .006 + (open ? .002 : 0), f = dt / (DX * DX);
     for (k = 0; k < NZ; k++) for (j = 0; j < NY; j++) { var lowF = j < 3 ? 1 : .3; for (i = 0; i < NX; i++) {
       a = I(i, j, k); var ca = c[a], s = 0, q;
       if (i > 0) { q = c[a - 1]; s += Math.min(.024, dh0 + .0015 * (ca + q) * lowF) * (q - ca); }
@@ -122,7 +123,12 @@ else {
     var t = c; c = nb; nb = t;
     var mult = open === 2 ? 1.8 : 1, r = Math.min(1, .8 * mult * dt);
     if (st.win) for (i = 11; i <= 16; i++) for (j = 5; j <= 10; j++) { a = I(i, j, 0); c[a] -= c[a] * r; }
-    if (st.door) for (k = 8; k <= 12; k++) for (j = 0; j <= 10; j++) { a = I(0, j, k); c[a] -= c[a] * r; }
+    if (st.door) { // khí nặng chảy theo sàn về phía cửa (dòng trọng lực), mô hình đơn giản
+      var fx = Math.min(.3, .04 * dt / DX);
+      for (j = 0; j < 3; j++) for (k = 0; k < NZ; k++) { for (i = 0; i < NX - 1; i++) { a = I(i, j, k); var m2 = c[a + 1] * fx; c[a + 1] -= m2; c[a] += m2; } }
+      for (j = 0; j < 3; j++) for (i = 0; i < 6; i++) { for (k = 0; k < 8; k++) { a = I(i, j, k); var m3 = c[a] * fx; c[a] -= m3; c[a + NX * NY] += m3; } for (k = NZ - 1; k > 12; k--) { a = I(i, j, k); var m4 = c[a] * fx; c[a] -= m4; c[a - NX * NY] += m4; } }
+    }
+    if (st.door) for (k = 8; k <= 12; k++) for (j = 0; j <= 10; j++) { a = I(0, j, k); c[a] -= c[a] * (j < 3 ? Math.min(1, r * 2.5) : r); }
     st.t += dt;
     if (st.det && st.alarmT === null && c[cellOf(DET[st.det])] >= ALARM) { st.alarmT = st.t; onAlarm(); }
   }
@@ -149,42 +155,74 @@ else {
     panes.forEach(function (p) { p.position.copy(p.userData.home); p.rotation.set(0, 0, 0); p.visible = true; });
     st.flyers.forEach(function (f) { if (f.tmp) K.remove(f.o); }); st.flyers = [];
     doorPiv.rotation.set(0, 0, 0); doorLeaf.position.set(0, 1.04, -.45); doorPiv.position.set(0, 0, 2.5);
-    cook.position.set(2.0, 0, .95); cook.rotation.y = Math.PI; cook.visible = true; flash.intensity = 0; drawCells();
+    cook.position.set(2.0, 0, .95); cook.rotation.y = Math.PI; cook.visible = true; flash.intensity = 0; lampOn(false);
+    kBall.visible = false; kRing.material.opacity = 0; smoke.forEach(function (o) { o.visible = false; }); debris.forEach(function (o) { o.visible = false; }); back.position.set(0, 0, 0); back.rotation.set(0, 0, 0); left.position.set(0, 0, 0); left.rotation.set(0, Math.PI / 2, 0); drawCells();
   }
   function startLeak(pre) { if (st.scene !== 'kitchen') toKitchen(); st.leak = true; st.run = true; crack.visible = lLk.visible = hissG.visible = true; if (pre) sim(pre); drawCells(); }
 
   // ===== ánh sáng chớp khi nổ =====
   var flash = new THREE.PointLight(0xffa040, 0, 30, 1.5); flash.position.set(2, 1, 1.5); K.add(flash);
+  // đèn trần (bật khi bấm công tắc mà chưa nổ)
+  var bulbM = new THREE.MeshBasicMaterial({ color: 0x777777 }), bulb = new THREE.Mesh(new THREE.SphereGeometry(.07, 12, 10), bulbM); bulb.position.set(2, 2.62, 1.5); K.add(bulb);
+  var cord = new THREE.Mesh(new THREE.CylinderGeometry(.008, .008, .16, 4), mat(0x333333)); cord.position.set(2, 2.72, 1.5); K.add(cord);
+  var lamp = new THREE.PointLight(0xfff1c8, 0, 9, 1.6); lamp.position.copy(bulb.position); K.add(lamp);
+  function lampOn(on) { lamp.intensity = on ? 6 : 0; bulbM.color.set(on ? 0xfff4c2 : 0x777777); }
+  // quả cầu lửa, sóng áp suất, khói, mảnh vụn
+  var fbM = new THREE.MeshBasicMaterial({ color: 0xff9a2e, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+  var kBall = new THREE.Mesh(new THREE.SphereGeometry(1, 28, 18), fbM); kBall.visible = false; K.add(kBall);
+  var kRing = new THREE.Mesh(new THREE.RingGeometry(.92, 1, 64), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false })); kRing.rotation.x = -Math.PI / 2; kRing.position.set(2, .03, 1.5); K.add(kRing);
+  var smoke = []; for (var sm = 0; sm < 14; sm++) { var sp0 = new THREE.Mesh(new THREE.SphereGeometry(.35, 10, 8), new THREE.MeshStandardMaterial({ color: 0x6b6b6b, transparent: true, opacity: 0, depthWrite: false })); sp0.visible = false; K.add(sp0); smoke.push(sp0); }
+  var debris = []; for (var db = 0; db < 16; db++) { var dbm = new THREE.Mesh(new THREE.BoxGeometry(.06 + Math.random() * .1, .04, .05 + Math.random() * .1), mat(db % 3 ? 0xd9cfbd : 0x8a7a62)); dbm.visible = false; K.add(dbm); debris.push(dbm); }
   var spark = new THREE.Mesh(new THREE.SphereGeometry(.05, 10, 8), new THREE.MeshBasicMaterial({ color: 0xffffcc, transparent: true })); spark.visible = false; K.add(spark);
 
-  function ignite(where) {
+  function hitNear(idx) { // tia lửa chạm hỗn hợp: xét ô chứa tia lửa và các ô sát bên
+    var i0 = idx % NX, j0 = Math.floor(idx / NX) % NY, k0 = Math.floor(idx / (NX * NY)), best = -1, bv = 0;
+    for (var dk = -1; dk <= 1; dk++) for (var dj = -1; dj <= 1; dj++) for (var di = -1; di <= 1; di++) { var i = i0 + di, j = j0 + dj, k = k0 + dk; if (i < 0 || j < 0 || k < 0 || i >= NX || j >= NY || k >= NZ) continue; var a = I(i, j, k), v = c[a]; if (v >= LEL && v <= UEL && v > bv) { bv = v; best = a; } }
+    return best;
+  }
+  function nearMax(idx) { var i0 = idx % NX, j0 = Math.floor(idx / NX) % NY, k0 = Math.floor(idx / (NX * NY)), m = 0; for (var dk = -1; dk <= 1; dk++) for (var dj = -1; dj <= 1; dj++) for (var di = -1; di <= 1; di++) { var i = i0 + di, j = j0 + dj, k = k0 + dk; if (i < 0 || j < 0 || k < 0 || i >= NX || j >= NY || k >= NZ) continue; m = Math.max(m, c[I(i, j, k)]); } return m; }
+  function ignite(where, later) {
     if (st.scene !== 'kitchen') toKitchen();
     if (st.burn) resetKitchen();
-    if (maxC() < .2) { startLeak(15 * 60); }
+    var P = where === 'switch' ? swP : sockP, idx = where === 'switch' ? SW_IDX : SO_IDX, name = where === 'switch' ? 'công tắc đèn (cao 1,3 m)' : 'ổ cắm thấp (cao 0,3 m)';
+    var waited = 0;
+    if (maxC() < .2) { startLeak(0); later = true; }
+    if (later) { // kịch bản "đi vắng về": gas tiếp tục rò cho tới khi hỗn hợp chạm tới chỗ có tia lửa (tối đa 90 phút)
+      st.leak = true; crack.visible = lLk.visible = hissG.visible = true; var t0 = st.t;
+      while (hitNear(idx) < 0 && st.t - t0 < 90 * 60) sim(30);
+      waited = st.t - t0; drawCells();
+    }
     st.run = true;
-    var P = where === 'switch' ? swP : sockP, idx = where === 'switch' ? SW_IDX : SO_IDX, v = c[idx], floorMax = layerMax(0), name = where === 'switch' ? 'công tắc đèn (cao 1,3 m)' : 'ổ cắm thấp (cao 0,3 m)';
-    spark.position.copy(P).add(new THREE.Vector3(.04, 0, 0)); spark.visible = true; spark.userData.t = 0;
-    S.flyTo([3.8, 2.2, 5.4], [.6, P.y, P.z], 1); press(tools, 'data-cam', '');
-    if (v >= LEL && v <= UEL) { explode(idx, name); return; }
-    var msg;
-    if (v > UEL) msg = 'Tại ' + name + ' gas đặc tới ' + f1(v) + '% – quá giàu để bắt lửa ngay chỗ đó. Đây là may mắn chứ không phải an toàn: mép đám mây luôn có vùng 2–9,5%.';
-    else msg = 'Tia lửa ở ' + name + ' gặp không khí chỉ có ' + f1(v) + '% gas – <b>dưới giới hạn nổ 2%</b>, nên chưa bắt lửa.' + (floorMax >= LEL ? ' Nhưng sát sàn gas đã tới <b>' + f1(floorMax) + '%</b>.' + (where === 'switch' ? (c[SO_IDX] >= LEL ? ' Một tia lửa thấp hơn – ổ cắm sát sàn, tủ lạnh, máy bơm – có thể là chuyện khác. <button class="cue" data-cue="plug">Thử rút phích ổ cắm thấp</button>' : ' Lớp gas vẫn đang dày lên; một tia lửa thấp hơn – ổ cắm sát sàn, tủ lạnh, máy bơm – chỉ cần thêm ít phút nữa.') : ' Gas vẫn đang rò và lớp sát sàn dày lên từng phút – để vài phút nữa rồi thử lại sẽ thấy chuyện gì xảy ra.') : '');
-    S.verdict(v > UEL ? 'Chưa bắt lửa – nhưng chỉ là may' : 'Chưa bắt lửa – lần này', 'bad', 4500);
-    readout('<b>Đã rò ' + mmss(st.t) + '.</b> ' + msg + (tier > 1 ? ' Gas bình nặng hơn không khí 1,5–2 lần nên đọng ở dưới; nồng độ ở độ cao công tắc thường thấp hơn sát sàn rất nhiều.' : '') + (tier > 2 ? ' <i>Đừng tin vào điều này: chỉ cần gas rò lâu hơn, hoặc người đi lại khuấy lớp gas lên, nồng độ ở 1,3 m sẽ vào khoảng nổ.</i>' : ''));
+    spark.position.copy(P).add(new THREE.Vector3(.05, 0, 0)); spark.visible = true; spark.userData.t = 0;
+    var hit = hitNear(idx), v = nearMax(idx), floorMax = layerMax(0);
+    cam('all'); press(tools, 'data-cam', 'all');
+    if (hit >= 0) { explode(hit, name, waited); return; }
+    if (where === 'switch') lampOn(true);
+    var msg = 'Tia lửa ở ' + name + ' chỉ gặp không khí có <b>' + f1(v) + '% gas – dưới giới hạn nổ 2%</b>, nên ' + (where === 'switch' ? 'đèn sáng bình thường.' : 'chưa bắt lửa.') +
+      ' Gas bình nặng hơn không khí nên lúc đầu chỉ đọng sát sàn' + (floorMax >= LEL ? ' (sát sàn đã <b>' + f1(floorMax) + '%</b>)' : '') + '; càng rò lâu, lớp gas càng dày và dâng lên.' +
+      ' <button class="cue" data-cue="' + (where === 'switch' ? 'later-switch' : 'later-plug') + '">⏩ Để gas rò tiếp rồi ' + (where === 'switch' ? 'bật đèn lại' : 'rút phích lại') + '</button>' + (where === 'switch' ? ' <button class="cue" data-cue="plug">Rút phích ổ cắm thấp</button>' : '');
+    S.verdict('Chưa nổ – gas ở ' + (where === 'switch' ? '1,3 m' : '0,3 m') + ' mới ' + f1(v) + '%', 'bad', 4500);
+    readout('<b>Đã rò ' + mmss(st.t) + '.</b> ' + msg + (tier > 2 ? ' <i>Đây là may mắn chứ không phải an toàn: người đi lại, quạt, cửa mở đều khuấy lớp gas lên cao.</i>' : ''));
   }
-  function explode(idx, name) {
+  function explode(idx, name, waited) {
     // ngọn lửa lan theo các ô có nồng độ cháy được (tìm theo chiều rộng)
     var tq = new Float32Array(N).fill(-1), q = [idx], burnt = 0, gasM3 = 0; tq[idx] = 0;
     while (q.length) { var a = q.shift(), i = a % NX, j = Math.floor(a / NX) % NY, k = Math.floor(a / (NX * NY)); burnt++; gasM3 += c[a] / 100 * CV;
-      [[i - 1, j, k], [i + 1, j, k], [i, j - 1, k], [i, j + 1, k], [i, j, k - 1], [i, j, k + 1]].forEach(function (n) { if (n[0] < 0 || n[1] < 0 || n[2] < 0 || n[0] >= NX || n[1] >= NY || n[2] >= NZ) return; var b = I(n[0], n[1], n[2]); if (tq[b] >= 0 || c[b] < LEL * .9) return; tq[b] = tq[a] + .035; q.push(b); }); }
+      [[i - 1, j, k], [i + 1, j, k], [i, j - 1, k], [i, j + 1, k], [i, j, k - 1], [i, j, k + 1]].forEach(function (n) { if (n[0] < 0 || n[1] < 0 || n[2] < 0 || n[0] >= NX || n[1] >= NY || n[2] >= NZ) return; var b = I(n[0], n[1], n[2]); if (tq[b] >= 0 || c[b] < LEL * .9) return; tq[b] = tq[a] + .055; q.push(b); }); }
     st.burn = { t: tq, age: 0, max: 0 }; for (var a2 = 0; a2 < N; a2++) if (tq[a2] > st.burn.max) st.burn.max = tq[a2];
     st.leak = false; hissG.visible = false; st.run = false;
     var vol = burnt * CV, kg = gasM3 * 2.0, mj = kg * 46;
     st.flyers = panes.map(function (p, n) { return { o: p, v: new THREE.Vector3((n ? 1.5 : -1.5), 2.5, -6 - Math.random() * 3), r: new THREE.Vector3(Math.random() * 6, Math.random() * 6, 0), delay: Math.min(.5, st.burn.max * .6) }; });
     st.flyers.push({ o: doorPiv, v: new THREE.Vector3(-5, 1.5, .6), r: new THREE.Vector3(0, 0, 2.5), delay: Math.min(.5, st.burn.max * .6) });
-    st.shake = 1; clkNote('💥 Nổ sau ' + mmss(st.t) + ' rò rỉ');
+    st.shake = 1.4; clkNote('💥 Nổ sau ' + mmss(st.t) + ' rò rỉ');
+    // tâm và cỡ quả cầu lửa theo vùng cháy
+    var cx = 0, cy = 0, cz = 0, ext = 0; for (var a3 = 0; a3 < N; a3++) if (tq[a3] >= 0) { cx += (a3 % NX + .5) * DX; cy += (Math.floor(a3 / NX) % NY + .5) * DX; cz += (Math.floor(a3 / (NX * NY)) + .5) * DX; }
+    cx /= burnt; cy /= burnt; cz /= burnt; ext = Math.max(.6, Math.cbrt(vol) * .75);
+    st.burn.ball = { c: new THREE.Vector3(cx, cy, cz), r: ext }; kBall.position.set(cx, cy, cz); kBall.visible = true; kBall.scale.setScalar(.05);
+    smoke.forEach(function (o, n) { o.position.set(cx + (Math.random() - .5) * 2.4, .3 + Math.random() * .8, cz + (Math.random() - .5) * 2); o.userData = { v: .25 + Math.random() * .35, d: st.burn.max + 1.2 + n * .08 }; o.visible = true; o.material.opacity = 0; o.scale.setScalar(.6); });
+    debris.forEach(function (o, n) { var a = n / debris.length * Math.PI * 2; o.position.set(2 + Math.cos(a) * 1.6, .3 + Math.random() * 2, 1.5 + Math.sin(a) * 1.2); o.userData = { v: new THREE.Vector3(Math.cos(a) * (3 + Math.random() * 3), 2 + Math.random() * 3, Math.sin(a) * (3 + Math.random() * 3)), r: Math.random() * 10 }; o.visible = true; });
     S.verdict('💥 Nổ khí gas: lửa lan qua ' + f1(vol) + ' m³ hỗn hợp', 'bad', 6000);
-    readout('<span class="big">Tia lửa ở ' + name + ' đã đủ.</span> Sau ' + mmss(st.t) + ' rò rỉ, khoảng <b>' + f1(vol) + ' m³</b> không khí trong bếp (≈' + Math.round(vol / 33.6 * 100) + '% thể tích căn phòng) đã nằm trong khoảng cháy được. Ngọn lửa lan qua toàn bộ vùng ấy trong chưa đầy một giây; khí cháy nở ra nhanh hơn tốc độ thoát qua khe cửa nên áp suất đẩy bật kính và cửa.' +
+    readout('<span class="big">Tia lửa ở ' + name + ' đã đủ.</span> ' + (waited ? 'Bạn “đi vắng” thêm ' + Math.round(waited / 60) + ' phút trong khi dây vẫn rò. ' : '') + 'Sau ' + mmss(st.t) + ' rò rỉ, khoảng <b>' + f1(vol) + ' m³</b> không khí trong bếp (≈' + Math.round(vol / 33.6 * 100) + '% thể tích căn phòng) đã nằm trong khoảng cháy được. Ngọn lửa lan qua toàn bộ vùng ấy trong chưa đầy một giây; khí cháy nở ra nhanh hơn tốc độ thoát qua khe cửa nên áp suất đẩy bật kính và cửa.' +
       (tier > 1 ? ' Lượng gas trong vùng cháy chỉ khoảng <b>' + Math.round(kg * 1000) + ' g</b> – chưa tới một phần mười bình 12 kg.' : '') +
       (tier > 2 ? ' <i>Năng lượng hóa học ≈ ' + f1(mj) + ' MJ ≈ ' + f1(mj / 4.18) + ' kg TNT; nếu 3% thành sóng áp suất thì tương đương ' + f1(mj * .03 / 4.18 * 1000) + ' g TNT (ước lượng minh họa).</i>' : '') + ' <button class="cue" data-cue="safe">Làm lại – lần này làm đúng</button>');
   }
@@ -192,7 +230,7 @@ else {
     detLedM.color.set(0xff2d2d);
     var fm = layerMax(0), where = st.det === 'low' ? 'thấp (cách sàn 30 cm)' : 'cao (gần trần)';
     S.verdict('🔔 Đầu báo ' + (st.det === 'low' ? 'thấp' : 'cao') + ' kêu sau ' + mmss(st.alarmT), st.det === 'low' ? 'good' : 'bad', 5000);
-    readout('<b>Đầu báo đặt ' + where + ' kêu sau ' + mmss(st.alarmT) + '.</b> Lúc ấy gas sát sàn đậm nhất ' + f1(fm) + '%' + (fm >= LEL ? ' – <b>đã vào khoảng nổ</b>, cảnh báo đến quá muộn.' : ' – còn dưới ngưỡng nổ, đủ thời gian khóa van và mở cửa.') + (st.det === 'low' ? '' : ' Đầu báo đặt cao hợp với khí thiên nhiên (nhẹ hơn không khí), không hợp với gas bình.') + (tier > 2 ? ' <i>Ngưỡng kêu trong mô phỏng: 15% LEL ≈ 0,3% thể tích.</i>' : ''));
+    readout('<b>Đầu báo đặt ' + where + ' kêu sau ' + mmss(st.alarmT) + '.</b> Lúc ấy gas sát sàn đậm nhất ' + (fm < LEL ? f1(Math.min(fm, 1.94)) : f1(fm)) + '%' + (fm >= LEL ? ' – <b>đã vào khoảng nổ</b>, cảnh báo đến quá muộn.' : ' – còn dưới ngưỡng nổ, đủ thời gian khóa van và mở cửa.') + (st.det === 'low' ? '' : ' Đầu báo đặt cao hợp với khí thiên nhiên (nhẹ hơn không khí), không hợp với gas bình.') + (tier > 2 ? ' <i>Ngưỡng kêu trong mô phỏng: 15% LEL ≈ 0,3% thể tích.</i>' : ''));
   }
   function detector(where) {
     resetKitchen(); st.det = where; detG.visible = true; detG.position.copy(DET[where]).add(new THREE.Vector3(0, 0, .03)); press(tools, 'data-det', where);
@@ -281,11 +319,17 @@ else {
       if (st.run) { st.acc += rdt * st.speed; var n = 0; while (st.acc >= .25 && n < 80) { stepGas(.25); st.acc -= .25; n++; } if (n === 80) st.acc = 0; }
       if (hissG.visible) hissG.children.forEach(function (p) { var u = (p.userData.ph + tt * 1.6) % 1; p.position.set(leakPt.x + u * .25, leakPt.y - u * .3, leakPt.z + u * .15 + Math.sin(u * 9 + p.userData.ph * 20) * .03); p.material.opacity = .7 * (1 - u); });
       if (spark.visible) { spark.userData.t += rdt; spark.scale.setScalar(1 + Math.sin(spark.userData.t * 60) * .6); spark.material.opacity = Math.max(0, 1 - spark.userData.t * 2.5); if (spark.userData.t > .4) spark.visible = false; }
-      if (st.burn) { st.burn.age += rdt; var ba = st.burn.age; flash.intensity = ba < st.burn.max + .5 ? 40 * Math.max(0, 1 - Math.abs(ba - st.burn.max / 2) / (st.burn.max + .5)) + 8 : Math.max(0, flash.intensity - rdt * 40);
-        st.flyers.forEach(function (f) { if (ba < f.delay) return; f.v.y -= 9.81 * rdt; f.o.position.addScaledVector(f.v, rdt * .6); f.o.rotation.x += f.r.x * rdt * .6; f.o.rotation.z += f.r.z * rdt * .6; if (f.o.position.y < -2) f.o.visible = false; });
+      if (st.burn) { st.burn.age += dt; var ba = st.burn.age; flash.intensity = ba < st.burn.max + .5 ? 40 * Math.max(0, 1 - Math.abs(ba - st.burn.max / 2) / (st.burn.max + .5)) + 8 : Math.max(0, flash.intensity - rdt * 40);
+        st.flyers.forEach(function (f) { if (ba < f.delay) return; f.v.y -= 9.81 * dt; f.o.position.addScaledVector(f.v, dt * .6); f.o.rotation.x += f.r.x * dt * .6; f.o.rotation.z += f.r.z * dt * .6; if (f.o.position.y < -2) f.o.visible = false; });
         if (ba > st.burn.max + 1.2) cook.visible = false;
-        if (!st.burn.cam && ba > st.burn.max + 1.4) { st.burn.cam = true; S.flyTo([5.8, 3.6, 6.6], [1.6, .9, .8], 1.6); } }
-      if (st.shake > 0) { st.shake = Math.max(0, st.shake - rdt * 1.2); S.camera.position.x += (Math.random() - .5) * .08 * st.shake; S.camera.position.y += (Math.random() - .5) * .06 * st.shake; }
+        var BB = st.burn.ball; if (BB) { var g = Math.min(1, ba / (st.burn.max + .35)); kBall.scale.setScalar(.05 + BB.r * Math.sqrt(g)); fbM.opacity = ba < st.burn.max + .6 ? .7 : Math.max(0, .7 - (ba - st.burn.max - .6) * .5); fbM.color.setHSL(.09 - Math.min(.06, ba * .03), 1, .55 + .25 * (1 - g)); if (fbM.opacity <= 0) kBall.visible = false; }
+        kRing.scale.setScalar(.3 + ba * 9); kRing.material.opacity = Math.max(0, .55 - ba * .45);
+        var push = Math.min(1, Math.max(0, (ba - st.burn.max * .4) * 4)), relax = Math.max(0, 1 - Math.max(0, ba - st.burn.max - .4) * 1.5), pz = push * relax;
+        back.position.z = -.12 * pz; back.rotation.x = -.05 * pz; left.position.x = -.12 * pz;
+        debris.forEach(function (o) { if (!o.visible || ba < st.burn.max * .4) return; var u = o.userData; u.v.y -= 9.81 * dt; o.position.addScaledVector(u.v, dt * .7); o.rotation.x += u.r * dt; o.rotation.y += u.r * .6 * dt; if (o.position.y < .02) { o.position.y = .02; u.v.set(u.v.x * .3, 0, u.v.z * .3); } });
+        smoke.forEach(function (o) { var u = o.userData; if (ba < u.d) return; var e = ba - u.d; o.position.y += u.v * dt; o.scale.setScalar(.6 + e * .45); o.material.opacity = Math.min(.32, e * .3) * Math.max(0, 1 - Math.max(0, e - 4) * .25); });
+        if (!st.burn.cam && ba > st.burn.max + 1.4) { st.burn.cam = true; S.flyTo([7.6, 4.8, 9.2], [1.6, .9, .6], 1.6); } }
+      if (st.shake > 0) { st.shake = Math.max(0, st.shake - rdt * 1.2); S.camera.position.x += (Math.random() - .5) * .12 * st.shake; S.camera.position.y += (Math.random() - .5) * .09 * st.shake; }
       // cửa sổ, cửa ra vào mở dần
       sash.visible = st.win; if (sash.visible) sash.rotation.x = Math.min(.9, (sash.rotation.x || 0) + rdt * 2);
       if (!st.burn) { var tgt = st.door ? -1.7 : 0; doorPiv.rotation.y += (tgt - doorPiv.rotation.y) * Math.min(1, rdt * 4); }
@@ -300,7 +344,7 @@ else {
       if (st.det && st.alarmT === null && st.t > 15 * 60) { st.run = false; st.alarmT = -1; var fm3 = layerMax(0); S.verdict('🔕 Đầu báo cao vẫn im sau 15 phút', 'bad', 5000); readout('<b>15 phút rò rỉ, đầu báo trên cao vẫn chưa kêu</b> – trong khi sát sàn gas đã ' + f1(fm3) + '%' + (fm3 >= LEL ? ', <b>vào khoảng nổ</b>' : '') + '. Gas bình nặng nên đọng dưới thấp; đầu báo gas bình phải đặt gần sàn. <button class="cue" data-cue="det-low">Thử đặt thấp</button>'); }
       if (st.frame % 3 === 0 || st.burn) drawCells();
       if (st.layers && st.frame % 20 === 0) updPole();
-      if (st.run && !st.safe && st.frame % 10 === 0) clkNote((st.leak ? '⏱ Đã rò ' : '⏱ ') + mmss(st.t) + ' · ×' + st.speed + (st.leak && view.clientWidth > 640 ? ' · rò 0,8 lít hơi/giây (giả định)' : ''));
+      if (st.run && !st.safe && st.frame % 10 === 0) clkNote(view.clientWidth < 640 ? '⏱ ' + Math.floor(st.t / 60) + ' phút · sàn ' + f1(layerMax(0)) + '% · 0,3 m ' + f1(nearMax(SO_IDX)) + '% · 1,3 m ' + f1(nearMax(SW_IDX)) + '%' : (st.leak ? '⏱ Đã rò ' : '⏱ ') + mmss(st.t) + ' · ×' + st.speed + ' · sát sàn ' + f1(layerMax(0)) + '% · ổ cắm ' + f1(nearMax(SO_IDX)) + '% · công tắc ' + f1(nearMax(SW_IDX)) + '%');
       if (!st.run && !st.burn && maxC() < .05 && st.frame % 30 === 0) clkNote('Căn bếp 4 × 3 m, trần 2,8 m · bấm “Cho dây dẫn rò”');
     } else if (st.b) {
       var B = st.b;
@@ -339,10 +383,10 @@ else {
 
   // ===== nút công cụ =====
   function act(a) {
-    if (a === 'leak') { resetKitchen(); st.det && (detG.visible = true); startLeak(0); cam('all'); readout('<b>Dây dẫn bị nứt.</b> Gas thoát ra khoảng 0,8 lít hơi mỗi giây (ví dụ giả định) – không thấy, chỉ có mùi và tiếng xì. Xem đám mây <b>chìm xuống sàn</b> rồi loang dần. Ô vàng: gas loãng; ô cam: <b>đã vào khoảng nổ 2–9,5%</b>.' + (tier > 1 ? ' Thử bật công tắc đèn, rút phích ổ cắm thấp, hoặc làm đúng: khóa van – mở cửa – ra ngoài.' : '') + (tier > 2 ? ' <i>Mô hình: lưới ô 20 cm, gas lắng theo trọng lực và khuếch tán rối; không có gió.</i>' : '')); }
+    if (a === 'leak') { resetKitchen(); st.det && (detG.visible = true); startLeak(0); cam('all'); readout('<b>Dây dẫn bị nứt.</b> Gas thoát ra khoảng 0,8 lít hơi mỗi giây (ví dụ giả định) – không thấy, chỉ có mùi và tiếng xì. Xem đám mây <b>chìm xuống sàn</b> rồi loang dần. Góc dưới khung hình ghi nồng độ ở sát sàn, ở ổ cắm thấp (0,3 m) và ở công tắc đèn (1,3 m). Ô vàng: gas loãng; ô cam: <b>đã vào khoảng nổ 2–9,5%</b>.' + (tier > 1 ? ' Thử bật công tắc đèn, rút phích ổ cắm thấp, hoặc làm đúng: khóa van – mở cửa – ra ngoài.' : '') + (tier > 2 ? ' <i>Mô hình: lưới ô 20 cm, gas lắng theo trọng lực và khuếch tán rối; không có gió.</i>' : '')); }
     else if (a === 'valve') { if (st.scene !== 'kitchen') toKitchen(); st.leak = false; hissG.visible = false; lLk.visible = false; S.verdict('Đã khóa van – gas thôi thoát ra', 'good', 3000); readout('<b>Đã khóa van bình.</b> Gas không thoát thêm, nhưng lượng đã rò vẫn còn trong phòng. Giờ cần cho nó ra ngoài: mở cửa – nhất là cửa sát sàn.'); }
     else if (a === 'reset') { st.det = null; detG.visible = false; press(tools, 'data-det', ''); if (st.scene !== 'kitchen') toKitchen(); resetKitchen(); readout('Căn bếp 4 × 3 m, trần 2,8 m, tỉ lệ thật. Bấm <b>▶ Cho dây dẫn rò</b> để bắt đầu.'); }
-    else if (a === 'switch' || a === 'plug') ignite(a);
+    else if (a === 'switch' || a === 'plug') ignite(a, false);
     else if (a === 'safe') safe();
     else if (a === 'bleve') bleve(false);
     else if (a === 'bleve-safe') bleve(true);
@@ -360,6 +404,8 @@ else {
     var cmd = e.detail;
     if (cmd === 'kitchen') { if (st.scene !== 'kitchen') toKitchen(); press(tools, 'data-cam', 'all'); cam('all'); }
     else if (cmd === 'layers') layers(true);
+    else if (cmd === 'later-switch') ignite('switch', true);
+    else if (cmd === 'later-plug') ignite('plug', true);
     else if (cmd === 'det-low') detector('low');
     else if (cmd === 'det-high') detector('high');
     else if (cmd === 'win' || cmd === 'door') compareVent(cmd);
