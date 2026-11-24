@@ -241,7 +241,7 @@ SELECT k, n FROM totals WHERE k LIKE 'view:%' OR k LIKE 'like:%' ORDER BY k;
 | Chùm chìa khóa | Lái xe an toàn | `#goc-lai-xe` |
 | Máy tính có sóng siêu âm | Nghề nghiệp (The Invisible Flaw) | `#goc-nghe-nghiep` |
 | Giá sách | Đọc sách (sách hôm nay, bài viết) | `#bai-viet` |
-| Bàn cờ, rubik | Giải đố (câu đố hôm nay, Kiểm Đếm Ca Đêm) | `#goc-giai-do` |
+| Bàn cờ, rubik | Giải đố (câu đố hôm nay, Kiểm Đếm Ca Đêm Mùa 1 và Mùa 2) | `#goc-giai-do` |
 | Bảng ghim | Chia sẻ (câu hỏi hôm nay, rủ người thân) | `#goc-chia-se` |
 
 ### Thêm nội dung đổi mỗi ngày (không cần biết lập trình)
@@ -261,6 +261,7 @@ SELECT k, n FROM totals WHERE k LIKE 'view:%' OR k LIKE 'like:%' ORDER BY k;
 | Phù thủy Phân kim | https://phankim.hlvsuckhoe.com/ | phu-thuy-phan-kim |
 | The Invisible Flaw | https://hvflaw.hlvsuckhoe.com/ | the_invisible_flaw |
 | Kiểm Đếm Ca Đêm | https://kiemdem.hlvsuckhoe.com/ | kiem-dem-ca-dem |
+| Kiểm Đếm Ca Đêm · Mùa 2 | https://kiemdem2.hlvsuckhoe.com/ | kiem-dem-mua-2 |
 
 Đổi địa chỉ một ứng dụng: Ctrl + F trong `index.html` tìm địa chỉ cũ và thay hết (mỗi địa chỉ xuất hiện 3–5 lần: góc, kệ ứng dụng, cài đặt, giới thiệu, chân trang).
 
@@ -343,3 +344,9 @@ Không dùng ảnh vận động viên, logo giải đấu/CLB, tranh hay bản 
 7. **Gắn bộ đếm cho các ứng dụng** (`app`, `tho`, `thienvan`) – Worker đã sẵn sàng, chỉ cần chép đoạn hiển thị.
 8. **Tôi & Gia Đình đã ra mắt (1.3.0)** – gửi bản tin riêng; làm trang giới thiệu ngắn có ảnh chụp màn hình.
 9. **Khi danh sách vượt ~2.000 người**: cân nhắc gói Pro của EmailOctopus (từ khoảng 9–10 USD/tháng) hoặc chuyển sang Brevo (lưu không giới hạn, 300 thư/ngày). Xuất danh sách ra CSV định kỳ để luôn có bản sao lưu.
+
+## Bản 2.3.1 – Kiểm Đếm Ca Đêm Mùa 2 (25/11/2026)
+- Thẻ **Kiểm Đếm Ca Đêm · Mùa 2: Phiếu Bàn Giao** (`kiemdem2.hlvsuckhoe.com`, repo `kiem-dem-mua-2`) ở Góc giải đố (dưới thẻ Mùa 1) và kệ ứng dụng; thêm vào chân trang, mục Liên hệ, hướng dẫn chọn ứng dụng, sitemap. Màu thẻ: lớp `.app2.kd2` (xanh sông).
+- Ảnh `img/apps/kiem-dem-mua-2.jpg` (800×480, chụp màn hình Tập 1).
+- Game Mùa 2 dùng chung mã Cloudflare Web Analytics với trang chủ.
+- Khi ra màn hoặc tập mới: sửa câu "Đã có Màn 1" ở Góc giải đố và "Mới có Màn 1" ở kệ ứng dụng (Ctrl + F `kiemdem2`).

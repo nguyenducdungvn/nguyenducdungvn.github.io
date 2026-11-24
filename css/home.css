@@ -350,6 +350,8 @@ details.vc[open]{padding-bottom:18px}
 .app2.pk{background:linear-gradient(135deg,#3a2a5c,#140d22)}
 .app2.kd{background:linear-gradient(135deg,#3b1f1f,#0d0a0a)}
 .app2.kd .btn{background:#e4c48a}
+.app2.kd2{background:linear-gradient(135deg,#123241,#061014)}
+.app2.kd2 .btn{background:#6fc3d8;color:#061014}
 .app2 .warn{font-size:.82rem;opacity:.75;margin-top:6px}
 @media (max-width:600px){.app2{grid-template-columns:1fr}}
 .shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px;margin-top:14px}
