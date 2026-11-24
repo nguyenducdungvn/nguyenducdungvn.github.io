@@ -1,0 +1,73 @@
+/* HLV Sức Khỏe – kiểu chữ & bố cục dùng chung cho bài viết (tách từ bài 4–7–8, 24/11/2026).
+   Bài mới: <link rel="stylesheet" href="../css/bai-viet.css"> rồi chỉ thêm CSS riêng của bài. */
+:root{
+  --paper:#f6f4ee; --card:#ffffff; --ink:#1a2a22; --muted:#5d6b63; --line:#e2e0d6;
+  --forest:#0f6a4b; --leaf:#19c08a; --sun:#f2a516; --night:#13233b; --wash:#eaf3ee;
+  --display:"Literata", Georgia, "Times New Roman", serif;
+  --body:"Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{--paper:#101814;--card:#17211c;--ink:#e8eee9;--muted:#9aaba1;--line:#26332c;--forest:#3fcf98;--sun:#f5b73b;--night:#0b1424;--wash:#14261d;color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.75 var(--body)}
+a{color:var(--forest)}
+a:focus-visible{outline:3px solid var(--sun);outline-offset:2px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);line-height:1.2;text-wrap:balance;margin:0}
+p{margin:0 0 1.1em}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:18px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700}
+.brand img{width:36px;height:36px;border-radius:9px}
+.nav .back{margin-left:auto;text-decoration:none;font-size:.92rem;color:var(--muted)}
+.nav .back:hover{color:var(--forest)}
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--sun);width:0;z-index:20}
+/* mở đầu */
+.hero{max-width:700px;margin:0 auto;padding:56px 0 28px}
+.kicker{display:inline-block;font-size:.75rem;font-weight:600;letter-spacing:.7px;text-transform:uppercase;color:var(--forest);margin-bottom:12px}
+.hero h1{font-size:clamp(2.2rem,5.6vw,3.6rem);letter-spacing:-.5px}
+.hero h1 em{font-style:italic;color:var(--forest)}
+.hero .dek{font-size:1.15rem;color:var(--muted);margin:18px 0 20px}
+.meta{display:flex;gap:14px;flex-wrap:wrap;font-size:.88rem;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+/* thân bài */
+article{max-width:700px;margin:0 auto;padding-bottom:40px}
+article h2{font-size:clamp(1.5rem,3vw,1.9rem);margin:2.4em 0 .8em;display:flex;gap:14px;align-items:baseline}
+article h2 .no{font:700 .95rem var(--body);color:var(--sun);min-width:2em}
+.dropcap::first-letter{float:left;font:700 4.1rem/0.85 var(--display);color:var(--forest);padding:.08em .12em 0 0}
+blockquote.pull{margin:2em 0;padding:4px 0 4px 22px;border-left:4px solid var(--sun);font:italic 500 1.45rem/1.45 var(--display);color:var(--ink)}
+blockquote.motto{text-align:center;border:0;padding:18px 0;font-size:1.6rem;color:var(--forest)}
+blockquote.pull cite{display:block;margin-top:8px;font:500 .85rem var(--body);font-style:normal;color:var(--muted)}
+.note{background:var(--wash);border-radius:16px;padding:18px 20px;margin:1.6em 0}
+.note p:last-child{margin:0}
+.steps{counter-reset:s;list-style:none;padding:0;margin:1.2em 0}
+.steps li{counter-increment:s;position:relative;padding:0 0 16px 50px}
+.steps li:before{content:counter(s);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;background:var(--forest);color:#fff;font:700 .9rem/32px var(--body);text-align:center}
+.plan{display:grid;gap:10px;margin:1.4em 0}
+.plan div{display:grid;grid-template-columns:110px 1fr;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+.plan b{font-family:var(--display);color:var(--forest)}
+.plan span{font-size:.95rem}
+@media (max-width:520px){.plan div{grid-template-columns:1fr;gap:2px}}
+.warn{border-left:4px solid var(--sun);background:var(--card);border-radius:0 14px 14px 0;padding:16px 20px;margin:1.6em 0}
+.warn p:last-child,.warn ul:last-child{margin-bottom:0}
+.warn ul{margin:.4em 0 1em;padding-left:1.2em}
+/* ba tầng */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:1.6em 0}
+.tier{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.tier h3{font-size:1.1rem;margin-bottom:6px;color:var(--forest)}
+.tier p{font-size:.93rem;margin:0}
+@media (max-width:680px){.tiers{grid-template-columns:1fr}}
+.lessons{counter-reset:l;list-style:none;padding:0;margin:1.2em 0}
+.lessons li{counter-increment:l;position:relative;padding-left:38px;margin-bottom:14px}
+.lessons li:before{content:counter(l);position:absolute;left:0;top:1px;font:700 1.2rem var(--display);color:var(--sun)}
+.closing{font:italic 500 1.25rem/1.55 var(--display);text-align:center;max-width:34em;margin:2em auto}
+.ask{text-align:center;color:var(--muted);margin:1.4em 0 0}
+.ask+.post-actions{justify-content:center}
+.ask+.post-actions .pa-views{margin-right:0}
+.src{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;margin-top:2em}
+.src p{margin:0 0 .6em}
+.actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:1.6em 0}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:11px 18px;font:600 .95rem var(--body);cursor:pointer;text-decoration:none;background:var(--forest);color:#fff}
+.btn.ghost{background:transparent;color:var(--forest);border:1.5px solid var(--forest)}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;font-size:.88rem;color:var(--muted);text-align:center}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

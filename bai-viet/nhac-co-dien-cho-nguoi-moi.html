@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- HLV Sức Khỏe – bài tương tác (24/11/2026). Trang này được sinh bởi tools/make_guides.py: sửa ở đó hoặc ở js/guides/nhac-co-dien.js -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nhạc cổ điển cho người mới: nghệ thuật của thời gian | HLV Sức Khỏe</title>
+<meta name="description" content="Nhạc cổ điển cho người chưa biết gì: nghe bốn nốt mở đầu Giao hưởng số 5, nghe Khúc hoan ca của Beethoven theo kiểu cổ điển, jazz, ngũ cung và điện tử, tự cảm nhận độ căng của hợp âm át và chọn cách giải tỏa. Âm thanh tổng hợp ngay trong trình duyệt.">
+<meta name="theme-color" content="#0f6a4b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Nhạc cổ điển: nghệ thuật của thời gian">
+<meta property="og:description" content="Nghe cùng một giai điệu theo bốn thể loại, tự cảm nhận căng – giải tỏa của hợp âm, hiểu dàn nhạc giao hưởng.">
+<meta property="og:url" content="https://hlvsuckhoe.com/bai-viet/nhac-co-dien-cho-nguoi-moi.html">
+<meta property="og:image" content="https://hlvsuckhoe.com/img/og/nhac-co-dien-cho-nguoi-moi.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nhạc cổ điển: nghệ thuật của thời gian">
+<meta property="og:site_name" content="HLV Sức Khỏe">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hlvsuckhoe.com/img/og/nhac-co-dien-cho-nguoi-moi.jpg">
+<link rel="canonical" href="https://hlvsuckhoe.com/bai-viet/nhac-co-dien-cho-nguoi-moi.html">
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,700;1,7..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/bai-viet.css">
+<link rel="stylesheet" href="../css/guide.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="../"><img src="../img/logo.svg" alt="">HLV Sức Khỏe</a>
+    <a class="back" href="../#goc-nghe-thuat">← Góc hội họa</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="kicker">Nghệ thuật · Âm nhạc</span>
+    <h1>Nhạc cổ điển: nghệ thuật của <em>thời gian</em></h1>
+    <p class="dek">Vì sao bốn nốt nhạc viết năm 1808 vẫn làm người ta rùng mình? Bài này cho bạn nghe ngay trong trình duyệt: một giai điệu của Beethoven theo bốn cách, và một hợp âm “căng” mà bạn tự quyết cách giải tỏa.</p>
+    <div class="meta"><span>Nguyễn Đức Dũng</span><span>24/11/2026</span><span>Đọc và nghe 6–12 phút</span></div>
+    <div class="post-actions" data-slug="nhac-co-dien-cho-nguoi-moi"></div>
+  </div>
+
+  <div class="lensbar" id="lensBar" aria-label="Góc nhìn và tầng nội dung"></div>
+
+  <section class="stage" id="stage" aria-labelledby="stageH">
+    <div class="stage-head"><h2 id="stageH">Dàn nhạc trong trình duyệt</h2><p>Bật loa · âm thanh tổng hợp bằng máy, không phải bản thu</p></div>
+    <div class="view" id="view"></div>
+    <div class="tools" id="tools">
+      <div class="row"><span class="lab">Nghe</span><button type="button" data-play="motif" aria-pressed="false">▶ Bốn nốt mở đầu</button><button type="button" data-play="ode" aria-pressed="false">▶ Khúc hoan ca</button><button type="button" data-play="stop" aria-pressed="false">■ Dừng</button><button type="button" data-minor="1" aria-pressed="false">Giọng: trưởng (sáng)</button></div><div class="row"><span class="lab">Thời kỳ</span><button type="button" data-era="baroque" aria-pressed="false">Baroque</button><button type="button" data-era="classical" aria-pressed="true">Cổ điển</button><button type="button" data-era="romantic" aria-pressed="false">Lãng mạn</button><button type="button" data-era="modern" aria-pressed="false">Thế kỷ 20</button></div><div class="row"><span class="lab">Thể loại</span><button type="button" data-genre="classic" aria-pressed="true">Cổ điển</button><button type="button" data-genre="jazz" aria-pressed="false">Jazz</button><button type="button" data-genre="folk" aria-pressed="false">Màu ngũ cung</button><button type="button" data-genre="edm" aria-pressed="false">Điện tử</button></div><div class="row"><span class="lab">Căng – giải tỏa</span><button type="button" data-play="tense" aria-pressed="false" class="hot">▶ Tạo độ căng rồi tự chọn cách kết</button></div>
+      <div class="readout" id="readout" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <article class="guide">
+    <noscript><p>Nhạc cổ điển: bốn nốt mở đầu Giao hưởng số 5 của Beethoven (ra mắt 22/12/1808, Vienna). Âm nhạc là nghệ thuật của thời gian: căng rồi giải tỏa. Bật JavaScript để nghe các ví dụ.</p></noscript>
+    <div id="guide"></div>
+    <p class="ask">Bài viết có ích? Bấm <b>Thích</b> và <b>Chia sẻ</b> cho người bạn cùng sở thích.</p>
+    <div class="post-actions" data-slug="nhac-co-dien-cho-nguoi-moi"></div>
+    <h3 style="margin-top:2em">Đọc tiếp</h3>
+    <div class="more"><a href="hoi-hoa-cho-nguoi-moi.html"><b>Hội họa: học cách nhìn ánh sáng</b><span>Nghệ thuật · hội họa</span></a><a href="sang-tac-bai-hat-cho-nguoi-moi.html"><b>Sáng tác bài hát: tám chữ đầu tiên</b><span>Nghệ thuật · âm nhạc</span></a><a href="ba-le-cho-nguoi-moi.html"><b>Ba lê: đối thoại với trọng lực</b><span>Nghệ thuật · múa</span></a><a href="khoi-dong-va-gian-co-dung-cach.html"><b>Khởi động và giãn cơ đúng cách</b><span>Thể thao · nên đọc trước khi ra sân</span></a></div>
+    <div class="src">
+      <p>Nguồn: buổi hòa nhạc 22/12/1808 tại Theater an der Wien (Britannica; Carnegie Hall; Boston Symphony Orchestra) · Beethoven (1770–1827), Giao hưởng số 9 ra mắt 1824 · Khúc hoan ca: bài ca của Hội đồng châu Âu (1972), Liên minh châu Âu (1985) · Ký hiệu nhịp độ Beethoven công bố năm 1817 · Chuẩn cao độ La = 440 Hz (ISO 16) · Giao hưởng số 8 của Mahler ra mắt 1910 với hơn một nghìn người biểu diễn · Câu “số phận gõ cửa” đến từ hồi ký của Anton Schindler, người bị giới nghiên cứu nghi ngờ độ tin cậy. Giai điệu dùng trong bài đã thuộc phạm vi công cộng; phần hòa âm, phối khí và âm thanh do HLV Sức Khỏe tự tạo bằng máy.</p>
+      <p>Minh họa trong bài do HLV Sức Khỏe tự dựng bằng mã (không dùng ảnh, logo, tranh hay bản ghi có bản quyền). Bài viết mang tính giới thiệu, không thay thế huấn luyện viên hay lời khuyên y tế. HLV Sức Khỏe là trang cá nhân độc lập của Nguyễn Đức Dũng.</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap"><a href="../">← Về trang chủ HLV Sức Khỏe</a> · <a href="mailto:lienhe@hlvsuckhoe.com">lienhe@hlvsuckhoe.com</a></div>
+</footer>
+
+<script>
+(function(){var bar=document.getElementById('progress');function upd(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}window.addEventListener('scroll',upd,{passive:true});upd();})();
+</script>
+<script src="../js/guides/nhac-co-dien.js"></script>
+<script src="../js/guide.js"></script>
+<script src="../js/guides/stage-nhac.js" defer></script>
+<script src="../js/config.js"></script>
+<script src="../js/post-actions.js" defer></script>
+<!-- Cloudflare Web Analytics (thống kê lượt xem, không cookie, không lưu IP) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1dd877b5432a4181b42a4b65990cb60c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

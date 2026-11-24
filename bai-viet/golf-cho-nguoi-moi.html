@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- HLV Sức Khỏe – bài tương tác (24/11/2026). Trang này được sinh bởi tools/make_guides.py: sửa ở đó hoặc ở js/guides/golf.js -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Golf cho người mới: trò chơi của sự trung thực | HLV Sức Khỏe</title>
+<meta name="description" content="Golf cho người chưa biết gì: đánh thử từng loại gậy, chọn đánh an toàn hay cắt qua hồ trên một hố par 4 dựng 3D, tự trải nghiệm gậy phạt và luật tự ghi điểm. Năm góc nhìn, ba tầng nội dung.">
+<meta name="theme-color" content="#0f6a4b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Golf: trò chơi của sự trung thực">
+<meta property="og:description" content="Đánh an toàn hay cắt qua hồ? Tự chơi một hố par 4 3D và hiểu vì sao người chơi golf tự phạt mình.">
+<meta property="og:url" content="https://hlvsuckhoe.com/bai-viet/golf-cho-nguoi-moi.html">
+<meta property="og:image" content="https://hlvsuckhoe.com/img/og/golf-cho-nguoi-moi.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Golf: trò chơi của sự trung thực">
+<meta property="og:site_name" content="HLV Sức Khỏe">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hlvsuckhoe.com/img/og/golf-cho-nguoi-moi.jpg">
+<link rel="canonical" href="https://hlvsuckhoe.com/bai-viet/golf-cho-nguoi-moi.html">
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,700;1,7..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/bai-viet.css">
+<link rel="stylesheet" href="../css/guide.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="../"><img src="../img/logo.svg" alt="">HLV Sức Khỏe</a>
+    <a class="back" href="../#goc-the-thao">← Góc thể thao</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="kicker">Thể thao · Cá nhân</span>
+    <h1>Golf: trò chơi của sự <em>trung thực</em></h1>
+    <p class="dek">Không hậu vệ, không trọng tài đứng cạnh – chỉ có bạn, mười bốn cây gậy và một hồ nước chắn đường. Bài này cho bạn tự chơi một hố par 4 trên sân 3D: chọn gậy, chọn đường, và tự quyết có cộng gậy phạt hay không.</p>
+    <div class="meta"><span>Nguyễn Đức Dũng</span><span>24/11/2026</span><span>Đọc 6–12 phút tùy tầng</span></div>
+    <div class="post-actions" data-slug="golf-cho-nguoi-moi"></div>
+  </div>
+
+  <div class="lensbar" id="lensBar" aria-label="Góc nhìn và tầng nội dung"></div>
+
+  <section class="stage" id="stage" aria-labelledby="stageH">
+    <div class="stage-head"><h2 id="stageH">Hố golf 3D · par 4, khoảng 340 m</h2><p>Kéo để xoay · cuộn để phóng to · bóng và cờ được phóng to cho dễ nhìn</p></div>
+    <div class="view" id="view"></div>
+    <div class="tools" id="tools">
+      <div class="row"><span class="lab">Gậy</span><button type="button" data-club="driver" aria-pressed="false">Driver</button><button type="button" data-club="wood3" aria-pressed="false">Gỗ 3</button><button type="button" data-club="iron7" aria-pressed="false">Sắt 7</button><button type="button" data-club="wedge" aria-pressed="false">Wedge</button><button type="button" data-club="putter" aria-pressed="false">Putter</button><button type="button" data-clear="1">Xoá dấu</button></div><div class="row"><span class="lab">Được – mất</span><button type="button" data-plan="safe" aria-pressed="false" class="hot">▶ Đánh an toàn</button><button type="button" data-plan="risk" aria-pressed="false" class="hot">▶ Cắt qua hồ</button><button type="button" data-pen="1" aria-pressed="false">⚠ Vùng phạt</button></div><div class="row"><span class="lab">Góc máy</span><button type="button" data-cam="tee" aria-pressed="true">Từ bệ phát bóng</button><button type="button" data-cam="top" aria-pressed="false">Từ trên cao</button><button type="button" data-cam="green" aria-pressed="false">Quanh green</button></div>
+      <div class="readout" id="readout" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <article class="guide">
+    <noscript><p>Golf: đưa bóng vào lỗ với ít gậy nhất; mỗi hố có par (số gậy chuẩn). Bóng vào hồ bị cộng 1 gậy phạt; người chơi tự ghi điểm và tự báo phạt. Bật JavaScript để chơi thử hố par 4.</p></noscript>
+    <div id="guide"></div>
+    <p class="ask">Bài viết có ích? Bấm <b>Thích</b> và <b>Chia sẻ</b> cho người bạn cùng sở thích.</p>
+    <div class="post-actions" data-slug="golf-cho-nguoi-moi"></div>
+    <h3 style="margin-top:2em">Đọc tiếp</h3>
+    <div class="more"><a href="khoi-dong-va-gian-co-dung-cach.html"><b>Khởi động và giãn cơ đúng cách</b><span>Thể thao · nên đọc trước khi ra sân</span></a><a href="bong-da-cho-nguoi-moi.html"><b>Bóng đá: môn của khoảng trống</b><span>Thể thao · đồng đội</span></a><a href="boi-loi-cho-nguoi-moi.html"><b>Bơi lội: làm bạn với nước</b><span>Thể thao · cá nhân</span></a></div>
+    <div class="src">
+      <p>Nguồn: Luật Golf của The R&A và USGA (bản hiệu lực từ 1/2023; Luật 3.3b về thẻ điểm, Luật 17 về khu vực phạt, Luật 18 về bóng ngoài biên); The R&A: giới thiệu bản luật 2023; giới hạn 14 gậy từ 1938; Hệ thống Handicap Thế giới (WHS, từ 2020); đạo luật Scotland năm 1457 cấm golf và bóng đá; Hội golf St Andrews thành lập 1754 (Royal & Ancient từ 1834); thông báo của R&A/USGA tháng 12/2023 về giới hạn độ xa của bóng; strokes gained theo Mark Broadie. Các con số trong phần tính kỳ vọng gậy là ví dụ giả định để minh họa cách tính. Khoảng cách gậy trong mô phỏng là ước lượng minh họa cho người chơi phong trào, không phải số đo.</p>
+      <p>Minh họa trong bài do HLV Sức Khỏe tự dựng bằng mã (không dùng ảnh, logo, tranh hay bản ghi có bản quyền). Bài viết mang tính giới thiệu, không thay thế huấn luyện viên hay lời khuyên y tế. HLV Sức Khỏe là trang cá nhân độc lập của Nguyễn Đức Dũng.</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap"><a href="../">← Về trang chủ HLV Sức Khỏe</a> · <a href="mailto:lienhe@hlvsuckhoe.com">lienhe@hlvsuckhoe.com</a></div>
+</footer>
+
+<script>
+(function(){var bar=document.getElementById('progress');function upd(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}window.addEventListener('scroll',upd,{passive:true});upd();})();
+</script>
+<script src="../js/guides/golf.js"></script>
+<script src="../js/guide.js"></script>
+<script type="importmap">{"imports":{"three":"../js/vendor/three/three.module.min.js","three/addons/":"../js/vendor/three/addons/"}}</script>
+<script type="module" src="../js/guides/stage-golf.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/post-actions.js" defer></script>
+<!-- Cloudflare Web Analytics (thống kê lượt xem, không cookie, không lưu IP) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1dd877b5432a4181b42a4b65990cb60c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

@@ -1,0 +1,83 @@
+# Sinh SVG căn phòng cho trang chủ 2.0.0: chạy "python tools/room.py" → room.svg, rồi dán thay khối <svg viewBox="0 0 1200 630"> trong index.html
+import random
+random.seed(7)
+def spot(href,label,lx,ly,body,aria=None):
+    return f'''<a class="spot" href="{href}" aria-label="{aria or label}"><g class="obj">{body}</g><g class="lbl" transform="translate({lx},{ly})"><rect x="0" y="-16" height="32" rx="16" width="120"/><circle cx="16" cy="0" r="5"/><text x="28" y="5">{label}</text></g></a>'''
+# sách
+books=[]
+cols=['#c2456a','#3d6fd1','#e0a43a','#2f8f6b','#7a5bb5','#d9663b','#3a9fb5','#a33a3a','#5d7d2f','#e7c35a']
+for row,y in enumerate([200,290,380,470]):
+    x=44
+    while x<214:
+        w=random.choice([10,12,14,16,18]);h=random.choice([58,64,70,74]) if row<3 else random.choice([60,66,72])
+        if x+w>216:break
+        if random.random()<.12 and row!=1:
+            books.append(f'<rect x="{x}" y="{y-h+4}" width="{w}" height="{h-4}" rx="2" fill="{random.choice(cols)}" transform="rotate(-12 {x} {y})"/>');x+=w+6;continue
+        books.append(f'<rect x="{x}" y="{y-h}" width="{w}" height="{h}" rx="2" fill="{random.choice(cols)}"/><rect x="{x+2}" y="{y-h+8}" width="{w-4}" height="3" fill="rgba(255,255,255,.45)"/>')
+        x+=w+2
+shelf=f'''<rect x="30" y="112" width="200" height="392" rx="6" fill="#8a5a33"/><rect x="40" y="122" width="180" height="372" fill="#5e3a20"/>
+{''.join(f'<rect x="40" y="{y}" width="180" height="10" fill="#8a5a33"/>' for y in (200,290,380))}{''.join(books)}<rect x="24" y="494" width="212" height="14" rx="4" fill="#7a4e2b"/>'''
+globe='''<rect x="166" y="104" width="30" height="8" rx="3" fill="#6b4a2a"/><rect x="178" y="90" width="6" height="16" fill="#6b4a2a"/><path d="M152 66a30 30 0 1 0 58 0" fill="none" stroke="#b08a4a" stroke-width="4"/><circle cx="181" cy="64" r="25" fill="#5fa8d3"/><path d="M168 50c8-4 14 2 12 9s-10 6-12 14-8 0-6-8 0-12 6-15zM186 70c6-3 14 0 12 7s-10 9-14 5 0-10 2-12zM190 44c5 0 10 4 8 8s-9 2-8-8z" fill="#4caf7d"/>'''
+painting='''<rect x="252" y="78" width="118" height="92" rx="4" fill="#f4efe6" stroke="#8a5a33" stroke-width="6"/><rect x="262" y="88" width="98" height="72" fill="#fbe3c8"/><circle cx="330" cy="108" r="12" fill="#f2a516"/><path d="M262 160l26-36 18 20 14-12 40 28z" fill="#2f8f6b"/><path d="M262 160l40-22 20 22z" fill="#c2456a" opacity=".85"/>'''
+guitar='''<g transform="rotate(-9 318 512)"><rect x="312" y="286" width="12" height="150" rx="3" fill="#5e3a20"/><rect x="308" y="268" width="20" height="26" rx="5" fill="#3c2414"/><circle cx="305" cy="274" r="3" fill="#d9c08a"/><circle cx="331" cy="274" r="3" fill="#d9c08a"/><circle cx="305" cy="286" r="3" fill="#d9c08a"/><circle cx="331" cy="286" r="3" fill="#d9c08a"/><path d="M318 410c-24 0-34 16-30 30 3 10-10 18-10 34 0 22 18 36 40 36s40-14 40-36c0-16-13-24-10-34 4-14-6-30-30-30z" fill="#d88a3d"/><circle cx="318" cy="452" r="12" fill="#3c2414"/><rect x="306" y="488" width="24" height="6" rx="2" fill="#3c2414"/><path d="M315 290v200M321 290v200" stroke="#f3e6c8" stroke-width=".8"/></g><path d="M370 300v-26l18-4v24" fill="none" stroke="var(--lotus)" stroke-width="3"/><circle cx="365" cy="300" r="6" fill="var(--lotus)"/><circle cx="383" cy="296" r="6" fill="var(--lotus)"/>'''
+plant='''<path d="M396 470c-30-40-60-70-52-120 22 18 40 52 50 96M402 468c4-60 6-100 34-140 10 40-6 90-28 140M398 470c-40-10-74-30-82-70 34 6 60 30 80 66M404 470c30-30 64-44 96-40-14 30-48 44-90 46" fill="#3f9a5f"/><path d="M398 470c-10-40-16-80-4-130 14 40 14 90 8 130" fill="#2f7d4b"/><path d="M372 466h56l-8 56h-40z" fill="#d9663b"/><rect x="368" y="460" width="64" height="12" rx="4" fill="#e07a3f"/>'''
+window_='''<rect x="440" y="48" width="320" height="284" rx="10" fill="#f3ece0"/><g clip-path="url(#win)"><rect x="456" y="64" width="288" height="252" fill="url(#skyG)"/>
+<g style="opacity:var(--stars)" fill="#fff"><circle cx="480" cy="90" r="1.6"/><circle cx="520" cy="150" r="1.2"/><circle cx="575" cy="84" r="2"/><circle cx="640" cy="120" r="1.3"/><circle cx="700" cy="80" r="1.8"/><circle cx="725" cy="160" r="1.2"/><circle cx="610" cy="200" r="1.1"/><circle cx="500" cy="220" r="1.4"/><circle cx="680" cy="230" r="1.1"/><circle cx="660" cy="96" r="1"/><path d="M700 140l-40 16" stroke="#fff" stroke-width="1.4" opacity=".7"/></g>
+<circle id="sun" cx="650" cy="250" r="26" fill="#ffd56b" style="opacity:var(--sunop)"/><circle cx="650" cy="250" r="40" fill="#ffd56b" opacity=".25" id="sunGlow" style="opacity:calc(var(--sunop)*.25)"/>
+<g id="winMoon" style="opacity:var(--moonop)" transform="translate(540 126)"><circle r="24" fill="#2c3a5e"/><path id="moonLit" d="" fill="#f3ead2"/></g>
+<path d="M456 286c40-30 80-34 120-14s70 4 100-12 50-6 68 6v50H456z" fill="#2f6f54" opacity=".75"/><path d="M456 300c50-18 110-10 150 0s100-14 138-4v20H456z" fill="#255c46"/></g>
+<path d="M600 64v252M456 190h288" stroke="#f3ece0" stroke-width="8"/><rect x="430" y="326" width="340" height="14" rx="4" fill="#e7dccb"/>
+<path d="M432 40c-8 80 10 200-6 300h46c-14-90-6-200 2-300z" fill="#e9b4a0"/><path d="M768 40c8 80-10 200 6 300h-46c14-90 6-200-2-300z" fill="#e9b4a0"/><rect x="420" y="34" width="360" height="10" rx="5" fill="#8a5a33"/>
+<rect x="700" y="306" width="30" height="22" rx="4" fill="#c2763c"/><path d="M715 306c-10-14-14-26-6-34 4 10 8 20 6 34M715 306c6-16 16-24 24-22-4 12-12 18-24 22" fill="#4caf7d"/>'''
+cushion='''<ellipse cx="600" cy="560" rx="78" ry="20" fill="#9c2f52"/><ellipse cx="600" cy="552" rx="78" ry="18" fill="var(--lotus)"/><ellipse cx="600" cy="548" rx="50" ry="9" fill="#d9668a"/><path d="M600 540c-6-10-2-18 0-22 2 4 6 12 0 22z" fill="#f2a516" opacity=".0"/>
+<rect x="680" y="530" width="16" height="26" rx="3" fill="#f6eedd"/><path d="M688 530c-7-9-3-17 0-22 3 5 7 13 0 22z" fill="#ffb238"/><circle cx="688" cy="520" r="16" fill="#ffd56b" opacity=".25"/>
+<path d="M512 556l0-50" stroke="#7a4e2b" stroke-width="2"/><path d="M512 506c-6-14 8-20 2-34s6-20 4-30" fill="none" stroke="#c9c2b8" stroke-width="2" opacity=".7"/><ellipse cx="512" cy="558" rx="10" ry="4" fill="#7a4e2b"/>'''
+telescope='''<path d="M850 444l-34 100M856 444l4 106M862 444l38 96" stroke="#3b3f4a" stroke-width="6" stroke-linecap="round"/><g transform="translate(852 430) rotate(28)"><rect x="-80" y="-15" width="150" height="30" rx="6" fill="#2f4a7a"/><rect x="-94" y="-19" width="22" height="38" rx="5" fill="#1e3155"/><rect x="62" y="-8" width="20" height="16" rx="3" fill="#1e3155"/><rect x="-40" y="-15" width="10" height="30" fill="#e7c35a"/></g><circle cx="855" cy="440" r="8" fill="#1e3155"/>'''
+clock='''<circle cx="868" cy="96" r="32" fill="#f8f4ec" stroke="#8a5a33" stroke-width="5"/><g stroke="#8a5a33" stroke-width="2">'''+''.join(f'<path d="M868 70v5" transform="rotate({a} 868 96)"/>' for a in range(0,360,30))+'''</g><path id="hh" d="M868 96v-15" stroke="#1a2a22" stroke-width="4" stroke-linecap="round"/><path id="mh" d="M868 96v-23" stroke="#1a2a22" stroke-width="2.5" stroke-linecap="round"/><circle cx="868" cy="96" r="3" fill="var(--lotus)"/>'''
+family='''<rect x="930" y="64" width="96" height="78" rx="4" fill="#f4efe6" stroke="#a3241f" stroke-width="5"/><rect x="938" y="72" width="80" height="62" fill="#f7dcc5"/><circle cx="958" cy="96" r="8" fill="#7a4e2b"/><circle cx="980" cy="92" r="9" fill="#5e3a20"/><circle cx="1000" cy="102" r="6" fill="#7a4e2b"/><path d="M948 134c0-16 6-24 10-24s10 8 10 24zM968 134c0-18 6-28 12-28s12 10 12 28zM992 134c0-12 4-20 8-20s8 8 8 20z" fill="#c2456a"/>
+<rect x="1040" y="56" width="70" height="92" rx="4" fill="#f4efe6" stroke="#8a5a33" stroke-width="5"/><rect x="1047" y="63" width="56" height="78" fill="#d9e8f5"/><circle cx="1066" cy="92" r="8" fill="#7a4e2b"/><circle cx="1086" cy="96" r="7" fill="#5e3a20"/><path d="M1056 141c0-18 4-30 10-30s10 12 10 30zM1078 141c0-14 4-24 8-24s8 10 8 24z" fill="#3d6fd1"/>
+<rect x="1124" y="76" width="56" height="60" rx="4" fill="#f4efe6" stroke="#e0a43a" stroke-width="5"/><rect x="1130" y="82" width="44" height="48" fill="#fdf1d0"/><path d="M1140 120c4-14 10-22 12-22s8 8 12 22" fill="none" stroke="#a3241f" stroke-width="3"/><circle cx="1152" cy="96" r="6" fill="#a3241f"/>'''
+keys='''<rect x="926" y="232" width="40" height="8" rx="4" fill="#8a5a33"/><path d="M936 240v8M956 240v8" stroke="#6b6f78" stroke-width="3"/><circle cx="936" cy="256" r="8" fill="none" stroke="#9aa0a8" stroke-width="3"/><rect x="930" y="262" width="12" height="22" rx="4" fill="#2b2f36"/><circle cx="936" cy="270" r="2" fill="#d94a4a"/><circle cx="956" cy="256" r="7" fill="none" stroke="#9aa0a8" stroke-width="3"/><path d="M956 262v22l6-4-6-4 6-4" fill="none" stroke="#c9a54a" stroke-width="4"/>'''
+cork='''<rect x="992" y="188" width="186" height="118" rx="6" fill="#c89b6a" stroke="#8a5a33" stroke-width="6"/><g transform="rotate(-5 1030 230)"><rect x="1004" y="204" width="50" height="46" fill="#ffe680"/><path d="M1010 218h36M1010 228h30M1010 238h24" stroke="#b39a3a" stroke-width="2"/></g><g transform="rotate(4 1088 250)"><rect x="1062" y="226" width="50" height="46" fill="#ffc2d1"/><path d="M1068 240h36M1068 250h28" stroke="#b36a7d" stroke-width="2"/></g><g transform="rotate(-3 1146 236)"><rect x="1122" y="198" width="46" height="58" fill="#fff"/><rect x="1122" y="198" width="46" height="16" fill="#d94a4a"/><text id="calDay" x="1145" y="246" text-anchor="middle" font-family="Literata,serif" font-weight="700" font-size="26" fill="#1a2a22">24</text></g><circle cx="1029" cy="206" r="4" fill="#d94a4a"/><circle cx="1087" cy="228" r="4" fill="#3d6fd1"/><rect x="1010" y="262" width="40" height="34" fill="#c8f0d8" transform="rotate(3 1030 279)"/>'''
+desk='''<rect x="940" y="380" width="240" height="14" rx="4" fill="#8a5a33"/><rect x="952" y="394" width="10" height="132" fill="#6b4a2a"/><rect x="1160" y="394" width="10" height="132" fill="#6b4a2a"/><rect x="1080" y="394" width="80" height="60" fill="#7a4e2b"/><rect x="1110" y="420" width="20" height="4" rx="2" fill="#d9c08a"/>'''
+laptop='''<rect x="984" y="312" width="98" height="64" rx="5" fill="#1f2630"/><rect x="990" y="318" width="86" height="52" fill="#0d1a22"/><path d="M994 356h10l3-26 4 26h14l2-12 3 12h18l3-8 3 8h20" fill="none" stroke="#5fd3ff" stroke-width="2"/><path d="M976 380h114l-8-6h-98z" fill="#9aa3ad"/>'''
+flask='''<circle cx="1108" cy="356" r="30" fill="#ffd56b" opacity=".22"/><path d="M1100 320h16M1103 320v18l-16 32c-3 6 1 10 7 10h28c6 0 10-4 7-10l-16-32v-18" fill="rgba(220,240,255,.7)" stroke="#8aa0b8" stroke-width="2"/><path d="M1093 362h30l6 12c2 4-1 6-5 6h-32c-4 0-7-2-5-6z" fill="#f0b828"/><circle cx="1104" cy="352" r="3" fill="#ffe27a"/><circle cx="1112" cy="344" r="2" fill="#ffe27a"/>'''
+lamp='''<circle cx="1150" cy="330" r="170" fill="url(#lampG)" style="opacity:var(--lamp)"/><rect x="1140" y="372" width="30" height="8" rx="3" fill="#3b3f4a"/><path d="M1155 372l-14-50 26-24" fill="none" stroke="#3b3f4a" stroke-width="5"/><path d="M1150 290l34 14-8 18-34-14z" fill="#e0a43a"/>'''
+table='''<rect x="100" y="566" width="210" height="14" rx="5" fill="#a56a39"/><rect x="114" y="580" width="10" height="30" fill="#7a4e2b"/><rect x="286" y="580" width="10" height="30" fill="#7a4e2b"/>
+<g transform="translate(130 528)">'''+''.join(f'<rect x="{c*13}" y="{r*13}" width="12" height="12" rx="2" fill="{["#d94a4a","#f2a516","#3d6fd1","#2f8f6b","#fff","#e07a3f"][(r*3+c)%6]}"/>' for r in range(3) for c in range(3))+'''</g><rect x="128" y="526" width="43" height="43" rx="4" fill="none" stroke="#1a2a22" stroke-width="2"/>
+<path d="M210 566c0-8 4-10 4-18-4-2-4-8 0-10-2-4 2-8 6-8s8 4 6 8c4 2 4 8 0 10 0 8 4 10 4 18z" fill="#1a2a22"/><path d="M246 566c0-6 4-8 4-14a7 7 0 1 1 8 0c0 6 4 8 4 14z" fill="#f4efe6" stroke="#1a2a22" stroke-width="1.5"/><path d="M270 566v-14h8a6 6 0 1 1 10 0h8v14z" fill="#3d6fd1"/>'''
+mat='''<path d="M650 614h258l-28-30H680z" fill="#2fae86"/><path d="M650 614h258v6H650z" fill="#22865f"/><g transform="translate(846 572)"><rect x="-4" y="-3" width="40" height="6" rx="3" fill="#555b66"/><rect x="-10" y="-10" width="10" height="20" rx="3" fill="#2b2f36"/><rect x="32" y="-10" width="10" height="20" rx="3" fill="#2b2f36"/></g>'''
+ball='''<circle cx="958" cy="592" r="20" fill="#fff" stroke="#1a2a22" stroke-width="2"/><path d="M958 584l7 5-3 8h-8l-3-8z" fill="#1a2a22"/><path d="M958 572v12M965 589l12-4M962 597l6 10M954 597l-6 10M951 589l-12-4" stroke="#1a2a22" stroke-width="1.5"/>'''
+
+svg=f'''<svg viewBox="0 0 1200 630" role="group" aria-label="Căn phòng HLV Sức Khỏe – bấm vào từng đồ vật để tới góc tương ứng">
+<defs><linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--sky1)"/><stop offset="1" style="stop-color:var(--sky2)"/></linearGradient>
+<linearGradient id="wallG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--wall)"/><stop offset="1" style="stop-color:var(--wall2)"/></linearGradient>
+<linearGradient id="floorG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--floor2)"/><stop offset="1" style="stop-color:var(--floor)"/></linearGradient>
+<linearGradient id="beamG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6d8" stop-opacity=".9"/><stop offset="1" stop-color="#fff6d8" stop-opacity="0"/></linearGradient>
+<radialGradient id="lampG"><stop offset="0" stop-color="#ffd27a" stop-opacity=".75"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+<clipPath id="win"><rect x="456" y="64" width="288" height="252"/></clipPath></defs>
+<rect width="1200" height="480" fill="url(#wallG)"/><rect y="478" width="1200" height="152" fill="url(#floorG)"/>
+<g stroke="rgba(0,0,0,.08)" stroke-width="2">{''.join(f'<path d="M0 {y}H1200"/>' for y in (510,548,592))}{''.join(f'<path d="M{x} 478L{x+(x-600)*.35:.0f} 630"/>' for x in range(0,1201,120))}</g>
+<rect y="470" width="1200" height="12" fill="rgba(0,0,0,.10)"/>
+<path d="M466 340h268l150 290H330z" fill="url(#beamG)" style="opacity:var(--beam)"/>
+{window_}
+{spot('#goc-nghe-thuat','Hội họa',262,58,painting,'Hội họa và nghệ thuật')}
+{spot('#goc-du-lich','Du lịch',120,24,globe,'Du lịch và khám phá')}
+{spot('#bai-viet','Đọc sách',44,150,shelf,'Góc đọc sách')}
+{spot('#am-nhac','Âm nhạc',300,250,guitar,'Âm nhạc và sáng tác')}
+{spot('#goc-than-tam-tri','Thân · Tâm · Trí',360,322,plant,'Thân, Tâm, Trí – chăm sóc từ tế bào')}
+{spot('#thien','Thiền',560,492,cushion,'Góc thiền và hơi thở')}
+{spot('#bau-troi','Ngắm sao',800,372,telescope,'Ngắm sao, thiên văn')}
+<g aria-hidden="true">{clock}</g>
+{spot('#goc-gia-dinh','Gia đình',990,40,family)}
+{spot('#goc-lai-xe','Lái xe',880,212,keys)}
+{spot('#goc-chia-se','Chia sẻ',1040,170,cork,'Góc chia sẻ')}
+<g aria-hidden="true">{lamp}{desk}</g>
+{spot('#goc-nghe-nghiep','Nghề nghiệp',960,410,laptop)}
+{spot('#goc-phan-kim','Phân kim',1056,300,flask,'Phân kim – Phù thủy Phân kim')}
+{spot('#goc-giai-do','Giải đố',150,500,table)}
+{spot('#van-dong','Luyện tập',735,548,mat,'Góc luyện tập')}
+{spot('#goc-the-thao','Thể thao',985,560,ball)}
+</svg>'''
+open('room.svg','w').write(svg)
+print(len(svg))

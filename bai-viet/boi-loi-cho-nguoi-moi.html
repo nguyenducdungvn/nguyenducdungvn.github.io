@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- HLV Sức Khỏe – bài tương tác (24/11/2026). Trang này được sinh bởi tools/make_guides.py: sửa ở đó hoặc ở js/guides/boi-loi.js -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bơi lội cho người mới: làm bạn với nước | HLV Sức Khỏe</title>
+<meta name="description" content="Bơi lội cho người chưa biết gì: bốn kiểu bơi trên bể Olympic 3D, thử đua hai tư thế để thấy lực cản, luật lặn 15 m, an toàn dưới nước. Năm góc nhìn, ba tầng nội dung.">
+<meta name="theme-color" content="#0f6a4b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bơi lội: làm bạn với nước">
+<meta property="og:description" content="Bốn kiểu bơi trên bể 3D, thử đua hai tư thế để thấy lực cản, luật 15 m và an toàn dưới nước.">
+<meta property="og:url" content="https://hlvsuckhoe.com/bai-viet/boi-loi-cho-nguoi-moi.html">
+<meta property="og:image" content="https://hlvsuckhoe.com/img/og/boi-loi-cho-nguoi-moi.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bơi lội: làm bạn với nước">
+<meta property="og:site_name" content="HLV Sức Khỏe">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hlvsuckhoe.com/img/og/boi-loi-cho-nguoi-moi.jpg">
+<link rel="canonical" href="https://hlvsuckhoe.com/bai-viet/boi-loi-cho-nguoi-moi.html">
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,700;1,7..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/bai-viet.css">
+<link rel="stylesheet" href="../css/guide.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="../"><img src="../img/logo.svg" alt="">HLV Sức Khỏe</a>
+    <a class="back" href="../#goc-the-thao">← Góc thể thao</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="kicker">Thể thao · Cá nhân</span>
+    <h1>Bơi lội: làm bạn với <em>nước</em></h1>
+    <p class="dek">Vì sao người bơi giỏi trông như chẳng vội mà vẫn nhanh? Bài này cho bạn xem bốn kiểu bơi trên một bể Olympic 3D, cho hai người bơi cùng sức nhưng khác tư thế đua với nhau, và thử “phạm” luật lặn 15 m.</p>
+    <div class="meta"><span>Nguyễn Đức Dũng</span><span>24/11/2026</span><span>Đọc 6–12 phút tùy tầng</span></div>
+    <div class="post-actions" data-slug="boi-loi-cho-nguoi-moi"></div>
+  </div>
+
+  <div class="lensbar" id="lensBar" aria-label="Góc nhìn và tầng nội dung"></div>
+
+  <section class="stage" id="stage" aria-labelledby="stageH">
+    <div class="stage-head"><h2 id="stageH">Bể bơi 3D · 50 × 25 m, 10 làn</h2><p>Kéo để xoay · cuộn để phóng to · người bơi phóng to 1,5 lần</p></div>
+    <div class="view" id="view"></div>
+    <div class="tools" id="tools">
+      <div class="row"><span class="lab">Kiểu bơi</span><button type="button" data-stroke="free" aria-pressed="true">Tự do</button><button type="button" data-stroke="back" aria-pressed="false">Ngửa</button><button type="button" data-stroke="breast" aria-pressed="false">Ếch</button><button type="button" data-stroke="fly" aria-pressed="false">Bướm</button><button type="button" data-fx="1" aria-pressed="false">➜ Lực đẩy / lực cản</button></div><div class="row"><span class="lab">Được – mất</span><button type="button" data-act="race" aria-pressed="false" class="hot">▶ Đua: thẳng người vs hông chìm</button><button type="button" data-act="dive12" aria-pressed="false" class="hot">▶ Lặn 12 m</button><button type="button" data-act="dive18" aria-pressed="false" class="hot">▶ Lặn 18 m</button></div><div class="row"><span class="lab">Góc máy</span><button type="button" data-cam="deck" aria-pressed="true">Trên bờ</button><button type="button" data-cam="under" aria-pressed="false">Dưới nước</button><button type="button" data-cam="top" aria-pressed="false">Từ trên cao</button></div>
+      <div class="readout" id="readout" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <article class="guide">
+    <noscript><p>Bơi lội: bốn kiểu bơi thi đấu là tự do, ngửa, ếch, bướm. Thân thẳng để bớt cản, thở ra dưới nước. Tự do, ngửa, bướm phải trồi lên trước mốc 15 m. Bật JavaScript để xem bể bơi 3D.</p></noscript>
+    <div id="guide"></div>
+    <p class="ask">Bài viết có ích? Bấm <b>Thích</b> và <b>Chia sẻ</b> cho người bạn cùng sở thích.</p>
+    <div class="post-actions" data-slug="boi-loi-cho-nguoi-moi"></div>
+    <h3 style="margin-top:2em">Đọc tiếp</h3>
+    <div class="more"><a href="khoi-dong-va-gian-co-dung-cach.html"><b>Khởi động và giãn cơ đúng cách</b><span>Thể thao · nên đọc trước khi ra sân</span></a><a href="bong-da-cho-nguoi-moi.html"><b>Bóng đá: môn của khoảng trống</b><span>Thể thao · đồng đội</span></a><a href="golf-cho-nguoi-moi.html"><b>Golf: trò chơi của sự trung thực</b><span>Thể thao · cá nhân</span></a></div>
+    <div class="src">
+      <p>Nguồn: Luật bơi của World Aquatics (thẻ tham khảo luật 2023, 2026; thứ tự hỗn hợp, luật 15 m, chạm thành) · Lịch sử: FINA 1908, đổi tên World Aquatics 12/2022; bơi bướm tách khỏi bơi ếch năm 1952, vào Olympic 1956 · USA Swimming: lịch sử luật bơi · Olympic Munich 1972 (400 m hỗn hợp, cách biệt 0,002 giây) và quy định đo đến phần trăm giây · Lệnh cấm đồ bơi polyurethane từ 1/2010. Tốc độ, hệ số cản, diện tích trong mô phỏng và phần tính toán là số minh họa.</p>
+      <p>Minh họa trong bài do HLV Sức Khỏe tự dựng bằng mã (không dùng ảnh, logo, tranh hay bản ghi có bản quyền). Bài viết mang tính giới thiệu, không thay thế huấn luyện viên hay lời khuyên y tế. HLV Sức Khỏe là trang cá nhân độc lập của Nguyễn Đức Dũng.</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap"><a href="../">← Về trang chủ HLV Sức Khỏe</a> · <a href="mailto:lienhe@hlvsuckhoe.com">lienhe@hlvsuckhoe.com</a></div>
+</footer>
+
+<script>
+(function(){var bar=document.getElementById('progress');function upd(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}window.addEventListener('scroll',upd,{passive:true});upd();})();
+</script>
+<script src="../js/guides/boi-loi.js"></script>
+<script src="../js/guide.js"></script>
+<script type="importmap">{"imports":{"three":"../js/vendor/three/three.module.min.js","three/addons/":"../js/vendor/three/addons/"}}</script>
+<script type="module" src="../js/guides/stage-boi-loi.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/post-actions.js" defer></script>
+<!-- Cloudflare Web Analytics (thống kê lượt xem, không cookie, không lưu IP) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1dd877b5432a4181b42a4b65990cb60c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- HLV Sức Khỏe – bài tương tác (24/11/2026). Trang này được sinh bởi tools/make_guides.py: sửa ở đó hoặc ở js/guides/ba-le.js -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ba lê cho người mới: đối thoại với trọng lực | HLV Sức Khỏe</title>
+<meta name="description" content="Ba lê cho người chưa biết gì: năm tư thế chân và tay, xoay mở đúng và ép sai, thử kiễng chân giữ thăng bằng, xoay vòng có và không giữ điểm nhìn, so sánh với múa đương đại, múa dân gian Việt và hip-hop.">
+<meta name="theme-color" content="#0f6a4b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ba lê: đối thoại với trọng lực">
+<meta property="og:description" content="Năm tư thế, xoay mở đúng và sai, thử giữ thăng bằng trên nửa mũi chân và xoay vòng không chóng mặt.">
+<meta property="og:url" content="https://hlvsuckhoe.com/bai-viet/ba-le-cho-nguoi-moi.html">
+<meta property="og:image" content="https://hlvsuckhoe.com/img/og/ba-le-cho-nguoi-moi.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ba lê: đối thoại với trọng lực">
+<meta property="og:site_name" content="HLV Sức Khỏe">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hlvsuckhoe.com/img/og/ba-le-cho-nguoi-moi.jpg">
+<link rel="canonical" href="https://hlvsuckhoe.com/bai-viet/ba-le-cho-nguoi-moi.html">
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,700;1,7..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/bai-viet.css">
+<link rel="stylesheet" href="../css/guide.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="../"><img src="../img/logo.svg" alt="">HLV Sức Khỏe</a>
+    <a class="back" href="../#goc-nghe-thuat">← Góc nghệ thuật</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="kicker">Nghệ thuật · Múa</span>
+    <h1>Ba lê: đối thoại với <em>trọng lực</em></h1>
+    <p class="dek">Vì sao vũ công xoay mười vòng mà không chóng mặt? Vì sao chỉ ngả một chút là ngã? Bài này cho bạn điều khiển một vũ công: đổi năm tư thế, ép chân quá sức để thấy đầu gối bị xoắn, kiễng lên để thấy trọng tâm, và xoay vòng có hoặc không giữ điểm nhìn.</p>
+    <div class="meta"><span>Nguyễn Đức Dũng</span><span>24/11/2026</span><span>Đọc và thử 6–12 phút</span></div>
+    <div class="post-actions" data-slug="ba-le-cho-nguoi-moi"></div>
+  </div>
+
+  <div class="lensbar" id="lensBar" aria-label="Góc nhìn và tầng nội dung"></div>
+
+  <section class="stage" id="stage" aria-labelledby="stageH">
+    <div class="stage-head"><h2 id="stageH">Phòng tập · vũ công do máy tự vẽ</h2><p>Chấm vàng là trọng tâm · vạch dưới chân là chân đế · bên phải là bàn chân nhìn từ trên xuống</p></div>
+    <div class="view" id="view"></div>
+    <div class="tools" id="tools">
+      <div class="row"><span class="lab">Tư thế</span><button type="button" data-pos="1" aria-pressed="true">Thứ nhất</button><button type="button" data-pos="2" aria-pressed="false">Thứ hai</button><button type="button" data-pos="3" aria-pressed="false">Thứ ba</button><button type="button" data-pos="4" aria-pressed="false">Thứ tư</button><button type="button" data-pos="5" aria-pressed="false">Thứ năm</button></div><div class="row"><span class="lab">Xoay mở</span><button type="button" data-turn="ok" aria-pressed="true">Vừa sức hông</button><button type="button" data-turn="force" aria-pressed="false" class="hot">Ép quá sức</button></div><div class="row"><span class="lab">Được – mất</span><button type="button" data-act="bal-ok" aria-pressed="false" class="hot">▶ Kiễng chân thẳng người</button><button type="button" data-act="bal-fall" aria-pressed="false" class="hot">▶ Kiễng chân ngả người</button><button type="button" data-act="spot" aria-pressed="false" class="hot">▶ Xoay có điểm nhìn</button><button type="button" data-act="nospot" aria-pressed="false" class="hot">▶ Xoay không điểm nhìn</button><button type="button" data-act="pointe" aria-pressed="false">Mũi giày</button></div><div class="row"><span class="lab">Thể loại</span><button type="button" data-genre="ballet" aria-pressed="true">Ba lê cổ điển</button><button type="button" data-genre="contemp" aria-pressed="false">Đương đại</button><button type="button" data-genre="viet" aria-pressed="false">Dân gian Việt</button><button type="button" data-genre="hiphop" aria-pressed="false">Hip-hop</button></div>
+      <div class="readout" id="readout" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <article class="guide">
+    <noscript><p>Ba lê: Viện Hàn lâm Múa Hoàng gia được vua Louis XIV lập tháng 3/1661; năm tư thế chân do Pierre Beauchamp hệ thống hóa. Mũi chân xoay mở từ khớp hông, đầu gối luôn theo hướng mũi chân. Bật JavaScript để điều khiển vũ công minh họa.</p></noscript>
+    <div id="guide"></div>
+    <p class="ask">Bài viết có ích? Bấm <b>Thích</b> và <b>Chia sẻ</b> cho người bạn cùng sở thích.</p>
+    <div class="post-actions" data-slug="ba-le-cho-nguoi-moi"></div>
+    <h3 style="margin-top:2em">Đọc tiếp</h3>
+    <div class="more"><a href="nhac-co-dien-cho-nguoi-moi.html"><b>Nhạc cổ điển: nghệ thuật của thời gian</b><span>Nghệ thuật · âm nhạc</span></a><a href="hoi-hoa-cho-nguoi-moi.html"><b>Hội họa: học cách nhìn ánh sáng</b><span>Nghệ thuật · hội họa</span></a><a href="sang-tac-bai-hat-cho-nguoi-moi.html"><b>Sáng tác bài hát: tám chữ đầu tiên</b><span>Nghệ thuật · âm nhạc</span></a><a href="khoi-dong-va-gian-co-dung-cach.html"><b>Khởi động và giãn cơ đúng cách</b><span>Thể thao · nên đọc trước khi ra sân</span></a></div>
+    <div class="src">
+      <p>Nguồn: Académie Royale de Danse thành lập tháng 3/1661 (Britannica – Paris Opéra Ballet; Wikipedia – Académie Royale de Danse, có tranh luận về vai trò của Beauchamp); Britannica – Pierre Beauchamp và năm tư thế; Britannica – Western dance (Feuillet, Chorégraphie, 1700; Louis XIV thôi múa năm 1669); Les Grands Ballets Canadiens – tư thế tay bổ sung thế kỷ 19, pointe khoảng 1820; La Sylphide (1832); Hồ thiên nga: ra mắt Bolshoi 4/3/1877, bản Petipa–Ivanov tại Mariinsky 27/1/1895 (Petipa Society; V&A) · Hướng dẫn mũi giày: Weiss và cộng sự, J Dance Med Sci 2009;13(3):90-2; AAP HealthyChildren – Ballet and Dance; Journal of Dance Medicine & Science 2025 (khảo sát giáo viên). Các số đo chân đế, trọng tâm, góc xoay trong mô phỏng là ví dụ ước lượng để minh họa.</p>
+      <p>Minh họa trong bài do HLV Sức Khỏe tự dựng bằng mã (không dùng ảnh, logo, tranh hay bản ghi có bản quyền). Bài viết mang tính giới thiệu, không thay thế huấn luyện viên hay lời khuyên y tế. HLV Sức Khỏe là trang cá nhân độc lập của Nguyễn Đức Dũng.</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap"><a href="../">← Về trang chủ HLV Sức Khỏe</a> · <a href="mailto:lienhe@hlvsuckhoe.com">lienhe@hlvsuckhoe.com</a></div>
+</footer>
+
+<script>
+(function(){var bar=document.getElementById('progress');function upd(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}window.addEventListener('scroll',upd,{passive:true});upd();})();
+</script>
+<script src="../js/guides/ba-le.js"></script>
+<script src="../js/guide.js"></script>
+<script src="../js/guides/stage-ba-le.js" defer></script>
+<script src="../js/config.js"></script>
+<script src="../js/post-actions.js" defer></script>
+<!-- Cloudflare Web Analytics (thống kê lượt xem, không cookie, không lưu IP) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1dd877b5432a4181b42a4b65990cb60c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

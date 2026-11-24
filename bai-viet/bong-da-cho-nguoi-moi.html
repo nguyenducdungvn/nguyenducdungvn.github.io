@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- HLV Sức Khỏe – bài tương tác (24/11/2026). Trang này được sinh bởi tools/make_guides.py: sửa ở đó hoặc ở js/guides/bong-da.js -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bóng đá cho người mới: nhìn ra khoảng trống | HLV Sức Khỏe</title>
+<meta name="description" content="Bóng đá cho người chưa biết gì: luật việt vị tự thử trên sân 3D đúng tỉ lệ, sơ đồ 4-4-2, 4-3-3, 3-5-2, cách xem trận như huấn luyện viên. Năm góc nhìn, ba tầng nội dung.">
+<meta name="theme-color" content="#0f6a4b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bóng đá: môn thể thao của khoảng trống">
+<meta property="og:description" content="Tự thử luật việt vị trên sân 3D, đổi sơ đồ đội hình, học cách xem trận.">
+<meta property="og:url" content="https://hlvsuckhoe.com/bai-viet/bong-da-cho-nguoi-moi.html">
+<meta property="og:image" content="https://hlvsuckhoe.com/img/og/bong-da-cho-nguoi-moi.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bóng đá: môn thể thao của khoảng trống">
+<meta property="og:site_name" content="HLV Sức Khỏe">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hlvsuckhoe.com/img/og/bong-da-cho-nguoi-moi.jpg">
+<link rel="canonical" href="https://hlvsuckhoe.com/bai-viet/bong-da-cho-nguoi-moi.html">
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,700;1,7..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/bai-viet.css">
+<link rel="stylesheet" href="../css/guide.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="../"><img src="../img/logo.svg" alt="">HLV Sức Khỏe</a>
+    <a class="back" href="../#goc-the-thao">← Góc thể thao</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="kicker">Thể thao · Đồng đội</span>
+    <h1>Bóng đá: môn thể thao của <em>khoảng trống</em></h1>
+    <p class="dek">Vì sao một bàn thắng đẹp bị từ chối? Vì sao đội nào cũng “4-3-3”? Bài này cho bạn tự xếp đội hình và tự “phạm” luật việt vị trên một sân bóng 3D đúng tỉ lệ, rồi đọc theo góc nhìn của sử gia, huấn luyện viên, trọng tài biên, cầu thủ hay khán giả.</p>
+    <div class="meta"><span>Nguyễn Đức Dũng</span><span>24/11/2026</span><span>Đọc 6–12 phút tùy tầng</span></div>
+    <div class="post-actions" data-slug="bong-da-cho-nguoi-moi"></div>
+  </div>
+
+  <div class="lensbar" id="lensBar" aria-label="Góc nhìn và tầng nội dung"></div>
+
+  <section class="stage" id="stage" aria-labelledby="stageH">
+    <div class="stage-head"><h2 id="stageH">Sân bóng 3D · 105 × 68 m</h2><p>Kéo để xoay · cuộn để phóng to · cầu thủ phóng to 1,6 lần cho dễ nhìn</p></div>
+    <div class="view" id="view"></div>
+    <div class="tools" id="tools">
+      <div class="row"><span class="lab">Sơ đồ</span><button type="button" data-form="442" aria-pressed="true">4-4-2</button><button type="button" data-form="433" aria-pressed="false">4-3-3</button><button type="button" data-form="352" aria-pressed="false">3-5-2</button><button type="button" data-runs="1" aria-pressed="false">➜ Dòng chạy</button><button type="button" data-gaps="1" aria-pressed="false">📏 Khoảng cách tuyến</button></div><div class="row"><span class="lab">Được – mất</span><button type="button" data-scen="ontime" aria-pressed="false" class="hot">▶ Chạy đúng lúc</button><button type="button" data-scen="early" aria-pressed="false" class="hot">▶ Chạy sớm</button><button type="button" data-scen="trap" aria-pressed="false" class="hot">▶ Bẫy việt vị</button></div><div class="row"><span class="lab">Góc máy</span><button type="button" data-cam="all" aria-pressed="true">Toàn sân</button><button type="button" data-cam="ar" aria-pressed="false">Trọng tài biên</button><button type="button" data-cam="goal" aria-pressed="false">Sau khung thành</button><button type="button" data-cam="top" aria-pressed="false">Từ trên cao</button></div>
+      <div class="readout" id="readout" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <article class="guide">
+    <noscript><p>Bóng đá: hai đội 11 người, hai hiệp 45 phút. Việt vị: lúc đồng đội chuyền, bạn không được gần khung thành đối phương hơn cả bóng lẫn hậu vệ áp chót. Bật JavaScript để dùng sân 3D và đọc đủ năm góc nhìn.</p></noscript>
+    <div id="guide"></div>
+    <p class="ask">Bài viết có ích? Bấm <b>Thích</b> và <b>Chia sẻ</b> cho người bạn cùng sở thích.</p>
+    <div class="post-actions" data-slug="bong-da-cho-nguoi-moi"></div>
+    <h3 style="margin-top:2em">Đọc tiếp</h3>
+    <div class="more"><a href="khoi-dong-va-gian-co-dung-cach.html"><b>Khởi động và giãn cơ đúng cách</b><span>Thể thao · nên đọc trước khi ra sân</span></a><a href="golf-cho-nguoi-moi.html"><b>Golf: trò chơi của sự trung thực</b><span>Thể thao · cá nhân</span></a><a href="boi-loi-cho-nguoi-moi.html"><b>Bơi lội: làm bạn với nước</b><span>Thể thao · cá nhân</span></a></div>
+    <div class="src">
+      <p>Nguồn: Luật Bóng đá IFAB (Điều 1 Sân thi đấu, Điều 11 Việt vị; bản 2026/27 do FA đăng) · Lịch sử luật trên trang lịch sử của IFAB (việt vị 1866–1925) · Bundesliga: các lần đổi luật việt vị 1925, 1990, 2005 · Tổng quan FIFA 11+ (Sadigursky và cộng sự, 2017). Luật 2 (bóng: chu vi 68–70 cm, nặng 410–450 g). Các mốc lịch sử khác (luật Cambridge 1848, FA 1863, RFU 1871, FIFA 1904, World Cup 1930, sơ đồ WM của Herbert Chapman sau 1925) là sự kiện được ghi nhận rộng rãi. Chỉ số xG, PPDA: định nghĩa phổ biến trong phân tích bóng đá, mỗi nhà cung cấp dữ liệu tính hơi khác nhau.</p>
+      <p>Minh họa trong bài do HLV Sức Khỏe tự dựng bằng mã (không dùng ảnh, logo, tranh hay bản ghi có bản quyền). Bài viết mang tính giới thiệu, không thay thế huấn luyện viên hay lời khuyên y tế. HLV Sức Khỏe là trang cá nhân độc lập của Nguyễn Đức Dũng.</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap"><a href="../">← Về trang chủ HLV Sức Khỏe</a> · <a href="mailto:lienhe@hlvsuckhoe.com">lienhe@hlvsuckhoe.com</a></div>
+</footer>
+
+<script>
+(function(){var bar=document.getElementById('progress');function upd(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}window.addEventListener('scroll',upd,{passive:true});upd();})();
+</script>
+<script src="../js/guides/bong-da.js"></script>
+<script src="../js/guide.js"></script>
+<script type="importmap">{"imports":{"three":"../js/vendor/three/three.module.min.js","three/addons/":"../js/vendor/three/addons/"}}</script>
+<script type="module" src="../js/guides/stage-bong-da.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/post-actions.js" defer></script>
+<!-- Cloudflare Web Analytics (thống kê lượt xem, không cookie, không lưu IP) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1dd877b5432a4181b42a4b65990cb60c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

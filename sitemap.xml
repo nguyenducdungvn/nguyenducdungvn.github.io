@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HLV Sức Khỏe – sơ đồ trang cho Google. Thêm bài mới: chép một khối <url> và đổi đường link, ngày. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://hlvsuckhoe.com/</loc><lastmod>2026-11-24</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://hlvsuckhoe.com/bai-viet/khoi-dong-va-gian-co-dung-cach.html</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hlvsuckhoe.com/bai-viet/bong-da-cho-nguoi-moi.html</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hlvsuckhoe.com/bai-viet/golf-cho-nguoi-moi.html</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hlvsuckhoe.com/bai-viet/boi-loi-cho-nguoi-moi.html</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hlvsuckhoe.com/bai-viet/sang-tac-bai-hat-cho-nguoi-moi.html</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hlvsuckhoe.com/bai-viet/ba-le-cho-nguoi-moi.html</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hlvsuckhoe.com/bai-viet/nhac-co-dien-cho-nguoi-moi.html</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hlvsuckhoe.com/bai-viet/hoi-hoa-cho-nguoi-moi.html</loc><lastmod>2026-11-24</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hlvsuckhoe.com/bai-viet/nguoi-gieo-vien-thuoc-hieu-biet.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://hlvsuckhoe.com/bai-viet/tho-4-7-8-truoc-khi-ngu.html</loc><lastmod>2026-11-22</lastmod><priority>0.8</priority></url>
+  <url><loc>https://app.hlvsuckhoe.com/</loc><lastmod>2026-11-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://tho.hlvsuckhoe.com/</loc><lastmod>2026-11-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://thienvan.hlvsuckhoe.com/</loc><lastmod>2026-11-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://giadinh.hlvsuckhoe.com/</loc><lastmod>2026-11-22</lastmod><priority>0.7</priority></url>
+  <url><loc>https://phankim.hlvsuckhoe.com/</loc><lastmod>2026-11-24</lastmod><priority>0.7</priority></url>
+  <url><loc>https://hvflaw.hlvsuckhoe.com/</loc><lastmod>2026-11-24</lastmod><priority>0.7</priority></url>
+  <url><loc>https://kiemdem.hlvsuckhoe.com/</loc><lastmod>2026-11-24</lastmod><priority>0.7</priority></url>
+</urlset>

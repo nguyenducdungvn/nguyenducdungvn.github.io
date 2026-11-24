@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- HLV Sức Khỏe – trang chủ bản 2.1.0 "Căn phòng mỗi ngày" (24/11/2026: thêm vòng tròn bài viết quanh đồ vật – dữ liệu ở js/posts.js). Hướng dẫn cập nhật: docs/HUONG_DAN.md
+     Nội dung đổi mỗi ngày nằm ở js/daily.js · giao diện ở css/home.css · hoạt động ở js/home.js -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HLV Sức Khỏe – căn phòng sống khỏe mỗi ngày</title>
+<meta name="description" content="Một căn phòng cho thân, tâm và trí: tập thở, thiền, luyện tập, gia đình, âm nhạc, ngắm sao, đọc sách, giải đố – mỗi ngày một điều mới. Miễn phí, tiếng Việt.">
+<meta name="theme-color" content="#0f6a4b">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HLV Sức Khỏe – căn phòng sống khỏe mỗi ngày">
+<meta property="og:description" content="Thân khỏe, tâm an, trí sáng: mỗi ngày một động tác, một câu đố, một cuốn sách, một bài hát và một góc trời để ngắm.">
+<meta property="og:url" content="https://hlvsuckhoe.com/">
+<meta property="og:image" content="https://hlvsuckhoe.com/img/og/home.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="HLV Sức Khỏe">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hlvsuckhoe.com/img/og/home.jpg">
+<link rel="canonical" href="https://hlvsuckhoe.com/">
+<link rel="icon" href="img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,700;1,7..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/home.css?v=2.1.0">
+<script>/* đặt ánh sáng căn phòng theo giờ trên máy trước khi vẽ, tránh nhấp nháy */
+(function(){var h=new Date().getHours();document.documentElement.dataset.time=h>=5&&h<10?'sang':h>=10&&h<16?'trua':h>=16&&h<19?'chieu':'dem';})();</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="#"><img src="img/logo.svg" alt="">HLV Sức Khỏe</a>
+    <ul>
+      <li><a href="#goc-than-tam-tri">Thân · Tâm · Trí</a></li><li><a href="#thien">Thiền</a></li><li><a href="#van-dong">Luyện tập</a></li><li><a href="#goc-gia-dinh">Gia đình</a></li><li><a href="#goc-so-thich">Sở thích</a></li><li><a href="#bai-viet">Đọc sách</a></li><li><a href="#goc-giai-do">Giải đố</a></li><li><a href="#ung-dung">Ứng dụng</a></li><li><a href="#goc-chia-se">Chia sẻ</a></li>
+    </ul>
+    <a class="btn sm apps-btn" href="#ung-dung">Ứng dụng</a>
+    <button class="help-btn" type="button" data-guide aria-label="Hướng dẫn sử dụng trang" title="Hướng dẫn sử dụng">?</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- ===== CĂN PHÒNG (mở đầu) ===== -->
+  <div class="hero2">
+    <div class="greet">
+      <div>
+        <h1 id="hello">Chào bạn, căn phòng đã sẵn sàng.</h1>
+        <p class="lede">Có sức khỏe là có tất cả. Ở đây có góc cho thân, cho tâm, cho trí – và mỗi ngày mỗi góc có một điều mới. Bấm vào bất kỳ đồ vật nào trong phòng để ghé góc đó.</p>
+        <p class="first">Lần đầu ghé thăm? <button type="button" data-guide>Xem hướng dẫn sử dụng trang</button></p>
+      </div>
+      <div class="day-strip" aria-label="Hôm nay">
+        <span><b id="tDate">–</b> <span id="tDow"></span></span>
+        <span>Âm lịch <b id="tLunar">–</b> <span id="tLunarNote"></span></span>
+        <span class="streak" id="streak"></span>
+        <span id="roomHint">Ánh sáng trong phòng đổi theo giờ của bạn</span>
+      </div>
+    </div>
+    <div class="room" id="room">
+<svg viewBox="0 0 1200 630" role="group" aria-label="Căn phòng HLV Sức Khỏe – bấm vào từng đồ vật để tới góc tương ứng">
+<defs><linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--sky1)"/><stop offset="1" style="stop-color:var(--sky2)"/></linearGradient>
+<linearGradient id="wallG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--wall)"/><stop offset="1" style="stop-color:var(--wall2)"/></linearGradient>
+<linearGradient id="floorG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--floor2)"/><stop offset="1" style="stop-color:var(--floor)"/></linearGradient>
+<linearGradient id="beamG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6d8" stop-opacity=".9"/><stop offset="1" stop-color="#fff6d8" stop-opacity="0"/></linearGradient>
+<radialGradient id="lampG"><stop offset="0" stop-color="#ffd27a" stop-opacity=".75"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+<clipPath id="win"><rect x="456" y="64" width="288" height="252"/></clipPath></defs>
+<rect width="1200" height="480" fill="url(#wallG)"/><rect y="478" width="1200" height="152" fill="url(#floorG)"/>
+<g stroke="rgba(0,0,0,.08)" stroke-width="2"><path d="M0 510H1200"/><path d="M0 548H1200"/><path d="M0 592H1200"/><path d="M0 478L-210 630"/><path d="M120 478L-48 630"/><path d="M240 478L114 630"/><path d="M360 478L276 630"/><path d="M480 478L438 630"/><path d="M600 478L600 630"/><path d="M720 478L762 630"/><path d="M840 478L924 630"/><path d="M960 478L1086 630"/><path d="M1080 478L1248 630"/><path d="M1200 478L1410 630"/></g>
+<rect y="470" width="1200" height="12" fill="rgba(0,0,0,.10)"/>
+<path d="M466 340h268l150 290H330z" fill="url(#beamG)" style="opacity:var(--beam)"/>
+<rect x="440" y="48" width="320" height="284" rx="10" fill="#f3ece0"/><g clip-path="url(#win)"><rect x="456" y="64" width="288" height="252" fill="url(#skyG)"/>
+<g style="opacity:var(--stars)" fill="#fff"><circle cx="480" cy="90" r="1.6"/><circle cx="520" cy="150" r="1.2"/><circle cx="575" cy="84" r="2"/><circle cx="640" cy="120" r="1.3"/><circle cx="700" cy="80" r="1.8"/><circle cx="725" cy="160" r="1.2"/><circle cx="610" cy="200" r="1.1"/><circle cx="500" cy="220" r="1.4"/><circle cx="680" cy="230" r="1.1"/><circle cx="660" cy="96" r="1"/><path d="M700 140l-40 16" stroke="#fff" stroke-width="1.4" opacity=".7"/></g>
+<circle id="sun" cx="650" cy="250" r="26" fill="#ffd56b" style="opacity:var(--sunop)"/><circle cx="650" cy="250" r="40" fill="#ffd56b" opacity=".25" id="sunGlow" style="opacity:calc(var(--sunop)*.25)"/>
+<g id="winMoon" style="opacity:var(--moonop)" transform="translate(540 126)"><circle r="24" fill="#2c3a5e"/><path id="moonLit" d="" fill="#f3ead2"/></g>
+<path d="M456 286c40-30 80-34 120-14s70 4 100-12 50-6 68 6v50H456z" fill="#2f6f54" opacity=".75"/><path d="M456 300c50-18 110-10 150 0s100-14 138-4v20H456z" fill="#255c46"/></g>
+<path d="M600 64v252M456 190h288" stroke="#f3ece0" stroke-width="8"/><rect x="430" y="326" width="340" height="14" rx="4" fill="#e7dccb"/>
+<path d="M432 40c-8 80 10 200-6 300h46c-14-90-6-200 2-300z" fill="#e9b4a0"/><path d="M768 40c8 80-10 200 6 300h-46c14-90 6-200-2-300z" fill="#e9b4a0"/><rect x="420" y="34" width="360" height="10" rx="5" fill="#8a5a33"/>
+<rect x="700" y="306" width="30" height="22" rx="4" fill="#c2763c"/><path d="M715 306c-10-14-14-26-6-34 4 10 8 20 6 34M715 306c6-16 16-24 24-22-4 12-12 18-24 22" fill="#4caf7d"/>
+<a class="spot" href="#goc-nghe-thuat" aria-label="Hội họa và nghệ thuật"><g class="obj"><rect x="252" y="78" width="118" height="92" rx="4" fill="#f4efe6" stroke="#8a5a33" stroke-width="6"/><rect x="262" y="88" width="98" height="72" fill="#fbe3c8"/><circle cx="330" cy="108" r="12" fill="#f2a516"/><path d="M262 160l26-36 18 20 14-12 40 28z" fill="#2f8f6b"/><path d="M262 160l40-22 20 22z" fill="#c2456a" opacity=".85"/></g><g class="lbl" transform="translate(262,58)"><rect x="0" y="-16" height="32" rx="16" width="120"/><circle cx="16" cy="0" r="5"/><text x="28" y="5">Hội họa</text></g></a>
+<a class="spot" href="#goc-du-lich" aria-label="Du lịch và khám phá"><g class="obj"><rect x="166" y="104" width="30" height="8" rx="3" fill="#6b4a2a"/><rect x="178" y="90" width="6" height="16" fill="#6b4a2a"/><path d="M152 66a30 30 0 1 0 58 0" fill="none" stroke="#b08a4a" stroke-width="4"/><circle cx="181" cy="64" r="25" fill="#5fa8d3"/><path d="M168 50c8-4 14 2 12 9s-10 6-12 14-8 0-6-8 0-12 6-15zM186 70c6-3 14 0 12 7s-10 9-14 5 0-10 2-12zM190 44c5 0 10 4 8 8s-9 2-8-8z" fill="#4caf7d"/></g><g class="lbl" transform="translate(120,24)"><rect x="0" y="-16" height="32" rx="16" width="120"/><circle cx="16" cy="0" r="5"/><text x="28" y="5">Du lịch</text></g></a>
+<a class="spot" href="#bai-viet" aria-label="Góc đọc sách"><g class="obj"><rect x="30" y="112" width="200" height="392" rx="6" fill="#8a5a33"/><rect x="40" y="122" width="180" height="372" fill="#5e3a20"/>
+<rect x="40" y="200" width="180" height="10" fill="#8a5a33"/><rect x="40" y="290" width="180" height="10" fill="#8a5a33"/><rect x="40" y="380" width="180" height="10" fill="#8a5a33"/><rect x="44" y="136" width="14" height="64" rx="2" fill="#c2456a"/><rect x="46" y="144" width="10" height="3" fill="rgba(255,255,255,.45)"/><rect x="60" y="142" width="10" height="58" rx="2" fill="#c2456a"/><rect x="62" y="150" width="6" height="3" fill="rgba(255,255,255,.45)"/><rect x="72" y="140" width="18" height="60" rx="2" fill="#3a9fb5" transform="rotate(-12 72 200)"/><rect x="96" y="142" width="16" height="58" rx="2" fill="#5d7d2f"/><rect x="98" y="150" width="12" height="3" fill="rgba(255,255,255,.45)"/><rect x="114" y="142" width="16" height="58" rx="2" fill="#3d6fd1"/><rect x="116" y="150" width="12" height="3" fill="rgba(255,255,255,.45)"/><rect x="132" y="142" width="12" height="58" rx="2" fill="#3a9fb5"/><rect x="134" y="150" width="8" height="3" fill="rgba(255,255,255,.45)"/><rect x="146" y="140" width="10" height="60" rx="2" fill="#e0a43a" transform="rotate(-12 146 200)"/><rect x="162" y="126" width="14" height="74" rx="2" fill="#3d6fd1"/><rect x="164" y="134" width="10" height="3" fill="rgba(255,255,255,.45)"/><rect x="178" y="130" width="18" height="70" rx="2" fill="#e0a43a"/><rect x="180" y="138" width="14" height="3" fill="rgba(255,255,255,.45)"/><rect x="198" y="136" width="10" height="64" rx="2" fill="#5d7d2f"/><rect x="200" y="144" width="6" height="3" fill="rgba(255,255,255,.45)"/><rect x="44" y="226" width="18" height="64" rx="2" fill="#5d7d2f"/><rect x="46" y="234" width="14" height="3" fill="rgba(255,255,255,.45)"/><rect x="64" y="220" width="16" height="70" rx="2" fill="#a33a3a"/><rect x="66" y="228" width="12" height="3" fill="rgba(255,255,255,.45)"/><rect x="82" y="220" width="14" height="70" rx="2" fill="#e0a43a"/><rect x="84" y="228" width="10" height="3" fill="rgba(255,255,255,.45)"/><rect x="98" y="232" width="12" height="58" rx="2" fill="#5d7d2f"/><rect x="100" y="240" width="8" height="3" fill="rgba(255,255,255,.45)"/><rect x="112" y="220" width="16" height="70" rx="2" fill="#7a5bb5"/><rect x="114" y="228" width="12" height="3" fill="rgba(255,255,255,.45)"/><rect x="130" y="232" width="18" height="58" rx="2" fill="#3a9fb5"/><rect x="132" y="240" width="14" height="3" fill="rgba(255,255,255,.45)"/><rect x="150" y="220" width="12" height="70" rx="2" fill="#a33a3a"/><rect x="152" y="228" width="8" height="3" fill="rgba(255,255,255,.45)"/><rect x="164" y="232" width="16" height="58" rx="2" fill="#3d6fd1"/><rect x="166" y="240" width="12" height="3" fill="rgba(255,255,255,.45)"/><rect x="182" y="220" width="18" height="70" rx="2" fill="#d9663b"/><rect x="184" y="228" width="14" height="3" fill="rgba(255,255,255,.45)"/><rect x="44" y="310" width="18" height="70" rx="2" fill="#3d6fd1" transform="rotate(-12 44 380)"/><rect x="68" y="306" width="14" height="74" rx="2" fill="#3d6fd1"/><rect x="70" y="314" width="10" height="3" fill="rgba(255,255,255,.45)"/><rect x="84" y="310" width="10" height="70" rx="2" fill="#a33a3a"/><rect x="86" y="318" width="6" height="3" fill="rgba(255,255,255,.45)"/><rect x="96" y="306" width="14" height="74" rx="2" fill="#d9663b"/><rect x="98" y="314" width="10" height="3" fill="rgba(255,255,255,.45)"/><rect x="112" y="306" width="10" height="74" rx="2" fill="#e7c35a"/><rect x="114" y="314" width="6" height="3" fill="rgba(255,255,255,.45)"/><rect x="124" y="310" width="10" height="70" rx="2" fill="#7a5bb5" transform="rotate(-12 124 380)"/><rect x="140" y="316" width="12" height="64" rx="2" fill="#a33a3a"/><rect x="142" y="324" width="8" height="3" fill="rgba(255,255,255,.45)"/><rect x="154" y="316" width="10" height="64" rx="2" fill="#5d7d2f"/><rect x="156" y="324" width="6" height="3" fill="rgba(255,255,255,.45)"/><rect x="166" y="316" width="14" height="64" rx="2" fill="#5d7d2f"/><rect x="168" y="324" width="10" height="3" fill="rgba(255,255,255,.45)"/><rect x="182" y="306" width="14" height="74" rx="2" fill="#3a9fb5"/><rect x="184" y="314" width="10" height="3" fill="rgba(255,255,255,.45)"/><rect x="198" y="320" width="12" height="60" rx="2" fill="#e0a43a" transform="rotate(-12 198 380)"/><rect x="44" y="398" width="12" height="72" rx="2" fill="#a33a3a"/><rect x="46" y="406" width="8" height="3" fill="rgba(255,255,255,.45)"/><rect x="58" y="410" width="18" height="60" rx="2" fill="#c2456a"/><rect x="60" y="418" width="14" height="3" fill="rgba(255,255,255,.45)"/><rect x="78" y="404" width="12" height="66" rx="2" fill="#e7c35a"/><rect x="80" y="412" width="8" height="3" fill="rgba(255,255,255,.45)"/><rect x="92" y="404" width="18" height="66" rx="2" fill="#5d7d2f"/><rect x="94" y="412" width="14" height="3" fill="rgba(255,255,255,.45)"/><rect x="112" y="398" width="18" height="72" rx="2" fill="#c2456a"/><rect x="114" y="406" width="14" height="3" fill="rgba(255,255,255,.45)"/><rect x="132" y="398" width="16" height="72" rx="2" fill="#3a9fb5"/><rect x="134" y="406" width="12" height="3" fill="rgba(255,255,255,.45)"/><rect x="150" y="404" width="16" height="66" rx="2" fill="#a33a3a"/><rect x="152" y="412" width="12" height="3" fill="rgba(255,255,255,.45)"/><rect x="168" y="410" width="16" height="60" rx="2" fill="#2f8f6b"/><rect x="170" y="418" width="12" height="3" fill="rgba(255,255,255,.45)"/><rect x="186" y="414" width="16" height="56" rx="2" fill="#e7c35a" transform="rotate(-12 186 470)"/><rect x="24" y="494" width="212" height="14" rx="4" fill="#7a4e2b"/></g><g class="lbl" transform="translate(44,150)"><rect x="0" y="-16" height="32" rx="16" width="120"/><circle cx="16" cy="0" r="5"/><text x="28" y="5">Đọc sách</text></g></a>
+<a class="spot" href="#am-nhac" aria-label="Âm nhạc và sáng tác"><g class="obj"><g transform="rotate(-9 318 512)"><rect x="312" y="286" width="12" height="150" rx="3" fill="#5e3a20"/><rect x="308" y="268" width="20" height="26" rx="5" fill="#3c2414"/><circle cx="305" cy="274" r="3" fill="#d9c08a"/><circle cx="331" cy="274" r="3" fill="#d9c08a"/><circle cx="305" cy="286" r="3" fill="#d9c08a"/><circle cx="331" cy="286" r="3" fill="#d9c08a"/><path d="M318 410c-24 0-34 16-30 30 3 10-10 18-10 34 0 22 18 36 40 36s40-14 40-36c0-16-13-24-10-34 4-14-6-30-30-30z" fill="#d88a3d"/><circle cx="318" cy="452" r="12" fill="#3c2414"/><rect x="306" y="488" width="24" height="6" rx="2" fill="#3c2414"/><path d="M315 290v200M321 290v200" stroke="#f3e6c8" stroke-width=".8"/></g><path d="M370 300v-26l18-4v24" fill="none" stroke="var(--lotus)" stroke-width="3"/><circle cx="365" cy="300" r="6" fill="var(--lotus)"/><circle cx="383" cy="296" r="6" fill="var(--lotus)"/></g><g class="lbl" transform="translate(300,250)"><rect x="0" y="-16" height="32" rx="16" width="120"/><circle cx="16" cy="0" r="5"/><text x="28" y="5">Âm nhạc</text></g></a>
+<a class="spot" href="#goc-than-tam-tri" aria-label="Thân, Tâm, Trí – chăm sóc từ tế bào"><g class="obj"><path d="M396 470c-30-40-60-70-52-120 22 18 40 52 50 96M402 468c4-60 6-100 34-140 10 40-6 90-28 140M398 470c-40-10-74-30-82-70 34 6 60 30 80 66M404 470c30-30 64-44 96-40-14 30-48 44-90 46" fill="#3f9a5f"/><path d="M398 470c-10-40-16-80-4-130 14 40 14 90 8 130" fill="#2f7d4b"/><path d="M372 466h56l-8 56h-40z" fill="#d9663b"/><rect x="368" y="460" width="64" height="12" rx="4" fill="#e07a3f"/></g><g class="lbl" transform="translate(360,322)"><rect x="0" y="-16" height="32" rx="16" width="120"/><circle cx="16" cy="0" r="5"/><text x="28" y="5">Thân · Tâm · Trí</text></g></a>
+<a class="spot" href="#thien" aria-label="Góc thiền và hơi thở"><g class="obj"><ellipse cx="600" cy="560" rx="78" ry="20" fill="#9c2f52"/><ellipse cx="600" cy="552" rx="78" ry="18" fill="var(--lotus)"/><ellipse cx="600" cy="548" rx="50" ry="9" fill="#d9668a"/><path d="M600 540c-6-10-2-18 0-22 2 4 6 12 0 22z" fill="#f2a516" opacity=".0"/>
+<rect x="680" y="530" width="16" height="26" rx="3" fill="#f6eedd"/><path d="M688 530c-7-9-3-17 0-22 3 5 7 13 0 22z" fill="#ffb238"/><circle cx="688" cy="520" r="16" fill="#ffd56b" opacity=".25"/>
+<path d="M512 556l0-50" stroke="#7a4e2b" stroke-width="2"/><path d="M512 506c-6-14 8-20 2-34s6-20 4-30" fill="none" stroke="#c9c2b8" stroke-width="2" opacity=".7"/><ellipse cx="512" cy="558" rx="10" ry="4" fill="#7a4e2b"/></g><g class="lbl" transform="translate(560,492)"><rect x="0" y="-16" height="32" rx="16" width="120"/><circle cx="16" cy="0" r="5"/><text x="28" y="5">Thiền</text></g></a>
+<a class="spot" href="#bau-troi" aria-label="Ngắm sao, thiên văn"><g class="obj"><path d="M850 444l-34 100M856 444l4 106M862 444l38 96" stroke="#3b3f4a" stroke-width="6" stroke-linecap="round"/><g transform="translate(852 430) rotate(28)"><rect x="-80" y="-15" width="150" height="30" rx="6" fill="#2f4a7a"/><rect x="-94" y="-19" width="22" height="38" rx="5" fill="#1e3155"/><rect x="62" y="-8" width="20" height="16" rx="3" fill="#1e3155"/><rect x="-40" y="-15" width="10" height="30" fill="#e7c35a"/></g><circle cx="855" cy="440" r="8" fill="#1e3155"/></g><g class="lbl" transform="translate(800,372)"><rect x="0" y="-16" height="32" rx="16" width="120"/><circle cx="16" cy="0" r="5"/><text x="28" y="5">Ngắm sao</text></g></a>
+<g aria-hidden="true"><circle cx="868" cy="96" r="32" fill="#f8f4ec" stroke="#8a5a33" stroke-width="5"/><g stroke="#8a5a33" stroke-width="2"><path d="M868 70v5" transform="rotate(0 868 96)"/><path d="M868 70v5" transform="rotate(30 868 96)"/><path d="M868 70v5" transform="rotate(60 868 96)"/><path d="M868 70v5" transform="rotate(90 868 96)"/><path d="M868 70v5" transform="rotate(120 868 96)"/><path d="M868 70v5" transform="rotate(150 868 96)"/><path d="M868 70v5" transform="rotate(180 868 96)"/><path d="M868 70v5" transform="rotate(210 868 96)"/><path d="M868 70v5" transform="rotate(240 868 96)"/><path d="M868 70v5" transform="rotate(270 868 96)"/><path d="M868 70v5" transform="rotate(300 868 96)"/><path d="M868 70v5" transform="rotate(330 868 96)"/></g><path id="hh" d="M868 96v-15" stroke="#1a2a22" stroke-width="4" stroke-linecap="round"/><path id="mh" d="M868 96v-23" stroke="#1a2a22" stroke-width="2.5" stroke-linecap="round"/><circle cx="868" cy="96" r="3" fill="var(--lotus)"/></g>
+<a class="spot" href="#goc-gia-dinh" aria-label="Gia đình"><g class="obj"><rect x="930" y="64" width="96" height="78" rx="4" fill="#f4efe6" stroke="#a3241f" stroke-width="5"/><rect x="938" y="72" width="80" height="62" fill="#f7dcc5"/><circle cx="958" cy="96" r="8" fill="#7a4e2b"/><circle cx="980" cy="92" r="9" fill="#5e3a20"/><circle cx="1000" cy="102" r="6" fill="#7a4e2b"/><path d="M948 134c0-16 6-24 10-24s10 8 10 24zM968 134c0-18 6-28 12-28s12 10 12 28zM992 134c0-12 4-20 8-20s8 8 8 20z" fill="#c2456a"/>
+<rect x="1040" y="56" width="70" height="92" rx="4" fill="#f4efe6" stroke="#8a5a33" stroke-width="5"/><rect x="1047" y="63" width="56" height="78" fill="#d9e8f5"/><circle cx="1066" cy="92" r="8" fill="#7a4e2b"/><circle cx="1086" cy="96" r="7" fill="#5e3a20"/><path d="M1056 141c0-18 4-30 10-30s10 12 10 30zM1078 141c0-14 4-24 8-24s8 10 8 24z" fill="#3d6fd1"/>
+<rect x="1124" y="76" width="56" height="60" rx="4" fill="#f4efe6" stroke="#e0a43a" stroke-width="5"/><rect x="1130" y="82" width="44" height="48" fill="#fdf1d0"/><path d="M1140 120c4-14 10-22 12-22s8 8 12 22" fill="none" stroke="#a3241f" stroke-width="3"/><circle cx="1152" cy="96" r="6" fill="#a3241f"/></g><g class="lbl" transform="translate(990,40)"><rect x="0" y="-16" height="32" rx="16" width="120"/><circle cx="16" cy="0" r="5"/><text x="28" y="5">Gia đình</text></g></a>
+<a class="spot" href="#goc-lai-xe" aria-label="Lái xe"><g class="obj"><rect x="926" y="232" width="40" height="8" rx="4" fill="#8a5a33"/><path d="M936 240v8M956 240v8" stroke="#6b6f78" stroke-width="3"/><circle cx="936" cy="256" r="8" fill="none" stroke="#9aa0a8" stroke-width="3"/><rect x="930" y="262" width="12" height="22" rx="4" fill="#2b2f36"/><circle cx="936" cy="270" r="2" fill="#d94a4a"/><circle cx="956" cy="256" r="7" fill="none" stroke="#9aa0a8" stroke-width="3"/><path d="M956 262v22l6-4-6-4 6-4" fill="none" stroke="#c9a54a" stroke-width="4"/></g><g class="lbl" transform="translate(880,212)"><rect x="0" y="-16" height="32" rx="16" width="120"/><circle cx="16" cy="0" r="5"/><text x="28" y="5">Lái xe</text></g></a>
+<a class="spot" href="#goc-chia-se" aria-label="Góc chia sẻ"><g class="obj"><rect x="992" y="188" width="186" height="118" rx="6" fill="#c89b6a" stroke="#8a5a33" stroke-width="6"/><g transform="rotate(-5 1030 230)"><rect x="1004" y="204" width="50" height="46" fill="#ffe680"/><path d="M1010 218h36M1010 228h30M1010 238h24" stroke="#b39a3a" stroke-width="2"/></g><g transform="rotate(4 1088 250)"><rect x="1062" y="226" width="50" height="46" fill="#ffc2d1"/><path d="M1068 240h36M1068 250h28" stroke="#b36a7d" stroke-width="2"/></g><g transform="rotate(-3 1146 236)"><rect x="1122" y="198" width="46" height="58" fill="#fff"/><rect x="1122" y="198" width="46" height="16" fill="#d94a4a"/><text id="calDay" x="1145" y="246" text-anchor="middle" font-family="Literata,serif" font-weight="700" font-size="26" fill="#1a2a22">24</text></g><circle cx="1029" cy="206" r="4" fill="#d94a4a"/><circle cx="1087" cy="228" r="4" fill="#3d6fd1"/><rect x="1010" y="262" width="40" height="34" fill="#c8f0d8" transform="rotate(3 1030 279)"/></g><g class="lbl" transform="translate(1040,170)"><rect x="0" y="-16" height="32" rx="16" width="120"/><circle cx="16" cy="0" r="5"/><text x="28" y="5">Chia sẻ</text></g></a>
+<g aria-hidden="true"><circle cx="1150" cy="330" r="170" fill="url(#lampG)" style="opacity:var(--lamp)"/><rect x="1140" y="372" width="30" height="8" rx="3" fill="#3b3f4a"/><path d="M1155 372l-14-50 26-24" fill="none" stroke="#3b3f4a" stroke-width="5"/><path d="M1150 290l34 14-8 18-34-14z" fill="#e0a43a"/><rect x="940" y="380" width="240" height="14" rx="4" fill="#8a5a33"/><rect x="952" y="394" width="10" height="132" fill="#6b4a2a"/><rect x="1160" y="394" width="10" height="132" fill="#6b4a2a"/><rect x="1080" y="394" width="80" height="60" fill="#7a4e2b"/><rect x="1110" y="420" width="20" height="4" rx="2" fill="#d9c08a"/></g>
+<a class="spot" href="#goc-nghe-nghiep" aria-label="Nghề nghiệp"><g class="obj"><rect x="984" y="312" width="98" height="64" rx="5" fill="#1f2630"/><rect x="990" y="318" width="86" height="52" fill="#0d1a22"/><path d="M994 356h10l3-26 4 26h14l2-12 3 12h18l3-8 3 8h20" fill="none" stroke="#5fd3ff" stroke-width="2"/><path d="M976 380h114l-8-6h-98z" fill="#9aa3ad"/></g><g class="lbl" transform="translate(960,410)"><rect x="0" y="-16" height="32" rx="16" width="120"/><circle cx="16" cy="0" r="5"/><text x="28" y="5">Nghề nghiệp</text></g></a>
+<a class="spot" href="#goc-phan-kim" aria-label="Phân kim – Phù thủy Phân kim"><g class="obj"><circle cx="1108" cy="356" r="30" fill="#ffd56b" opacity=".22"/><path d="M1100 320h16M1103 320v18l-16 32c-3 6 1 10 7 10h28c6 0 10-4 7-10l-16-32v-18" fill="rgba(220,240,255,.7)" stroke="#8aa0b8" stroke-width="2"/><path d="M1093 362h30l6 12c2 4-1 6-5 6h-32c-4 0-7-2-5-6z" fill="#f0b828"/><circle cx="1104" cy="352" r="3" fill="#ffe27a"/><circle cx="1112" cy="344" r="2" fill="#ffe27a"/></g><g class="lbl" transform="translate(1056,300)"><rect x="0" y="-16" height="32" rx="16" width="120"/><circle cx="16" cy="0" r="5"/><text x="28" y="5">Phân kim</text></g></a>
+<a class="spot" href="#goc-giai-do" aria-label="Giải đố"><g class="obj"><rect x="100" y="566" width="210" height="14" rx="5" fill="#a56a39"/><rect x="114" y="580" width="10" height="30" fill="#7a4e2b"/><rect x="286" y="580" width="10" height="30" fill="#7a4e2b"/>
+<g transform="translate(130 528)"><rect x="0" y="0" width="12" height="12" rx="2" fill="#d94a4a"/><rect x="13" y="0" width="12" height="12" rx="2" fill="#f2a516"/><rect x="26" y="0" width="12" height="12" rx="2" fill="#3d6fd1"/><rect x="0" y="13" width="12" height="12" rx="2" fill="#2f8f6b"/><rect x="13" y="13" width="12" height="12" rx="2" fill="#fff"/><rect x="26" y="13" width="12" height="12" rx="2" fill="#e07a3f"/><rect x="0" y="26" width="12" height="12" rx="2" fill="#d94a4a"/><rect x="13" y="26" width="12" height="12" rx="2" fill="#f2a516"/><rect x="26" y="26" width="12" height="12" rx="2" fill="#3d6fd1"/></g><rect x="128" y="526" width="43" height="43" rx="4" fill="none" stroke="#1a2a22" stroke-width="2"/>
+<path d="M210 566c0-8 4-10 4-18-4-2-4-8 0-10-2-4 2-8 6-8s8 4 6 8c4 2 4 8 0 10 0 8 4 10 4 18z" fill="#1a2a22"/><path d="M246 566c0-6 4-8 4-14a7 7 0 1 1 8 0c0 6 4 8 4 14z" fill="#f4efe6" stroke="#1a2a22" stroke-width="1.5"/><path d="M270 566v-14h8a6 6 0 1 1 10 0h8v14z" fill="#3d6fd1"/></g><g class="lbl" transform="translate(150,500)"><rect x="0" y="-16" height="32" rx="16" width="120"/><circle cx="16" cy="0" r="5"/><text x="28" y="5">Giải đố</text></g></a>
+<a class="spot" href="#van-dong" aria-label="Góc luyện tập"><g class="obj"><path d="M650 614h258l-28-30H680z" fill="#2fae86"/><path d="M650 614h258v6H650z" fill="#22865f"/><g transform="translate(846 572)"><rect x="-4" y="-3" width="40" height="6" rx="3" fill="#555b66"/><rect x="-10" y="-10" width="10" height="20" rx="3" fill="#2b2f36"/><rect x="32" y="-10" width="10" height="20" rx="3" fill="#2b2f36"/></g></g><g class="lbl" transform="translate(735,548)"><rect x="0" y="-16" height="32" rx="16" width="120"/><circle cx="16" cy="0" r="5"/><text x="28" y="5">Luyện tập</text></g></a>
+<a class="spot" href="#goc-the-thao" aria-label="Thể thao"><g class="obj"><circle cx="958" cy="592" r="20" fill="#fff" stroke="#1a2a22" stroke-width="2"/><path d="M958 584l7 5-3 8h-8l-3-8z" fill="#1a2a22"/><path d="M958 572v12M965 589l12-4M962 597l6 10M954 597l-6 10M951 589l-12-4" stroke="#1a2a22" stroke-width="1.5"/></g><g class="lbl" transform="translate(985,560)"><rect x="0" y="-16" height="32" rx="16" width="120"/><circle cx="16" cy="0" r="5"/><text x="28" y="5">Thể thao</text></g></a>
+</svg>
+    </div>
+    <nav class="corners" aria-label="Đi tới các góc">
+      <a href="#goc-than-tam-tri"><span>🌱</span>Thân · Tâm · Trí</a><a href="#thien"><span>🧘</span>Thiền &amp; thở</a><a href="#van-dong"><span>💪</span>Luyện tập</a><a href="#goc-gia-dinh"><span>🏡</span>Gia đình</a><a href="#am-nhac"><span>🎸</span>Âm nhạc</a><a href="#goc-nghe-thuat"><span>🎨</span>Hội họa</a><a href="#goc-the-thao"><span>⚽</span>Thể thao</a><a href="#goc-du-lich"><span>🌏</span>Du lịch</a><a href="#bau-troi"><span>🔭</span>Ngắm sao</a><a href="#goc-phan-kim"><span>⚗️</span>Phân kim</a><a href="#goc-lai-xe"><span>🚗</span>Lái xe</a><a href="#goc-nghe-nghiep"><span>💼</span>Nghề nghiệp</a><a href="#bai-viet"><span>📚</span>Đọc sách</a><a href="#goc-giai-do"><span>🧩</span>Giải đố</a><a href="#goc-chia-se"><span>💬</span>Chia sẻ</a>
+    </nav>
+    <div class="board" aria-label="Bảng tin hôm nay">
+      <div><div class="k">Gợi ý hôm nay</div><div class="v" id="bTipT">–</div><div class="s" id="bTip">–</div></div>
+      <div><div class="k">Câu đố hôm nay</div><div class="v" id="bPuz" style="font-size:1.02rem">–</div><div class="s"><a href="#goc-giai-do">Thử giải</a></div></div>
+      <div class="moonrow"><canvas id="moonMini" width="128" height="128" aria-hidden="true"></canvas><div><div class="k">Trăng đêm nay</div><div class="v" id="tMoon">–</div><div class="s" id="tMoonNote">–</div></div></div>
+    </div>
+  </div>
+
+  <!-- ===== GÓC THÂN · TÂM · TRÍ ===== -->
+  <section id="goc-than-tam-tri" aria-labelledby="h-ttt">
+    <div class="goc-h"><span class="ic" aria-hidden="true">🌱</span><div><span class="tag">Góc thân · tâm · trí</span><h2 id="h-ttt">Khỏe từ tế bào, khỏe cả ba phần</h2><p>Cơ thể có khoảng 30 nghìn tỷ tế bào, ngày nào cũng có tế bào già đi và tế bào mới thay thế. Giấc ngủ, bữa ăn, hơi thở, vận động và cả niềm vui đều là "nguyên liệu" cho chúng. Chăm sóc đủ ba phần thì mới có sức để làm việc và sáng tạo.</p></div></div>
+    <div class="ttt">
+      <div class="than"><h3>Thân</h3><ul><li>Ngủ đủ 7–9 giờ, đúng giờ</li><li>Ăn đa dạng, nhiều rau, đủ đạm, đủ vi chất</li><li>Vận động 150–300 phút mỗi tuần</li><li>Khám sức khỏe định kỳ</li></ul></div>
+      <div class="tam"><h3>Tâm</h3><ul><li>Thở chậm, thiền vài phút mỗi ngày</li><li>Gắn bó với gia đình, bạn bè</li><li>Biết ơn, tha thứ, cười nhiều</li><li>Âm nhạc và thiên nhiên</li></ul></div>
+      <div class="tri"><h3>Trí</h3><ul><li>Đọc sách, học một điều mới</li><li>Giải đố, chơi cờ</li><li>Nuôi sở thích: ngắm sao, sáng tác, khám phá</li><li>Làm nghề với sự tò mò</li></ul></div>
+    </div>
+    <div class="cell-row">
+      <div class="today-card"><span class="when">Bài học tế bào hôm nay</span><h3 id="cellT">–</h3><p id="cellP">–</p><div class="nav2"><button class="mini" type="button" data-next="cell">Xem điều khác</button><a class="mini" href="bai-viet/nguoi-gieo-vien-thuoc-hieu-biet.html">Vì sao trang này ra đời</a></div></div>
+      <div class="habits" aria-labelledby="h-hab">
+        <h3 id="h-hab">Sáu việc nhỏ hôm nay</h3>
+        <ul id="habits">
+          <li><label><input type="checkbox" data-h="nuoc"><span>Uống đủ nước</span><i class="pill than">Thân</i></label></li>
+          <li><label><input type="checkbox" data-h="dong"><span>Vận động 20 phút</span><i class="pill than">Thân</i></label></li>
+          <li><label><input type="checkbox" data-h="tho"><span>Thở chậm hoặc thiền 3 phút</span><i class="pill tam">Tâm</i></label></li>
+          <li><label><input type="checkbox" data-h="nguoi"><span>Hỏi thăm một người thân</span><i class="pill tam">Tâm</i></label></li>
+          <li><label><input type="checkbox" data-h="doc"><span>Đọc 10 trang sách</span><i class="pill tri">Trí</i></label></li>
+          <li><label><input type="checkbox" data-h="do"><span>Giải câu đố hôm nay</span><i class="pill tri">Trí</i></label></li>
+        </ul>
+        <div class="bar"><i id="habBar"></i></div>
+        <p class="done" id="habDone">Đánh dấu những việc bạn đã làm. Danh sách chỉ lưu trên máy của bạn và tự làm mới mỗi sáng.</p>
+      </div>
+    </div>
+    <details class="vc" id="vi-chat"><summary>Bảng vi chất cần mỗi ngày và món Việt chứa nhiều</summary>
+<div class="tbl"><table>
+      <thead><tr><th>Vi chất</th><th>Vai trò chính</th><th>Có nhiều trong</th><th>Lưu ý</th></tr></thead>
+      <tbody>
+        <tr><td><b>Sắt</b></td><td>Tạo hồng cầu, chở oxy</td><td>Thịt bò, gan, các loại đậu, rau xanh đậm</td><td>Ăn kèm ổi, cam để hấp thu tốt hơn; tránh uống trà, cà phê ngay trong bữa</td></tr>
+        <tr><td><b>Canxi</b></td><td>Xương, răng, co cơ</td><td>Sữa, sữa chua, đậu phụ, cá nhỏ ăn cả xương, tôm tép</td><td>Cần vitamin D để hấp thu</td></tr>
+        <tr><td><b>Vitamin D</b></td><td>Hấp thu canxi, miễn dịch</td><td>Nắng sớm, cá béo, lòng đỏ trứng</td><td>Người ít ra ngoài trời dễ thiếu</td></tr>
+        <tr><td><b>I-ốt</b></td><td>Hoạt động tuyến giáp</td><td>Muối i-ốt, rong biển, hải sản</td><td>Dùng muối i-ốt nhưng vẫn ăn nhạt</td></tr>
+        <tr><td><b>Kẽm</b></td><td>Miễn dịch, lành vết thương</td><td>Hàu, thịt, hạt bí, các loại đậu</td><td>Trẻ đang lớn cần đủ kẽm</td></tr>
+        <tr><td><b>Vitamin A</b></td><td>Thị lực, da, niêm mạc</td><td>Gấc, cà rốt, khoai lang cam, gan, rau xanh đậm</td><td>Hấp thu tốt hơn khi nấu cùng chút dầu</td></tr>
+        <tr><td><b>Folate</b></td><td>Tạo tế bào mới, thai kỳ</td><td>Rau lá xanh, các loại đậu</td><td>Phụ nữ chuẩn bị mang thai nên hỏi bác sĩ về acid folic</td></tr>
+        <tr><td><b>Vitamin B12</b></td><td>Thần kinh, tạo máu</td><td>Thịt, cá, trứng, sữa</td><td>Hầu như không có trong thực vật – người ăn chay trường cần nguồn bổ sung</td></tr>
+        <tr><td><b>Magie</b></td><td>Cơ, thần kinh, giấc ngủ</td><td>Các loại hạt, ngũ cốc nguyên hạt, rau xanh, chuối</td><td>Gạo lứt giữ được nhiều hơn gạo trắng</td></tr>
+        <tr><td><b>Omega-3</b></td><td>Tim mạch, não</td><td>Cá thu, cá hồi, cá trích, hạt lanh, óc chó</td><td>Ăn cá 2 lần mỗi tuần</td></tr>
+      </tbody>
+    </table></div>
+    <p class="fine">Thông tin giáo dục sức khỏe chung. Uống viên bổ sung liều cao khi chưa có chỉ định có thể gây hại – hãy hỏi bác sĩ.</p>
+    </details>
+  </section>
+
+  <!-- ===== GÓC THIỀN & HƠI THỞ ===== -->
+  <section id="thien" aria-labelledby="h-thien">
+    <div class="goc-h"><span class="ic" aria-hidden="true">🧘</span><div><span class="tag">Góc thiền và hơi thở</span><h2 id="h-thien">Ngồi xuống, thở chậm, ở lại với chính mình</h2><p>Một phút thở cùng quả cầu, vài phút thiền có chuông, hay một lời mời nhỏ cho hôm nay.</p></div></div>
+    <div class="two">
+      <div class="breath" aria-labelledby="breath-title">
+        <canvas id="stars" aria-hidden="true"></canvas>
+        <h3 id="breath-title" style="position:relative;color:#fff">Thở cùng mình 1 phút</h3>
+        <div class="orbbox"><div class="ring"></div><div class="orb" id="orb"></div><div class="phase" id="phase" aria-live="polite">Sẵn sàng<small>Chọn nhịp rồi bấm Bắt đầu</small></div></div>
+        <div class="patterns" role="group" aria-label="Chọn nhịp thở">
+          <button type="button" data-p="4,0,6,0" aria-pressed="true">Thư giãn 4–6</button>
+          <button type="button" data-p="4,4,4,4" aria-pressed="false">Thở hộp 4–4–4–4</button>
+          <button type="button" data-p="4,7,8,0" aria-pressed="false">Dễ ngủ 4–7–8</button>
+        </div>
+        <button class="btn go" type="button" id="breathGo">Bắt đầu</button>
+        <p class="note">Thở bằng mũi, để bụng phồng lên khi hít vào. Thấy chóng mặt thì dừng lại và thở bình thường.</p>
+      </div>
+      <div class="stack">
+        <div class="today-card"><span class="when">Lời mời ngồi yên hôm nay</span><h3 id="mediP" style="font-size:1.15rem;line-height:1.5">–</h3></div>
+        <div class="medi">
+          <div class="dial" id="dial"><span id="mTime">05:00</span></div>
+          <div>
+            <h3>Hẹn giờ thiền</h3>
+            <div class="chips" role="group" aria-label="Thời lượng">
+              <button type="button" data-m="3" aria-pressed="false">3 phút</button><button type="button" data-m="5" aria-pressed="true">5 phút</button><button type="button" data-m="10" aria-pressed="false">10 phút</button><button type="button" data-m="20" aria-pressed="false">20 phút</button>
+            </div>
+            <div class="cta"><button class="btn" type="button" id="mGo">Bắt đầu thiền</button><button class="btn ghost" type="button" id="mReset">Đặt lại</button></div>
+          </div>
+        </div>
+        <a class="post live" href="bai-viet/tho-4-7-8-truoc-khi-ngu.html"><span class="cat-l">Bài đọc · Tập thở</span><h3>Thở 4–7–8 trước khi ngủ</h3><p>Cách làm, lộ trình cho người mới, ai cần lưu ý – có khung thở để tập ngay trong bài.</p><span class="soon"><b style="color:var(--forest)">Đọc bài</b> <span data-post-stats="tho-4-7-8-truoc-khi-ngu"></span></span></a>
+      </div>
+    </div>
+    <div class="bsync">
+      <img src="img/logo-breathsync.svg" alt="Logo BreathSync">
+      <div>
+        <span class="tag" style="color:#9ff5d4">Ứng dụng tập thở</span>
+        <h3>BreathSync – Hơi thở ý thức</h3>
+        <p>Vòng tròn co giãn dẫn nhịp, nền âm thanh sóng biển dâng lên theo hơi thở, chuông bát báo nhịp và giọng đọc hướng dẫn. Năm kỹ thuật đi từ nền tảng thở bụng đến nấc sâu 4-7-8, tổng hợp từ các bài giảng về hơi thở của BS. Trần Văn Phúc (số 011, 068, 117, 120, 121, 134, 135) và đối chiếu y văn. Miễn phí, tiếng Việt và tiếng Anh, dùng được khi không có mạng.</p>
+        <div class="chips2"><span>Thở bụng cơ hoành</span><span>Thở đều 3D 4-4-4</span><span>Theta 4-4-8 · 4-16-8</span><span>4-7-8 trước khi ngủ</span><span>Thở chúm môi</span><span>Ngân âm "M"</span></div>
+        <div class="cta"><a class="btn" href="https://tho.hlvsuckhoe.com/">Mở BreathSync</a><a class="btn ghost" href="https://tho.hlvsuckhoe.com/?lang=en">English</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GÓC LUYỆN TẬP ===== -->
+  <section id="van-dong" aria-labelledby="h-vd">
+    <div class="goc-h"><span class="ic" aria-hidden="true">💪</span><div><span class="tag">Góc luyện tập</span><h2 id="h-vd">Mỗi ngày một động tác, mỗi tuần một mục tiêu</h2><p>Tổ chức Y tế Thế giới khuyến nghị người trưởng thành vận động cường độ vừa 150–300 phút mỗi tuần, cộng 2 buổi tập sức mạnh. Mười phút đi bộ nhanh cũng được tính.</p></div></div>
+    <div class="two">
+      <div class="today-card"><span class="when">Động tác hôm nay</span><h3 id="mvT">–</h3><p id="mvP">–</p><span class="dose" id="mvD">–</span><p class="fine">Làm chậm, đúng tư thế, không cố khi đau. Có bệnh tim mạch, khớp hay đang mang thai, hãy hỏi bác sĩ trước.</p><div class="nav2"><button class="mini" type="button" data-next="move">Đổi động tác khác</button></div></div>
+      <div>
+        <div class="goal">150–300 <span style="font:500 1rem var(--body);color:var(--muted)">phút/tuần</span></div>
+        <div class="week" aria-label="Ví dụ một tuần 160 phút" style="margin-top:10px">
+          <div><i style="height:60px"></i>T2</div><div><i style="height:90px"></i>T3</div><div><i class="rest" style="height:12px"></i>T4</div><div><i style="height:60px"></i>T5</div><div><i style="height:90px"></i>T6</div><div><i style="height:120px"></i>T7</div><div><i class="rest" style="height:12px"></i>CN</div>
+        </div>
+        <p class="fine">Ví dụ một tuần 160 phút: 20–40 phút mỗi buổi, nghỉ thứ Tư và Chủ nhật.</p>
+      </div>
+    </div>
+    <div class="app" style="margin-top:16px">
+      <img src="img/logo.svg" alt="Logo HLV Sức Khỏe">
+      <div><h2>Ứng dụng HLV Sức Khỏe</h2><p>Huấn luyện viên bỏ túi: lộ trình từ thói quen nhỏ, 48 bài tập minh họa 3D, thực đơn món Việt, ăn chay theo âm lịch, báo cáo tuần – tháng – năm. Miễn phí, dùng được khi không có mạng, tiếng Việt và tiếng Anh.</p></div>
+      <div class="acts"><a class="btn" href="https://app.hlvsuckhoe.com/">Lập lộ trình của bạn</a><a class="inst" href="https://app.hlvsuckhoe.com/#cai-dat">📲 Cài lên điện thoại</a></div>
+    </div>
+  </section>
+
+  <!-- ===== GÓC GIA ĐÌNH ===== -->
+  <section id="goc-gia-dinh" aria-labelledby="h-gd">
+    <div class="goc-h"><span class="ic" aria-hidden="true">🏡</span><div><span class="tag">Góc gia đình</span><h2 id="h-gd">Gia đình là nơi tâm được nghỉ ngơi</h2><p>Những việc nhỏ làm cùng nhau, cây gia phả để con cháu biết mình từ đâu đến, và vài bài hát vui cho cả nhà.</p></div></div>
+    <div class="two">
+      <div class="today-card"><span class="when">Việc nhỏ cùng nhau hôm nay</span><h3 id="famT" style="font-size:1.2rem;line-height:1.5">–</h3><div class="nav2"><button class="mini" type="button" data-next="family">Gợi ý khác</button><a class="mini" href="#am-nhac" data-music="nha">Nghe nhạc gia đình vui</a></div></div>
+      <div class="today-card"><span class="when">Lời hay mỗi ngày</span><p class="proverb" id="provP">–</p></div>
+    </div>
+    <!-- ===== ỨNG DỤNG TÔI VÀ GIA ĐÌNH (ra mắt 22/11/2026, repo giadinh) =====
+         Sửa đoạn giới thiệu trong id="famDesc". Địa chỉ ứng dụng nằm ở FAM_URL trong js/home.js. -->
+    <div class="app fam" id="app-giadinh" style="margin-top:16px">
+      <img src="img/logo-giadinh.svg" alt="Logo Tôi &amp; Gia Đình">
+      <div><h2>Tôi &amp; Gia Đình <span class="badge" id="famBadge">Mới</span></h2><p id="famDesc">Lập cây gia phả cho cả nhà: thêm từng người hoặc nạp danh sách Excel kèm ảnh, chọn "tôi" để biết gọi từng người là gì cho đúng vai vế, nhớ ngày giỗ theo âm lịch, văn khấn mẫu, in gia phả khổ A0–A3 treo tường. Dùng được cho nhóm bạn, lớp học, phòng ban. Dữ liệu nằm trên máy của bạn (và Google Drive của bạn nếu muốn chia sẻ). Miễn phí, tiếng Việt và tiếng Anh, dùng được khi không có mạng.</p></div>
+      <div class="acts"><a class="btn" id="famBtn" href="https://giadinh.hlvsuckhoe.com/">Mở Tôi &amp; Gia Đình</a><a class="inst" href="https://giadinh.hlvsuckhoe.com/#cai-dat">📲 Cài lên điện thoại</a></div>
+    </div>
+  </section>
+
+  <!-- ===== GÓC SỞ THÍCH (bảng ghim) ===== -->
+  <section id="goc-so-thich" aria-labelledby="h-st">
+    <div class="goc-h"><span class="ic" aria-hidden="true">🎨</span><div><span class="tag">Góc sở thích</span><h2 id="h-st">Những thứ làm đầu óc rộng ra</h2><p>Âm nhạc, nghệ thuật, thể thao, du lịch, ngắm sao, phân kim, lái xe. Mỗi ô đổi nội dung mỗi ngày.</p></div></div>
+    <div class="hobby">
+      <a class="hb w2" href="#am-nhac" id="goc-sang-tac"><span class="ic" aria-hidden="true">🎸</span><h3>Bài hát hôm nay: <span id="songT">–</span></h3><p id="songP">Bấm để nghe ngay trong góc âm nhạc.</p><span class="go">Nghe bài hát</span></a>
+      <div class="hb w2" id="goc-nghe-thuat"><span class="ic" aria-hidden="true">🎨</span><h3>Hội họa &amp; nghệ thuật</h3><p id="artP">–</p><span class="go" style="color:var(--muted);font-weight:500">Thử ngay hôm nay, chụp lại và gửi cho mình ở góc chia sẻ.</span><span class="hb-k">Bài viết trong góc này</span><ul class="hb-posts" data-posts="goc-nghe-thuat"><li><a href="bai-viet/hoi-hoa-cho-nguoi-moi.html">🖼️ Hội họa</a></li><li><a href="bai-viet/nhac-co-dien-cho-nguoi-moi.html">🎻 Nhạc cổ điển</a></li></ul></div>
+      <div class="hb w2" id="goc-the-thao"><span class="ic" aria-hidden="true">⚽</span><h3>Thể thao</h3><p id="sportP">–</p><span class="hb-k">Bài viết trong góc này · bấm quả bóng trong căn phòng cũng được</span><ul class="hb-posts" data-posts="goc-the-thao"><li><a href="bai-viet/khoi-dong-va-gian-co-dung-cach.html">🤸 Khởi động &amp; giãn cơ</a></li><li><a href="bai-viet/bong-da-cho-nguoi-moi.html">⚽ Bóng đá</a></li><li><a href="bai-viet/golf-cho-nguoi-moi.html">⛳ Golf</a></li><li><a href="bai-viet/boi-loi-cho-nguoi-moi.html">🏊 Bơi lội</a></li></ul></div>
+      <div class="hb w2" id="goc-du-lich"><span class="ic" aria-hidden="true">🌏</span><h3>Du lịch &amp; khám phá: <span id="trT">–</span></h3><p><b id="trW">–</b> · <span id="trP">–</span></p><button class="mini" type="button" data-next="travel" style="align-self:start;margin-top:8px">Một nơi khác</button></div>
+      <a class="hb dark w2" href="#bau-troi"><span class="ic" aria-hidden="true">🔭</span><h3>Ngắm sao</h3><p id="skyP">–</p><span class="go">Xem trăng đêm nay</span></a>
+      <div class="hb w2" id="goc-lai-xe"><span class="ic" aria-hidden="true">🚗</span><h3>Lái xe an toàn</h3><p id="driveP">–</p></div>
+      <div class="hb gold w2" id="goc-phan-kim"><span class="ic" aria-hidden="true">⚗️</span><h3>Phân kim – Phù thủy Phân kim</h3><p>Nhập vai phù thủy học việc, đi từ Level 0 lên Đại pháp sư: học hóa học thật của nghề tinh luyện vàng bạc qua 7 nhiệm vụ, 20 chương sách phép, phòng thí nghiệm 3D, bàn tính hóa chất và 12 câu thử thách. Trò chơi giáo dục, không phải hướng dẫn tự làm tại nhà.</p><span class="go"><a href="https://phankim.hlvsuckhoe.com/" style="color:inherit">Vào Học viện Giả kim</a></span></div>
+      <div class="hb w2"><span class="ic" aria-hidden="true">🎼</span><h3>Muốn có bài hát viết riêng cho mình?</h3><p>Kể cho Dũng nghe câu chuyện, cảm xúc, những cái tên bạn muốn có trong bài – cho bản thân, gia đình, người thương hay một dịp đặc biệt. Mời một ly cà phê và cùng viết nên bài hát ấy.</p><span class="go"><a href="mailto:nddzungx@gmail.com?subject=Bài%20hát%20cho%20riêng%20tôi" style="color:inherit">Gửi câu chuyện của bạn</a></span></div>
+    </div>
+  </section>
+
+  <!-- ===== ÂM NHẠC ===== -->
+  <section id="am-nhac" aria-labelledby="an">
+    <div class="head"><div><span class="tag">Góc âm nhạc</span><h2 id="an">Những bài hát tự sáng tác</h2><p>20 bài chọn từ kênh YouTube của anh Dũng: nghe khi đi bộ, khi tập thở, hay lúc cần một khoảng lặng.</p></div><a class="btn ghost sm" href="https://www.youtube.com/@nguyenducdung1977?sub_confirmation=1" target="_blank" rel="noopener" id="ytChannel">Kênh YouTube</a></div>
+    <div class="chips" role="tablist" aria-label="Lọc bài hát"><button type="button" data-f="all" aria-pressed="true">Tất cả</button><button type="button" data-f="kheo">Sống khỏe</button><button type="button" data-f="tam">An tâm &amp; thiền</button><button type="button" data-f="luc">Nghị lực</button><button type="button" data-f="nha">Gia đình vui</button><button type="button" data-f="tri">Tri ân &amp; khoa học</button></div>
+    <div class="music">
+      <div class="song" data-c="kheo"><button type="button" class="cover yt" data-id="VtI6BtRhSJE" aria-label="Phát: Thở đi nhẹ một kiếp người"><img loading="lazy" src="https://i.ytimg.com/vi/VtI6BtRhSJE/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Thở đi nhẹ một kiếp người</h3><p>Vui đi để có nụ cười thênh thang</p></div></div>
+      <div class="song" data-c="kheo"><button type="button" class="cover yt" data-id="V5P-Joy1Ijs" aria-label="Phát: Tiếng đập của trái tim"><img loading="lazy" src="https://i.ytimg.com/vi/V5P-Joy1Ijs/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Tiếng đập của trái tim</h3><p>Lắng nghe nhịp tim của chính mình</p></div></div>
+      <div class="song" data-c="kheo"><button type="button" class="cover yt" data-id="La9AQ3DEC1k" aria-label="Phát: Quên tuổi già đi nhé"><img loading="lazy" src="https://i.ytimg.com/vi/La9AQ3DEC1k/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Quên tuổi già đi nhé</h3><p>Sống trẻ, sống vui mỗi ngày</p></div></div>
+      <div class="song" data-c="kheo"><button type="button" class="cover yt" data-id="YSdnwC8Q5y0" aria-label="Phát: Sống để cảm nhận"><img loading="lazy" src="https://i.ytimg.com/vi/YSdnwC8Q5y0/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Sống để cảm nhận</h3><p>Chậm lại để thấy cuộc sống đẹp</p></div></div>
+      <div class="song" data-c="kheo"><button type="button" class="cover yt" data-id="YY8ey5o27f0" aria-label="Phát: Em ơi, đừng có bồn chồn!"><img loading="lazy" src="https://i.ytimg.com/vi/YY8ey5o27f0/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Em ơi, đừng có bồn chồn!</h3><p>Tuổi dậy thì qua một bài hát vui, hợp cho các bạn tuổi teen</p></div></div>
+      <div class="song" data-c="tam"><button type="button" class="cover yt" data-id="KNAxpNzfKf0" aria-label="Phát: Hồ tâm tỉnh thức"><img loading="lazy" src="https://i.ytimg.com/vi/KNAxpNzfKf0/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Hồ tâm tỉnh thức</h3><p>Hợp khi ngồi thiền, tập thở</p></div></div>
+      <div class="song" data-c="tam"><button type="button" class="cover yt" data-id="6F7CPCdVhSE" aria-label="Phát: Thảnh thơi giữa cõi hồng trần"><img loading="lazy" src="https://i.ytimg.com/vi/6F7CPCdVhSE/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Thảnh thơi giữa cõi hồng trần</h3><p>Thương người cũng biết thương mình</p></div></div>
+      <div class="song" data-c="tam"><button type="button" class="cover yt" data-id="-0W8LDwrTzs" aria-label="Phát: Hạnh phúc ở trong ta"><img loading="lazy" src="https://i.ytimg.com/vi/-0W8LDwrTzs/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Hạnh phúc ở trong ta</h3><p>Bình an từ bên trong</p></div></div>
+      <div class="song" data-c="tam"><button type="button" class="cover yt" data-id="5OuXsuIBrnE" aria-label="Phát: Định tâm đường"><img loading="lazy" src="https://i.ytimg.com/vi/5OuXsuIBrnE/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Định tâm đường</h3><p>Giữa đời sáng tâm</p></div></div>
+      <div class="song" data-c="tam"><button type="button" class="cover yt" data-id="uHCGTpGyv_0" aria-label="Phát: Phép màu tâm trí"><img loading="lazy" src="https://i.ytimg.com/vi/uHCGTpGyv_0/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Phép màu tâm trí</h3><p>Sức mạnh của suy nghĩ tích cực</p></div></div>
+      <div class="song" data-c="luc"><button type="button" class="cover yt" data-id="ERhYwAMWOkg" aria-label="Phát: Con thuyền trong giông gió"><img loading="lazy" src="https://i.ytimg.com/vi/ERhYwAMWOkg/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Con thuyền trong giông gió</h3><p>Nghị lực, niềm tin, vượt qua thử thách</p></div></div>
+      <div class="song" data-c="luc"><button type="button" class="cover yt" data-id="y9WGK9tOt10" aria-label="Phát: Khoảng trời xanh trong tim"><img loading="lazy" src="https://i.ytimg.com/vi/y9WGK9tOt10/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Khoảng trời xanh trong tim</h3><p>Giai điệu tươi sáng cho buổi đi bộ</p></div></div>
+      <div class="song" data-c="luc"><button type="button" class="cover yt" data-id="DYeSyiU0AKU" aria-label="Phát: Học hỏi mỗi ngày"><img loading="lazy" src="https://i.ytimg.com/vi/DYeSyiU0AKU/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Học hỏi mỗi ngày</h3><p>Mỗi ngày tiến bộ một chút</p></div></div>
+      <div class="song" data-c="nha"><button type="button" class="cover yt" data-id="5JOihj8f0yc" aria-label="Phát: Vợ là sếp – chồng là nhất!"><img loading="lazy" src="https://i.ytimg.com/vi/5JOihj8f0yc/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Vợ là sếp – chồng là nhất!</h3><p>Nhạc vợ chồng vui nhộn, nhịp cha cha cha</p></div></div>
+      <div class="song" data-c="nha"><button type="button" class="cover yt" data-id="NrNw7Oyc8ow" aria-label="Phát: So sánh – ai hơn ai?"><img loading="lazy" src="https://i.ytimg.com/vi/NrNw7Oyc8ow/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>So sánh – ai hơn ai?</h3><p>Song ca hài hước đàn ông vs đàn bà</p></div></div>
+      <div class="song" data-c="nha"><button type="button" class="cover yt" data-id="p8jLZq9B_s0" aria-label="Phát: Bước chung một đời"><img loading="lazy" src="https://i.ytimg.com/vi/p8jLZq9B_s0/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Bước chung một đời</h3><p>Đồng hành bên nhau</p></div></div>
+      <div class="song" data-c="nha"><button type="button" class="cover yt" data-id="HGOeH0XOBUk" aria-label="Phát: Mẹ – người kiến tạo thế hệ"><img loading="lazy" src="https://i.ytimg.com/vi/HGOeH0XOBUk/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Mẹ – người kiến tạo thế hệ</h3><p>Tri ân mẹ</p></div></div>
+      <div class="song" data-c="tri"><button type="button" class="cover yt" data-id="STZmnOtoyVg" aria-label="Phát: Mỗi người đều là người thầy"><img loading="lazy" src="https://i.ytimg.com/vi/STZmnOtoyVg/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Mỗi người đều là người thầy</h3><p>Tri ân những người thầy trong cuộc đời</p></div></div>
+      <div class="song" data-c="tri"><button type="button" class="cover yt" data-id="XbP5bXaJJCY" aria-label="Phát: Mọi phát minh đều bắt đầu từ một câu hỏi"><img loading="lazy" src="https://i.ytimg.com/vi/XbP5bXaJJCY/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Mọi phát minh đều bắt đầu từ một câu hỏi</h3><p>Khoa học tự nhiên qua bài hát</p></div></div>
+      <div class="song" data-c="tri"><button type="button" class="cover yt" data-id="kle8n6qSqkY" aria-label="Phát: Giả thuyết Riemann – giấc mơ 167 năm"><img loading="lazy" src="https://i.ytimg.com/vi/kle8n6qSqkY/hqdefault.jpg" alt=""><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="meta"><h3>Giả thuyết Riemann – giấc mơ 167 năm</h3><p>Cho người mê toán học và khoa học</p></div></div>
+    </div>
+    <p class="mnote">Bấm vào ảnh để phát ngay trên trang. Xem toàn bộ hơn 160 video trên <a href="https://www.youtube.com/@nguyenducdung1977" target="_blank" rel="noopener">kênh YouTube</a>.</p>
+  </section>
+
+  <!-- ===== NGẮM SAO ===== -->
+  <section id="bau-troi" aria-labelledby="bt">
+    <div class="skybox">
+      <canvas id="moon" width="360" height="360" aria-label="Hình trăng đêm nay"></canvas>
+      <div>
+        <span class="tag" style="color:#7af0c2">Góc ngắm sao</span>
+        <h2 id="bt">Trăng đêm nay</h2>
+        <p class="muted" id="moonText" style="margin-top:8px">–</p>
+        <div class="facts">
+          <div><b id="fAge">–</b><span>tuổi trăng (ngày)</span></div>
+          <div><b id="fFull">–</b><span>trăng tròn kế tiếp (ước tính)</span></div>
+          <div><b id="fNew">–</b><span>trăng non kế tiếp (ước tính)</span></div>
+          <div><b id="fMet">–</b><span id="fMetN">mưa sao băng sắp tới</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="tvbox">
+      <span class="tag">Ứng dụng thiên văn</span>
+      <h2>Xưởng kính thiên văn</h2>
+      <p style="margin-top:8px;max-width:68ch">Học thiên văn từ con số không, tự thiết kế và chế tạo kính thiên văn, rồi xem đêm nay có gì trên trời. Miễn phí, tiếng Việt, cài lên điện thoại và dùng được khi không có mạng.</p>
+      <div class="tvgrid">
+        <div><b>Bầu trời đêm nay</b><span>Hành tinh nào đang lên, bản đồ vòm trời theo nơi bạn đứng.</span></div>
+        <div><b>Dự báo hiện tượng</b><span>Nhật thực, nguyệt thực, xung đối, mưa sao băng trong 1–3 năm tới.</span></div>
+        <div><b>Tự chế kính</b><span>Hướng dẫn từng bước cho kính khúc xạ, Newton/Dobson, SCT; vật tư và chi phí tham khảo.</span></div>
+        <div><b>Học và quan sát thử</b><span>14 bài học có trắc nghiệm; nhìn Sao Thổ, Mộc tinh qua chính chiếc kính bạn thiết kế.</span></div>
+      </div>
+      <div class="cta"><a class="btn" href="https://thienvan.hlvsuckhoe.com/">Mở Xưởng kính</a><a class="btn ghost" href="https://thienvan.hlvsuckhoe.com/#sky">Bầu trời đêm nay</a><a class="btn ghost" href="https://thienvan.hlvsuckhoe.com/#build">Tự chế kính</a></div>
+    </div>
+  </section>
+
+  <!-- ===== GÓC NGHỀ NGHIỆP ===== -->
+  <section id="goc-nghe-nghiep" aria-labelledby="h-nn">
+    <div class="goc-h"><span class="ic" aria-hidden="true">💼</span><div><span class="tag">Góc nghề nghiệp</span><h2 id="h-nn">Làm nghề với sự tò mò</h2><p>Công việc chiếm phần lớn thời gian thức. Làm có phương pháp, học không ngừng và giữ an toàn là cách để nghề nuôi cả thân lẫn trí.</p></div></div>
+    <div class="two">
+      <div class="today-card"><span class="when">Mẹo nghề hôm nay</span><h3 id="workP" style="font-size:1.2rem;line-height:1.5">–</h3><div class="nav2"><button class="mini" type="button" data-next="work">Mẹo khác</button></div></div>
+      <!-- ỨNG DỤNG MỚI: The Invisible Flaw (repo nguyenducdungvn/the_invisible_flaw) – đổi địa chỉ khi có tên miền con -->
+      <div class="app2 ndt">
+        <img src="img/logo-ndt.svg" alt="Biểu tượng The Invisible Flaw">
+        <div><h3>The Invisible Flaw · Bác sĩ vật liệu</h3><p>Trò chơi mô phỏng kiểm tra không phá hủy (NDT): nhận hợp đồng, chọn phương pháp PT, MT, UT, RT, hiệu chuẩn, đọc tín hiệu, đối chiếu tiêu chí và ký Đạt hay Loại bỏ. Kèm Học viện NDE 17 chương, 13 mô phỏng và mô hình 3D tương tác.</p><p class="warn">Bản chơi thử. Điểm trong game không thay chứng nhận nhân sự NDT.</p><div class="cta"><a class="btn sm" href="https://hvflaw.hlvsuckhoe.com/">Chơi thử</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GÓC ĐỌC SÁCH (bài viết) ===== -->
+  <section id="bai-viet" aria-labelledby="bv">
+    <div class="goc-h"><span class="ic" aria-hidden="true">📚</span><div><span class="tag">Góc đọc sách</span><h2 id="bv">Đọc chậm, sống khỏe</h2><p>Một cuốn sách gợi ý mỗi ngày và những bài viết của trang. <a href="#nhan-tin">Đăng ký nhận tin</a> để được báo khi có bài mới.</p></div></div>
+    <div class="two" style="margin-bottom:16px">
+      <div class="today-card bookday"><div class="cover" id="bkC">–</div><div><span class="when">Cuốn sách gợi ý hôm nay</span><h3 id="bkT">–</h3><p><b id="bkA">–</b></p><p id="bkP">–</p><div class="nav2"><button class="mini" type="button" data-next="books">Cuốn khác</button></div></div></div>
+      <div class="today-card"><span class="when">Câu hỏi để ngẫm sau khi đọc</span><h3 id="askP2" style="font-size:1.2rem;line-height:1.5">–</h3><p class="fine">Gửi câu trả lời của bạn ở góc chia sẻ – những câu hay có thể thành bài viết tiếp theo.</p></div>
+    </div>
+    <!-- BÀI VIẾT NỔI BẬT – thêm bài mới: chép khối <a class="post-feat">…</a> hoặc thẻ <a class="post live"> bên dưới, đổi đường link và data-post-stats -->
+    <a class="post-feat" href="bai-viet/nguoi-gieo-vien-thuoc-hieu-biet.html">
+      <div class="txt">
+        <span class="cat-l">Chân dung · Cảm hứng</span>
+        <h3>Người gieo <em>“viên thuốc hiểu biết”</em></h3>
+        <p>Từ cậu bé ngô khoai sắn, người thầy thuốc từng là bệnh nhân, qua bốn lần rẽ ngoặt nghề nghiệp, đến những buổi sáng thứ Bảy của Bác sĩ Trần Văn Phúc. Và vì sao trang này ra đời.</p>
+        <div class="foot"><span class="go">Đọc bài</span><span>12 phút đọc</span><span data-post-stats="nguoi-gieo-vien-thuoc-hieu-biet"></span></div>
+      </div>
+      <div class="art" aria-hidden="true"><blockquote>Viên thuốc quý nhất là viên thuốc kiến thức.<span>BS. Trần Văn Phúc</span></blockquote></div>
+    </a>
+    <div class="posts">
+      <a class="post live" href="bai-viet/sang-tac-bai-hat-cho-nguoi-moi.html"><span class="cat-l">Âm nhạc · Mới</span><h3>Sáng tác bài hát: tám chữ đầu tiên</h3><p>Tự chấm nốt cho một câu hát, nghe máy hát lại, và xem vì sao “gió” bị hát thành “giò” khi giai điệu đi ngược dấu thanh.</p><span class="soon"><b style="color:var(--forest)">Đọc bài</b> <span data-post-stats="sang-tac-bai-hat-cho-nguoi-moi"></span></span></a>
+      <a class="post live" href="bai-viet/ba-le-cho-nguoi-moi.html"><span class="cat-l">Múa · Mới</span><h3>Ba lê: đối thoại với trọng lực</h3><p>Năm tư thế, xoay mở đúng và sai, thử kiễng chân giữ thăng bằng và xoay vòng không chóng mặt.</p><span class="soon"><b style="color:var(--forest)">Đọc bài</b> <span data-post-stats="ba-le-cho-nguoi-moi"></span></span></a>
+      <a class="post live" href="bai-viet/khoi-dong-va-gian-co-dung-cach.html"><span class="cat-l">Thể thao · Mới</span><h3>Khởi động và giãn cơ đúng cách</h3><p>Đừng ép dẻo khi cơ còn lạnh: công thức 4 bước, giãn cơ sau tập, kèm đồng hồ khởi động 5 phút.</p><span class="soon"><b style="color:var(--forest)">Đọc bài</b> <span data-post-stats="khoi-dong-va-gian-co-dung-cach"></span></span></a>
+      <a class="post live" href="bai-viet/bong-da-cho-nguoi-moi.html"><span class="cat-l">Thể thao · Mới · 3D</span><h3>Bóng đá: môn thể thao của khoảng trống</h3><p>Tự “phạm” luật việt vị trên sân 3D, đổi sơ đồ 4-4-2, 4-3-3, 3-5-2, học cách xem trận.</p><span class="soon"><b style="color:var(--forest)">Đọc bài</b> <span data-post-stats="bong-da-cho-nguoi-moi"></span></span></a>
+      <a class="post live" href="bai-viet/golf-cho-nguoi-moi.html"><span class="cat-l">Thể thao · Mới · 3D</span><h3>Golf: trò chơi của sự trung thực</h3><p>Đánh an toàn hay cắt qua hồ? Tự chơi một hố par 4 và tự quyết có cộng gậy phạt.</p><span class="soon"><b style="color:var(--forest)">Đọc bài</b> <span data-post-stats="golf-cho-nguoi-moi"></span></span></a>
+      <a class="post live" href="bai-viet/boi-loi-cho-nguoi-moi.html"><span class="cat-l">Thể thao · Mới · 3D</span><h3>Bơi lội: làm bạn với nước</h3><p>Bốn kiểu bơi trên bể Olympic 3D, cùng sức khác tư thế, luật lặn 15 m, an toàn dưới nước.</p><span class="soon"><b style="color:var(--forest)">Đọc bài</b> <span data-post-stats="boi-loi-cho-nguoi-moi"></span></span></a>
+      <a class="post live" href="bai-viet/hoi-hoa-cho-nguoi-moi.html"><span class="cat-l">Hội họa · Mới</span><h3>Hội họa: học cách nhìn ánh sáng</h3><p>Một cảnh vẽ theo bốn trường phái, kính lúp soi nét cọ, tắt sáng–tối để thấy tranh “đổ”.</p><span class="soon"><b style="color:var(--forest)">Đọc bài</b> <span data-post-stats="hoi-hoa-cho-nguoi-moi"></span></span></a>
+      <a class="post live" href="bai-viet/nhac-co-dien-cho-nguoi-moi.html"><span class="cat-l">Âm nhạc · Mới</span><h3>Nhạc cổ điển: nghệ thuật của thời gian</h3><p>Nghe một giai điệu Beethoven theo bốn thể loại và tự chọn cách giải tỏa một hợp âm căng.</p><span class="soon"><b style="color:var(--forest)">Đọc bài</b> <span data-post-stats="nhac-co-dien-cho-nguoi-moi"></span></span></a>
+      <a class="post live" href="bai-viet/tho-4-7-8-truoc-khi-ngu.html"><span class="cat-l">Tập thở</span><h3>Thở 4–7–8 trước khi ngủ</h3><p>Thay đếm cừu bằng đếm nhịp thở: cách làm, lộ trình cho người mới, ai cần lưu ý. Có khung thở để tập ngay.</p><span class="soon"><b style="color:var(--forest)">Đọc bài</b> <span data-post-stats="tho-4-7-8-truoc-khi-ngu"></span></span></a>
+      <article class="post"><span class="cat-l">Kiến thức sức khỏe</span><h3>Đo huyết áp tại nhà sao cho đúng</h3><p>Ngồi nghỉ 5 phút, tay ngang tim, đo 2 lần cách nhau 1 phút.</p><span class="soon">Sắp ra mắt</span></article>
+      <article class="post"><span class="cat-l">Vi chất</span><h3>Ăn chay có thiếu B12 không?</h3><p>Vì sao người ăn chay trường cần chú ý, và bổ sung thế nào.</p><span class="soon">Sắp ra mắt</span></article>
+      <article class="post"><span class="cat-l">Thiên văn</span><h3>Vì sao rằm tháng Tám trăng sáng đẹp</h3><p>Âm lịch, tuần trăng và mùa thu nhìn từ góc khoa học.</p><span class="soon">Sắp ra mắt</span></article>
+      <article class="post"><span class="cat-l">Khoa học</span><h3>Não bộ ngủ để làm gì</h3><p>Giấc ngủ giúp ghi nhớ và "dọn dẹp" ra sao.</p><span class="soon">Sắp ra mắt</span></article>
+      <article class="post"><span class="cat-l">Lịch sử</span><h3>Tuệ Tĩnh và câu "Nam dược trị Nam nhân"</h3><p>Danh y thời Trần và tinh thần dùng thuốc nam.</p><span class="soon">Sắp ra mắt</span></article>
+    </div>
+  </section>
+
+  <!-- ===== GÓC GIẢI ĐỐ ===== -->
+  <section id="goc-giai-do" aria-labelledby="h-gdo">
+    <div class="goc-h"><span class="ic" aria-hidden="true">🧩</span><div><span class="tag">Góc giải đố</span><h2 id="h-gdo">Cho trí óc một bài tập nhỏ</h2><p>Mỗi ngày một câu đố mới. Nghĩ ít nhất một phút trước khi bấm xem đáp án nhé.</p></div></div>
+    <div class="two">
+      <div class="puzzle"><span class="when">Câu đố hôm nay</span><p class="q" id="pzQ">–</p><button class="btn sm" type="button" id="pzBtn" aria-expanded="false" aria-controls="pzA">Xem đáp án</button><div class="a" id="pzA" hidden><b id="pzAns">–</b><p id="pzWhy" style="margin-top:4px">–</p></div><div class="nav2" style="margin-top:12px"><button class="mini" type="button" data-next="puzzles">Câu khác</button></div></div>
+      <!-- ỨNG DỤNG MỚI: Kiểm Đếm Ca Đêm (repo nguyenducdungvn/kiem-dem-ca-dem) -->
+      <div class="app2 kd">
+        <img src="img/apps/kiem-dem-ca-dem.jpg" alt="Màn hình truyện Kiểm Đếm Ca Đêm">
+        <div><h3>Kiểm Đếm Ca Đêm · Nhà B4</h3><p>Truyện tương tác kinh dị tâm lý có bối cảnh 3D: đêm cuối trước khi nhà tập thể B4 bị phá dỡ, bạn phải kiểm đếm 40 căn hộ bỏ trống – nhưng tòa nhà không muốn bị đếm. Trọn bộ 4 màn, mỗi lựa chọn đều có hệ quả.</p><p class="warn">Không khí rùng rợn, hợp người lớn và thiếu niên lớn.</p><div class="cta"><a class="btn sm" href="https://kiemdem.hlvsuckhoe.com/">Chơi ngay</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GÓC CHIA SẺ ===== -->
+  <section id="goc-chia-se" aria-labelledby="h-cs">
+    <div class="goc-h"><span class="ic" aria-hidden="true">💬</span><div><span class="tag">Góc chia sẻ</span><h2 id="h-cs">Kể cho nhau nghe</h2><p>Căn phòng ấm hơn khi có thêm người. Trả lời câu hỏi hôm nay, gửi bức vẽ, bài thơ, mẹo sống khỏe của bạn, hoặc rủ người thân cùng ghé.</p></div></div>
+    <div class="two">
+      <div class="today-card"><span class="when">Câu hỏi hôm nay</span><h3 id="askP" style="font-size:1.25rem;line-height:1.5">–</h3><div class="cta" style="margin-top:14px"><a class="btn sm" id="askMail" href="mailto:nddzungx@gmail.com">✉️ Gửi câu trả lời</a></div><p class="fine">Mình đọc hết thư. Những câu chuyện hay, nếu bạn đồng ý, sẽ được kể lại trên trang (có thể giấu tên).</p></div>
+      <div class="today-card"><span class="when">Rủ người thân ghé phòng</span><h3>Chia sẻ trang này</h3><p>Gửi cho bố mẹ, anh chị em, bạn bè – ai cũng có một góc hợp với mình.</p>
+        <div class="share-row"><button class="btn sm" type="button" id="shareNative">📤 Chia sẻ</button><a class="btn ghost sm" target="_blank" rel="noopener" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fhlvsuckhoe.com%2F">Facebook</a><button class="btn ghost sm" type="button" data-copy="https://hlvsuckhoe.com/">📋 Chép đường link</button></div></div>
+    </div>
+  </section>
+
+  <section id="nhan-tin" aria-labelledby="nt">
+    <div class="news">
+      <div>
+        <span class="tag">Nhận tin mới</span>
+        <h2 id="nt">Nhận thư mỗi khi có điều mới</h2>
+        <p style="margin-top:10px;color:var(--muted)">Để lại email, mình sẽ gửi một lá thư ngắn khoảng 2–4 tuần một lần:</p>
+        <ul>
+          <li><span aria-hidden="true">📝</span><p>Bài viết sức khỏe, khoa học, lịch sử mới ra</p></li>
+          <li><span aria-hidden="true">🎵</span><p>Bài hát mới trên kênh YouTube</p></li>
+          <li><span aria-hidden="true">📱</span><p>Ứng dụng mới và tính năng mới (như bản mới của <b>Tôi &amp; Gia Đình</b>)</p></li>
+          <li><span aria-hidden="true">🔭</span><p>Hiện tượng thiên văn đáng xem sắp tới</p></li>
+        </ul>
+      </div>
+      <div class="nl-box" id="nl-box">
+        <h3>Đăng ký bằng email</h3>
+        <!-- ===== DÁN MÃ EMAILOCTOPUS VÀO NGAY DƯỚI DÒNG NÀY =====
+             EmailOctopus → Forms → chọn form → "</> Add to your website" → Copy → dán vào đây (một dòng <script ...></script>).
+             Dán xong thì khung "Đang mở đăng ký" bên dưới tự ẩn. -->
+
+        <!-- ===== HẾT CHỖ DÁN ===== -->
+        <div class="nl-wait">
+          <p>Khung đăng ký đang được mở. Trong lúc chờ, bạn có thể gửi email với tiêu đề "Đăng ký nhận tin", mình sẽ thêm bạn vào danh sách.</p>
+          <a class="btn sm" href="mailto:nddzungx@gmail.com?subject=%C4%90%C4%83ng%20k%C3%BD%20nh%E1%BA%ADn%20tin%20HLV%20S%E1%BB%A9c%20Kh%E1%BB%8Fe">✉️ Gửi email đăng ký</a>
+        </div>
+        <p class="nl-promise">Bạn sẽ nhận một thư xác nhận – bấm vào đường link trong thư là hoàn tất. Email chỉ dùng để gửi bản tin này, không chia sẻ cho ai. Mỗi thư đều có nút <b>Hủy đăng ký</b>, bấm một lần là xong.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== KỆ ỨNG DỤNG – tất cả ứng dụng của anh Dũng (trừ repo hoc-lam-ung-dung-cung-claude-va-github-free) ===== -->
+  <section id="ung-dung" aria-labelledby="ud">
+    <div class="head apps-head"><div><span class="tag">Kệ ứng dụng</span><h2 id="ud">Bảy ứng dụng miễn phí trong phòng</h2><p>Mở thẳng trên trình duyệt, không cần đăng ký tài khoản. Nhiều ứng dụng "cài" được lên màn hình điện thoại và dùng cả khi không có mạng.</p></div></div>
+    <div class="shelf">
+      <div class="app2" style="background:linear-gradient(135deg,var(--forest),#0a4f37)"><img src="img/logo.svg" alt=""><div><h3>HLV Sức Khỏe</h3><p class="dom">app.hlvsuckhoe.com</p><p>Lộ trình tập luyện, 48 bài tập 3D, thực đơn món Việt, ăn chay theo âm lịch.</p><div class="cta"><a class="btn sm" href="https://app.hlvsuckhoe.com/">Dùng ngay</a><a class="btn ghost sm" style="color:#fff;border-color:#fff" href="#van-dong">Xem góc luyện tập</a></div></div></div>
+      <div class="app2" style="background:linear-gradient(135deg,#13284d,#070d1a)"><img src="img/logo-breathsync.svg" alt=""><div><h3>BreathSync</h3><p class="dom">tho.hlvsuckhoe.com</p><p>Tập thở chậm cùng vòng tròn, chuông bát và giọng đọc. 4-7-8, thở bụng, ngân âm "M".</p><div class="cta"><a class="btn sm" href="https://tho.hlvsuckhoe.com/">Mở BreathSync</a></div></div></div>
+      <div class="app2" style="background:linear-gradient(135deg,#1e2c4f,#0a101d)"><img src="img/logo-thienvan.svg" alt=""><div><h3>Xưởng kính thiên văn</h3><p class="dom">thienvan.hlvsuckhoe.com</p><p>Học thiên văn, tự chế kính, bầu trời đêm nay, dự báo nhật nguyệt thực.</p><div class="cta"><a class="btn sm" href="https://thienvan.hlvsuckhoe.com/">Mở Xưởng kính</a></div></div></div>
+      <div class="app2" style="background:linear-gradient(135deg,#a3241f,#5e1010)"><img src="img/logo-giadinh.svg" alt=""><div><h3>Tôi &amp; Gia Đình</h3><p class="dom">giadinh.hlvsuckhoe.com</p><p>Cây gia phả, cách xưng hô đúng vai vế, ngày giỗ âm lịch, in gia phả treo tường.</p><div class="cta"><a class="btn sm" href="https://giadinh.hlvsuckhoe.com/">Mở Tôi &amp; Gia Đình</a></div></div></div>
+      <div class="app2 pk"><img src="img/logo-phankim.svg" alt=""><div><h3>Phù thủy Phân kim</h3><p class="dom">phankim.hlvsuckhoe.com</p><p>Trò chơi giáo dục hóa học: nhập vai phù thủy tinh luyện vàng bạc, sách phép, phòng 3D, chứng nhận.</p><div class="cta"><a class="btn sm" href="https://phankim.hlvsuckhoe.com/">Vào Học viện</a></div></div></div>
+      <div class="app2 ndt"><img src="img/logo-ndt.svg" alt=""><div><h3>The Invisible Flaw</h3><p class="dom">hvflaw.hlvsuckhoe.com</p><p>Game mô phỏng kiểm tra không phá hủy: PT, MT, UT, RT và Học viện NDE 17 chương.</p><div class="cta"><a class="btn sm" href="https://hvflaw.hlvsuckhoe.com/">Chơi thử</a></div></div></div>
+      <div class="app2 kd"><img src="img/apps/kiem-dem-ca-dem.jpg" alt=""><div><h3>Kiểm Đếm Ca Đêm</h3><p class="dom">kiemdem.hlvsuckhoe.com</p><p>Truyện tương tác kinh dị tâm lý 3D, 4 màn, bối cảnh nhà tập thể Hà Nội.</p><div class="cta"><a class="btn sm" href="https://kiemdem.hlvsuckhoe.com/">Chơi ngay</a></div></div></div>
+      <div class="app2 idea"><div class="ic" style="font-size:2.4rem;width:84px;text-align:center">💡</div><div><h3>Ứng dụng tiếp theo</h3><p><b>Gửi ý tưởng của bạn</b> – ứng dụng tiếp theo có thể ra đời từ chính ý tưởng ấy. Hoặc nếu bạn muốn xây dựng ứng dụng của riêng mình, hãy mời Dũng một ly cà phê, trợ lý của Dũng sẽ liên hệ và giúp đỡ bạn.</p><div class="cta"><a class="btn sm" href="mailto:nddzungx@gmail.com?subject=%C3%9D%20t%C6%B0%E1%BB%9Fng%20%E1%BB%A9ng%20d%E1%BB%A5ng%20m%E1%BB%9Bi">Gửi ý tưởng</a><a class="btn ghost sm" href="#ung-ho">☕ Mời Dũng ly cà phê</a></div></div></div></div>
+    </div>
+    <p class="fine" style="margin-top:16px">📲 Muốn mở bằng một chạm như ứng dụng thật? Xem <a href="#cai-dat">cách cài lên điện thoại</a> – mất chưa tới 1 phút.</p>
+  </section>
+
+  <!-- ===== CÀI ỨNG DỤNG LÊN ĐIỆN THOẠI (1.3.0) ===== -->
+  <section id="cai-dat" aria-labelledby="cd">
+    <div class="head"><div><span class="tag">Cài lên điện thoại</span><h2 id="cd">Đưa ứng dụng ra màn hình chính</h2><p>Các ứng dụng của trang cài thẳng từ trình duyệt: không cần CH Play hay App Store, không cần tài khoản, miễn phí. Cài xong có biểu tượng riêng, mở toàn màn hình và dùng được cả khi mất mạng.</p></div></div>
+    <p><b>Bước 1 – mở ứng dụng muốn cài:</b></p>
+    <div class="inst-apps">
+      <a href="https://app.hlvsuckhoe.com/#cai-dat"><img src="img/logo.svg" alt=""><span><b>HLV Sức Khỏe</b>app.hlvsuckhoe.com</span></a>
+      <a href="https://tho.hlvsuckhoe.com/#cai-dat"><img src="img/logo-breathsync.svg" alt=""><span><b>BreathSync</b>tho.hlvsuckhoe.com</span></a>
+      <a href="https://thienvan.hlvsuckhoe.com/#cai-dat"><img src="img/logo-thienvan.svg" alt=""><span><b>Xưởng kính thiên văn</b>thienvan.hlvsuckhoe.com</span></a>
+      <a href="https://giadinh.hlvsuckhoe.com/#cai-dat"><img src="img/logo-giadinh.svg" alt=""><span><b>Tôi &amp; Gia Đình</b>giadinh.hlvsuckhoe.com</span></a>
+      <a href="https://phankim.hlvsuckhoe.com/"><img src="img/logo-phankim.svg" alt=""><span><b>Phù thủy Phân kim</b>phankim.hlvsuckhoe.com</span></a>
+    </div>
+    <p style="margin-top:18px"><b>Bước 2 – làm theo máy của bạn:</b></p>
+    <div class="inst-grid">
+      <div class="inst-card" id="instIos"><h3>iPhone / iPad <span class="you">Máy của bạn</span></h3><ol><li>Mở ứng dụng bằng <b>Safari</b>.</li><li>Bấm nút <b>Chia sẻ</b> (ô vuông có mũi tên lên) ở cạnh dưới (iPad: cạnh trên).</li><li>Kéo xuống, chọn <b>Thêm vào MH chính</b> → <b>Thêm</b>.</li></ol></div>
+      <div class="inst-card" id="instAnd"><h3>Android <span class="you">Máy của bạn</span></h3><ol><li>Mở ứng dụng bằng <b>Chrome</b>.</li><li>Bấm nút <b>Cài ứng dụng</b> nếu hiện ra, hoặc menu <b>⋮</b> → <b>Cài đặt ứng dụng</b> / <b>Thêm vào màn hình chính</b>.</li><li>Bấm <b>Cài đặt</b>. Samsung Internet: menu ≡ → <b>Thêm trang vào</b> → <b>Màn hình chờ</b>.</li></ol></div>
+      <div class="inst-card" id="instPc"><h3>Máy tính <span class="you">Máy của bạn</span></h3><ol><li>Mở ứng dụng bằng <b>Chrome</b>, <b>Edge</b> hoặc <b>Cốc Cốc</b>.</li><li>Bấm biểu tượng <b>Cài đặt</b> ở cuối thanh địa chỉ (màn hình có mũi tên).</li><li>Ứng dụng có cửa sổ và lối tắt riêng trên màn hình nền.</li></ol></div>
+    </div>
+    <div class="inst-note"><b>Mở link từ Zalo, Facebook, Messenger?</b> Trình duyệt bên trong các ứng dụng này không cài được. Bấm <b>⋯</b> ở góc trên → <b>Mở bằng trình duyệt</b> (hoặc Mở trong Safari / Chrome) rồi làm Bước 2.<br><b>iPhone:</b> ứng dụng đã cài có bộ nhớ riêng, tách khỏi Safari – nên cài trước rồi mới nhập dữ liệu. Trước khi gỡ ứng dụng, hãy dùng nút <b>Sao lưu</b> trong ứng dụng.</div>
+  </section>
+
+  <section id="gioi-thieu" aria-labelledby="gt">
+    <div class="head"><div><span class="tag">Giới thiệu</span><h2 id="gt">Người làm ra trang này</h2></div></div>
+    <div class="about">
+      <div>
+        <div class="me">
+          <span class="av" aria-hidden="true">D</span>
+          <div>
+            <p>Xin chào, mình là <b>Nguyễn Đức Dũng</b>. Mình là người yêu thích khoa học, mê du lịch, thích gần gũi thiên nhiên và không thể sống thiếu âm nhạc. Bên cạnh đó, mình dành nhiều thời gian tìm hiểu về sức khỏe – dinh dưỡng, vận động, hơi thở, giấc ngủ – cùng nhiều lĩnh vực khác như thiên văn, lịch sử, công nghệ.</p>
+            <p>HLV Sức Khỏe ra đời từ mong muốn đơn giản: những gì mình học được, ghi chép được, viết thành bài hát hay làm thành ứng dụng thì chia sẻ lại để mọi người cùng dùng – miễn phí, dễ hiểu và gần gũi với người Việt. Cảm hứng lớn nhất đến từ những buổi sáng thứ Bảy nghe Bác sĩ Trần Văn Phúc: <a href="bai-viet/nguoi-gieo-vien-thuoc-hieu-biet.html">đọc câu chuyện ở đây</a>.</p>
+            <p>Nếu bạn thấy các thông tin và ứng dụng trên trang hữu ích, hãy <a href="#ung-ho">mời người phát triển một ly cà phê</a>. Mỗi ly cà phê là thêm động lực để mình tiếp tục duy trì và phát triển trang.</p>
+          </div>
+        </div>
+        <div class="likes"><span>🔬 Khoa học</span><span>✈️ Du lịch</span><span>🌿 Thiên nhiên</span><span>🎵 Âm nhạc</span><span>💚 Sức khỏe</span><span>🔭 Thiên văn</span><span>📚 Lịch sử</span><span>⚗️ Hóa học</span><span>🔍 Kiểm tra vật liệu</span><span>🚗 Lái xe</span></div>
+        <p class="fine" style="margin-top:16px">Các ứng dụng: <a href="https://app.hlvsuckhoe.com/">HLV Sức Khỏe</a> · <a href="https://tho.hlvsuckhoe.com/">BreathSync</a> · <a href="https://thienvan.hlvsuckhoe.com/">Xưởng kính thiên văn</a> · <a href="https://giadinh.hlvsuckhoe.com/">Tôi &amp; Gia Đình</a> · <a href="https://phankim.hlvsuckhoe.com/">Phù thủy Phân kim</a> · <a href="https://hvflaw.hlvsuckhoe.com/">The Invisible Flaw</a> · <a href="https://kiemdem.hlvsuckhoe.com/">Kiểm Đếm Ca Đêm</a> · <a href="https://www.youtube.com/@nguyenducdung1977" target="_blank" rel="noopener">Kênh YouTube</a> · Liên hệ: <a href="mailto:nddzungx@gmail.com">nddzungx@gmail.com</a></p>
+      </div>
+      <div class="coffee" id="ung-ho">
+        <h3>☕ Mời Dũng một ly cà phê</h3>
+        <p class="fine" style="margin-top:6px">Ủng hộ tùy tâm, hoàn toàn tự nguyện – trang và các ứng dụng vẫn miễn phí đầy đủ. Xin chân thành cảm ơn!</p>
+        <img class="qr" src="img/qr_ung_ho.png" alt="Mã VietQR BIDV 3210256468 NGUYEN DUC DUNG" width="220" loading="lazy">
+        <p><b>NGUYEN DUC DUNG</b><br>BIDV · <b class="acc">3210256468</b></p>
+        <div class="row"><button class="btn sm" type="button" data-copy="3210256468">📋 Chép số tài khoản</button></div>
+        <p class="fine">Mở ứng dụng ngân hàng → Quét QR (hoặc chụp màn hình rồi chọn ảnh QR).</p>
+        <hr>
+        <h3 style="font-size:1.05rem">🌏 Ở nước ngoài? Ủng hộ qua PayPal</h3>
+        <p class="fine">PayPal → Gửi tiền → nhập email: <b>ndd.phateco@gmail.com</b></p>
+        <div class="row"><a class="btn sm" style="background:#003087" href="https://www.paypal.com/myaccount/transfer/homepage/pay" target="_blank" rel="noopener">Mở PayPal</a><button class="btn ghost sm" type="button" data-copy="ndd.phateco@gmail.com">📋 Chép email</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- bộ đếm truy cập: tự hiện khi js/config.js có counterUrl và bộ đếm trả lời được -->
+  <div class="stats" id="stats" hidden aria-label="Thống kê truy cập">
+    <span>Hôm nay<b id="sToday">–</b></span>
+    <span>Cộng dồn<b id="sTotal">–</b></span>
+    <span><i class="live" aria-hidden="true"></i>Đang xem<b id="sOnline">–</b></span>
+  </div>
+</main>
+
+<dialog class="guide" id="guide" aria-labelledby="guideTitle">
+  <div class="gh"><h2 id="guideTitle" style="font-size:1.35rem">Hướng dẫn sử dụng trang</h2><button class="x" type="button" data-close aria-label="Đóng">×</button></div>
+  <div class="gb">
+    <details open><summary>Trang này có gì?</summary>
+      <p>HLV Sức Khỏe là một "căn phòng" chia sẻ miễn phí của Nguyễn Đức Dũng. Mỗi đồ vật trong phòng là một góc: chậu cây cho Thân · Tâm · Trí, tấm nệm cho thiền, thảm tập cho luyện tập, khung ảnh cho gia đình, cây đàn cho âm nhạc, kính thiên văn cho ngắm sao, giá sách cho đọc sách, bàn cờ cho giải đố, bảng ghim cho chia sẻ… Mọi thứ đều dùng được không cần tài khoản.</p></details>
+    <details><summary>Đi quanh căn phòng</summary>
+      <ol><li>Trên máy tính: rê chuột vào đồ vật, bấm để tới góc đó. Có thể dùng phím Tab để chọn lần lượt.</li><li>Đồ vật có huy hiệu số (quả bóng, bức tranh, cây đàn…) là góc đã có bài viết: bấm vào, các bài sẽ tỏa ra thành vòng tròn quanh đồ vật; nút vàng "Vào góc…" đưa bạn tới phần nội dung của góc. Bấm ra ngoài hoặc phím Esc để đóng.</li><li>Trên điện thoại: kéo dải nút tròn ngay dưới căn phòng (Thân · Tâm · Trí, Thiền, Luyện tập…) rồi bấm.</li><li>Ánh sáng trong phòng đổi theo giờ trên máy bạn: sáng, trưa, chiều và đêm (đêm có trăng và sao thật theo tuần trăng).</li></ol></details>
+    <details><summary>Mỗi ngày có gì mới?</summary>
+      <p>Mỗi góc có một thẻ "hôm nay": bài học tế bào, động tác tập, việc nhỏ cùng gia đình, bài hát, lời mời sáng tạo, một nơi để khám phá, mẹo lái xe, mẹo nghề, cuốn sách, câu đố và câu hỏi để chia sẻ. Cùng một ngày ai vào cũng thấy giống nhau; sang ngày mới tất cả tự đổi. Muốn xem thêm thì bấm các nút "Xem điều khác", "Đổi động tác khác"…</p></details>
+    <details><summary>Sáu việc nhỏ hôm nay</summary>
+      <p>Trong góc Thân · Tâm · Trí, đánh dấu những việc đã làm. Danh sách chỉ lưu trên máy của bạn và tự làm mới mỗi sáng. Dòng "Bạn đã ghé phòng … ngày" ở đầu trang đếm số ngày bạn ghé – cũng chỉ lưu trên máy.</p></details>
+    <details><summary>Tập thở 1 phút và hẹn giờ thiền</summary>
+      <ol><li>Vào góc <b>Thiền</b>, chọn nhịp: <b>Thư giãn 4–6</b> nếu mới tập, <b>Thở hộp</b> khi cần tập trung, <b>Dễ ngủ 4–7–8</b> trước khi ngủ.</li><li>Bấm <b>Bắt đầu</b>, hít vào khi quả cầu to ra, thở ra khi quả cầu nhỏ lại. Chuông báo khi xong 1 phút.</li><li>Hẹn giờ thiền: chọn 3, 5, 10 hoặc 20 phút, bấm <b>Bắt đầu thiền</b>. Chuông nhẹ báo lúc bắt đầu và khi hết giờ.</li></ol></details>
+    <details><summary>Nghe nhạc</summary>
+      <p>Trong góc <b>Âm nhạc</b>, bấm các nút nhóm để lọc, rồi bấm vào ảnh bài hát để phát ngay trên trang. Video chỉ được tải khi bạn bấm, nên trang mở nhanh và tiết kiệm dữ liệu. "Bài hát hôm nay" ở góc Sở thích đổi mỗi ngày.</p></details>
+    <details><summary>Chọn ứng dụng nào cho nhu cầu nào?</summary>
+      <ul><li><b>Tập thể dục, ăn uống có lộ trình</b> → HLV Sức Khỏe.</li><li><b>Tập thở, dễ ngủ, bớt căng thẳng</b> → BreathSync.</li><li><b>Mê bầu trời, muốn tự chế kính</b> → Xưởng kính thiên văn.</li><li><b>Gia phả, ngày giỗ, cách xưng hô</b> → Tôi &amp; Gia Đình.</li><li><b>Học hóa học qua trò chơi phù thủy</b> → Phù thủy Phân kim.</li><li><b>Tìm hiểu nghề kiểm tra không phá hủy</b> → The Invisible Flaw.</li><li><b>Thích truyện bí ẩn, rùng rợn</b> → Kiểm Đếm Ca Đêm.</li></ul></details>
+    <details><summary>Cài ứng dụng lên điện thoại</summary>
+      <ol><li>Mở ứng dụng bằng <b>Chrome</b> (Android) hoặc <b>Safari</b> (iPhone). Nếu đang trong Zalo/Facebook: bấm ⋯ → <b>Mở bằng trình duyệt</b>.</li><li>Android: bấm dấu ⋮ → <b>Cài đặt ứng dụng</b> / <b>Thêm vào màn hình chính</b>.</li><li>iPhone: bấm nút Chia sẻ (ô vuông có mũi tên) → <b>Thêm vào MH chính</b>.</li></ol><p>Hướng dẫn chi tiết cho từng loại máy: mục <a href="#cai-dat" data-close>Cài lên điện thoại</a>.</p></details>
+    <details><summary>Nhận tin mới qua email</summary>
+      <ol><li>Vào mục <b>Nhận tin</b>, điền email, bấm nút đăng ký.</li><li>Mở hộp thư, tìm thư xác nhận (xem cả mục Quảng cáo / Spam) và bấm đường link trong thư.</li><li>Muốn ngừng nhận: bấm <b>Hủy đăng ký</b> ở cuối bất kỳ thư nào.</li></ol></details>
+    <details><summary>Các con số "Hôm nay · Cộng dồn · Đang xem" là gì?</summary>
+      <p><b>Hôm nay</b>: số thiết bị đã ghé trang trong ngày (giờ Việt Nam), một máy vào nhiều lần chỉ tính một. <b>Cộng dồn</b>: tổng các ngày từ khi bắt đầu đếm. <b>Đang xem</b>: số máy đang mở trang trong 5 phút gần nhất. Bộ đếm không lưu địa chỉ IP, tên hay email của bạn.</p></details>
+    <details><summary>Câu hỏi thường gặp</summary>
+      <p><b>Có mất phí không?</b> Không. Trang và các ứng dụng đều miễn phí; ai thấy hữu ích có thể <a href="#ung-ho" data-close>mời Dũng một ly cà phê</a>.</p>
+      <p><b>Thông tin sức khỏe có thay được bác sĩ không?</b> Không. Đây là kiến thức chung để tham khảo; có bệnh hoặc đang dùng thuốc, hãy hỏi bác sĩ.</p>
+      <p><b>Muốn góp ý hay đặt bài hát riêng?</b> Gửi email tới <a href="mailto:nddzungx@gmail.com">nddzungx@gmail.com</a>.</p></details>
+  </div>
+</dialog>
+
+<footer>
+  <div class="wrap foot">
+    <div><h3>HLV Sức Khỏe</h3><p>Nội dung mang tính giáo dục sức khỏe chung, không thay thế chẩn đoán và điều trị của bác sĩ. Không tự ngừng hay đổi thuốc khi chưa hỏi bác sĩ. Cấp cứu tại Việt Nam: gọi 113 (115 vẫn dùng trong giai đoạn chuyển tiếp).</p><p style="margin-top:8px">Phần tập thở, BreathSync tham khảo bài giảng của BS. Trần Văn Phúc; bác sĩ không biên soạn, không duyệt nội dung trang và ứng dụng. Trò chơi Phù thủy Phân kim, The Invisible Flaw, Kiểm Đếm Ca Đêm mang tính giáo dục và giải trí; mọi nhân vật, công ty là hư cấu.</p></div>
+    <div><h3>Liên hệ</h3><p>Góp ý, đề xuất chủ đề, đặt bài hát riêng: <a href="mailto:nddzungx@gmail.com">nddzungx@gmail.com</a></p><p style="margin-top:8px">Ứng dụng: <a href="https://app.hlvsuckhoe.com/">HLV Sức Khỏe</a> · <a href="https://tho.hlvsuckhoe.com/">BreathSync</a> · <a href="https://thienvan.hlvsuckhoe.com/">Xưởng kính</a> · <a href="https://giadinh.hlvsuckhoe.com/">Tôi &amp; Gia Đình</a> · <a href="https://phankim.hlvsuckhoe.com/">Phù thủy Phân kim</a> · <a href="https://hvflaw.hlvsuckhoe.com/">The Invisible Flaw</a> · <a href="https://kiemdem.hlvsuckhoe.com/">Kiểm Đếm Ca Đêm</a></p><p style="margin-top:8px"><a href="#nhan-tin">✉️ Nhận tin mới qua email</a> · <a href="#cai-dat">📲 Cài lên điện thoại</a> · <a href="#" data-guide>Hướng dẫn sử dụng</a></p></div>
+    <div><h3>Ủng hộ</h3><p>Thấy hữu ích? <a href="#ung-ho">Mời Dũng một ly cà phê</a> qua VietQR hoặc PayPal. Xem thêm <a href="#gioi-thieu">giới thiệu</a>.</p><p style="margin-top:8px"><b>Quyền riêng tư:</b> email bạn để lại chỉ dùng để gửi bản tin, có thể hủy bất cứ lúc nào. Bộ đếm truy cập, lượt xem và nút Thích không lưu IP hay thông tin cá nhân. Danh sách việc nhỏ và số ngày ghé chỉ lưu trên máy của bạn.</p><p style="margin-top:10px">© <span id="yr">2026</span> Nguyễn Đức Dũng · bản 2.1.0</p></div>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/daily.js?v=2.1.0"></script>
+<script src="js/home.js?v=2.0.0"></script>
+<script src="js/posts.js?v=2.2.0"></script>
+<script src="js/room-menu.js?v=2.1.0"></script>
+<script src="js/post-actions.js"></script>
+<!-- ===== DÁN MÃ CLOUDFLARE WEB ANALYTICS VÀO NGAY DƯỚI DÒNG NÀY (tùy chọn – thống kê chi tiết chỉ anh xem) ===== -->
+
+<!-- Cloudflare Web Analytics (thống kê lượt xem, không cookie, không lưu IP) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1dd877b5432a4181b42a4b65990cb60c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
