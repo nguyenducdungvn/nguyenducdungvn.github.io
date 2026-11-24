@@ -1,4 +1,4 @@
-# Sinh 9 trang bài tương tác (bóng đá, golf, bơi lội, nhạc cổ điển, hội họa, sáng tác bài hát, ba lê, múa dân gian, đệm guitar) từ một khung chung.
+# Sinh 10 trang bài tương tác (bóng đá, golf, bơi lội, nhạc cổ điển, hội họa, sáng tác bài hát, ba lê, múa dân gian, đệm guitar, vòng xoắn Ulam) từ một khung chung.
 # Chạy: python3 tools/make_guides.py  → ghi đè bai-viet/<slug>.html
 # Nội dung chữ nằm ở js/guides/<tên>.js (window.GUIDE); phần minh họa ở js/guides/stage-<tên>.js.
 # Muốn sửa tiêu đề, mô tả, nút công cụ, nguồn: sửa danh sách PAGES bên dưới rồi chạy lại.
@@ -23,6 +23,8 @@ ART_MORE = [('nhac-co-dien-cho-nguoi-moi', 'Nhạc cổ điển: nghệ thuật 
             ('ba-le-cho-nguoi-moi', 'Ba lê: đối thoại với trọng lực', 'Nghệ thuật · múa'),
             ('mua-dan-gian-viet-nam', 'Múa dân gian Việt: tay, nón và vòng xòe', 'Nghệ thuật · múa'),
             ('dem-guitar-bon-hop-am', 'Đệm guitar bốn hợp âm', 'Nghệ thuật · âm nhạc')]
+
+SCI_MORE = [('vong-xoan-ulam-so-nguyen-to', 'Vòng xoắn Ulam: khi con mắt gặp số nguyên tố', 'Khoa học · toán học')]
 
 PAGES = [
  dict(slug='bong-da-cho-nguoi-moi', data='bong-da', stage='stage-bong-da.js', three=True, back='#goc-the-thao', backtxt='← Góc thể thao',
@@ -148,7 +150,23 @@ dict(slug='sang-tac-bai-hat-cho-nguoi-moi', data='sang-tac', stage='stage-sang-t
        +row('Capo', b('data-capo','0','Không',True)+b('data-capo','2','Ngăn 2')+b('data-capo','3','Ngăn 3')),
   noscript='Đệm guitar: bốn hợp âm G (320003), D (xx0232), Em (022000), C (x32010) là vòng I–V–vi–IV ở giọng Sol trưởng. Kẹp capo để đổi giọng, giữ tay phải đều nhịp. Bật JavaScript để nghe và xem cần đàn.',
   src='Nguồn: Wikipedia – Guitar phím lõm (lục huyền cầm; guitar được người Việt đưa vào âm nhạc từ thế kỷ 19); Việt Nam News – “Sunken fret guitar still sings a different tune” (Nguyễn Vĩnh Bảo, Văn Vĩ, Út Bạch Lan); RFA – đàn kìm và đàn phím lõm trong giàn nhạc cải lương · Antonio de Torres Jurado (1817–1892), cây guitar cổ điển hiện đại, dây khoảng 650 mm (Wikipedia; bài viết của Siccas Guitars). Công thức vị trí phím theo bình quân 12 nửa cung. Tiếng đàn trong bài tổng hợp bằng thuật toán Karplus–Strong, không phải bản thu.',
-  more=ART_MORE+SPORT_MORE[:1])
+  more=ART_MORE+SPORT_MORE[:1]),
+ dict(slug='vong-xoan-ulam-so-nguyen-to', date='25/11/2026', data='vong-xoan-ulam', stage='stage-vong-xoan-ulam.js', three=True, back='#goc-toan-hoc', backtxt='← Góc toán học',
+  title='Vòng xoắn Ulam: khi con mắt gặp số nguyên tố | HLV Sức Khỏe',
+  desc='Vòng xoắn Ulam cho người mới: tự xếp số thành xoắn ốc trên lưới 3D, thấy số nguyên tố dồn thành đường chéo, thử đối chứng ngẫu nhiên, tô số chẵn, cược vào công thức Euler, xếp hạng đường chéo, bảng tam giác Klauber, xoắn ốc Sacks và “tiếng nhạc” Riemann – kèm tin mới về giả thuyết Riemann tháng 11/2026.',
+  ogt='Vòng xoắn Ulam: khi con mắt gặp số nguyên tố', ogd='Tự dựng vòng xoắn 3D, thử đối chứng, cược vào công thức Euler – và tin mới về giả thuyết Riemann.',
+  kicker='Khoa học · Toán học', h1='Vòng xoắn Ulam: khi con mắt gặp <em>số nguyên tố</em>',
+  dek='Một nhà toán học chán buổi họp, viết các số thành hình xoắn ốc rồi khoanh số nguyên tố – và thấy chúng xếp thành đường chéo. Bài này cho bạn tự dựng vòng xoắn trên lưới 3D, tự kiểm tra xem mắt mình có bị lừa không, rồi nghe “tiếng nhạc” mà Riemann tìm ra trong các số nguyên tố.',
+  read='Đọc và thử 8–15 phút', stitle='Lưới số 3D · cột cao là số nguyên tố', ssub='Kéo để xoay · cuộn để phóng to · mọi con số do máy tính ngay trong trình duyệt của bạn',
+  tools=row('Cách xếp', b('data-mode','ulam','Xoắn Ulam',True)+b('data-mode','bowl','Cái bát 3D')+b('data-mode','klauber','Tam giác Klauber')+b('data-mode','sacks','Xoắn Sacks')+b('data-mode','riemann','🎵 Tiếng nhạc Riemann'))
+       +row('Lưới', b('data-size','11','11 × 11')+b('data-size','41','41 × 41')+b('data-size','81','81 × 81')+b('data-size','101','101 × 101',True)+b('data-size','151','151 × 151')+' '+b('data-center','1','Tâm = 1',True)+b('data-center','41','Tâm = 41'))
+       +row('Tô màu', b('data-even','1','Số chẵn')+b('data-poly','none','Không đa thức',True)+b('data-poly','euler','n² + n + 41')+b('data-poly','n2','n² + 1')+b('data-rank','1','📏 Xếp hạng đường chéo'))
+       +row('Được – mất', b('data-act','build','▶ Xếp từng số',cls='hot')+b('data-act','euler','▶ Cược: công thức Euler đúng mãi',cls='hot')+b('data-act','rand','▶ Tin vào mắt? Đối chứng',cls='hot'))
+       +row('Sóng', '<label style="display:flex;align-items:center;gap:10px;flex:1;min-width:220px;font-size:.9rem">Số sóng (không điểm zeta) <input type="range" id="zk" min="0" max="20" value="6" style="flex:1;accent-color:#ff5c9a"> <output id="zkOut">6</output></label>')
+       +row('Góc máy', b('data-cam','tilt','Nhìn nghiêng',True)+b('data-cam','top','Từ trên xuống')+b('data-cam','ant','Mắt con kiến dọc đường chéo')+b('data-spin','1','⟳ Tự xoay')),
+  noscript='Vòng xoắn Ulam: viết 1 ở giữa, 2 bên phải, 3 phía trên, rồi xoay ngược chiều kim đồng hồ; khoanh số nguyên tố sẽ thấy đường chéo. Một nửa là do số chẵn – lẻ, nửa còn lại (vì sao có đường đặc hơn) vẫn là giả thuyết Hardy–Littlewood chưa chứng minh. Bật JavaScript để dùng lưới 3D.',
+  src='Nguồn: Wikipedia – Ulam spiral (Ulam 1963, Stein và Wells trên MANIAC II khoảng 100.000 điểm, Gardner tháng 3/1964, Klauber 1932, Sacks 1994, giả thuyết F của Hardy–Littlewood 1923, Bateman–Horn, bài toán Landau) · Stein, Ulam, Wells, “A Visual Display of Some Properties of the Distribution of Primes”, Amer. Math. Monthly 71 (1964) 516–520 · MacTutor (St Andrews): Ulam’s spiral · MathWorld: Prime Spiral (Clarke, The City and the Stars, 1956) · Science News: thư của Arthur C. Clarke · Tin giả thuyết Riemann: Lean community blog “Lean verification of the Riemann Hypothesis” (21/11/2026); Scientific American (11/2026) về việc các nhà toán học độc lập biên dịch lại; Wikipedia – Alpöge’s proof of the Riemann hypothesis; Anthropic, “Learning more about Claude’s mathematical capabilities” (10/8/2026, tỉ lệ không điểm 41,6% → 67,2%); Quanta Magazine về chứng minh quasi-Riemann của OpenAI (10/2026). Giá trị 20 không điểm đầu của hàm zeta: Odlyzko. Mọi số đếm trong bài (40 số Euler, 1.199/2.398, 5 số của 4x² + 10x + 5, mật độ lưới) do máy tính kiểm tra khi viết bài.',
+  more=SCI_MORE+[('nguoi-gieo-vien-thuoc-hieu-biet','Người gieo “viên thuốc hiểu biết”','Chân dung · cảm hứng'),('tho-4-7-8-truoc-khi-ngu','Thở 4–7–8 trước khi ngủ','Tập thở · giấc ngủ')]+ART_MORE[:1]+SPORT_MORE[:1])
 ]
 
 def page(p):

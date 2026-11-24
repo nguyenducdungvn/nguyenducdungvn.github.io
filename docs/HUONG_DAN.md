@@ -241,7 +241,8 @@ SELECT k, n FROM totals WHERE k LIKE 'view:%' OR k LIKE 'like:%' ORDER BY k;
 | Chùm chìa khóa | Lái xe an toàn | `#goc-lai-xe` |
 | Máy tính có sóng siêu âm | Nghề nghiệp (The Invisible Flaw) | `#goc-nghe-nghiep` |
 | Giá sách | Đọc sách (sách hôm nay, bài viết) | `#bai-viet` |
-| Bàn cờ, rubik | Giải đố (câu đố hôm nay, Kiểm Đếm Ca Đêm Mùa 1 và Mùa 2) | `#goc-giai-do` |
+| Bàn cờ, rubik | Giải đố (câu đố hôm nay, Kiểm Đếm Ca Đêm Mùa 1 và Mùa 2; vòng tròn: Vòng xoắn Ulam) | `#goc-giai-do` |
+| Bảng đen nhỏ (vòng xoắn 9 × 9) | Toán học (trò “Đố mắt”, vòng tròn: Vòng xoắn Ulam) | `#goc-toan-hoc` |
 | Bảng ghim | Chia sẻ (câu hỏi hôm nay, rủ người thân) | `#goc-chia-se` |
 
 ### Thêm nội dung đổi mỗi ngày (không cần biết lập trình)
@@ -305,6 +306,12 @@ Không dùng ảnh vận động viên, logo giải đấu/CLB, tranh hay bản 
 - Hai bài mới: `bai-viet/mua-dan-gian-viet-nam.html` (nón, quạt, xòe khăn, múa xoang, hoa tay, vòng xòe đúng/lệch nhịp, so với ba lê) và `bai-viet/dem-guitar-bon-hop-am.html` (G–D–Em–C, capo, ba điệu đàn, đổi hợp âm trễ, tiếng rè; tiếng dây Karplus–Strong). Nội dung: `js/guides/mua-dan-gian.js`, `js/guides/guitar.js`; minh họa: `stage-mua-dan-gian.js`, `stage-guitar.js`.
 - `posts.js?v=2.3.0` (guitar → góc Âm nhạc; múa dân gian → góc Nghệ thuật), 2 thẻ bài, sitemap 20 địa chỉ, 2 ảnh og. `tools/make_guides.py` nhận thêm khóa `date` cho từng bài.
 - **Bản sao dự phòng đổi tên thành `nguyenducdungvn/nguyenducdungvn.github.io`**, địa chỉ https://nguyenducdungvn.github.io/. Workflow `dong-bo.yml` trong kho đó tự chép từ kho này **6 tiếng một lần** (bỏ CNAME). Muốn đồng bộ ngay: kho bản sao → Actions → “Đồng bộ từ hlvsuckhoe-web” → Run workflow.
+
+## Bản 2.4.0 – Góc toán học, bài Vòng xoắn Ulam (25/11/2026)
+- Bài mới `bai-viet/vong-xoan-ulam-so-nguyen-to.html`: lưới số 3D (three.js, InstancedMesh) với 5 cách xếp – xoắn Ulam, cái bát 3D, tam giác Klauber, xoắn Sacks, “tiếng nhạc” Riemann (ψ(x) và 20 không điểm zeta); tô số chẵn, đa thức Euler / n² + 1, lớp đo “📏 Xếp hạng đường chéo” (máy đếm từng tia và ghi đa thức 4n² + bn + c); được – mất: Xếp từng số, Cược công thức Euler (gãy ở n = 40), Đối chứng ngẫu nhiên. Nội dung `js/guides/vong-xoan-ulam.js`, minh họa `js/guides/stage-vong-xoan-ulam.js`.
+- Có hộp tin mới về chứng minh Lean giả thuyết Riemann (Alpöge, 20/11/2026) **đúng tới 25/11/2026** – khi tình hình thay đổi (bình duyệt, Viện Clay), sửa khối `riemann` và mục `warn` trong tệp nội dung rồi chạy lại `python3 tools/make_guides.py`.
+- Căn phòng có đồ vật mới: **bảng đen nhỏ** (góc `#goc-toan-hoc`, đã thêm vào `tools/room.py`). Mục mới “Góc toán học” ngay sau Góc giải đố, có trò **Đố mắt** (`js/toan-hoc.js`: chọn hình nào là số nguyên tố thật, điểm lưu trong máy). Menu, dải “Đi tới các góc” có thêm “Toán học”. Bàn cờ (Giải đố) giờ cũng tỏa vòng tròn chứa bài Ulam.
+- `posts.js?v=2.4.0`, `home.css?v=2.4.0`, thẻ bài ở mục Bài viết, sitemap 23 địa chỉ, ảnh og `img/og/vong-xoan-ulam-so-nguyen-to.jpg`.
 
 ## Sự cố thường gặp
 

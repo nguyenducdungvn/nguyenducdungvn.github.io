@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- HLV Sức Khỏe – bài tương tác (24/11/2026). Trang này được sinh bởi tools/make_guides.py: sửa ở đó hoặc ở js/guides/vong-xoan-ulam.js -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vòng xoắn Ulam: khi con mắt gặp số nguyên tố | HLV Sức Khỏe</title>
+<meta name="description" content="Vòng xoắn Ulam cho người mới: tự xếp số thành xoắn ốc trên lưới 3D, thấy số nguyên tố dồn thành đường chéo, thử đối chứng ngẫu nhiên, tô số chẵn, cược vào công thức Euler, xếp hạng đường chéo, bảng tam giác Klauber, xoắn ốc Sacks và “tiếng nhạc” Riemann – kèm tin mới về giả thuyết Riemann tháng 11/2026.">
+<meta name="theme-color" content="#0f6a4b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vòng xoắn Ulam: khi con mắt gặp số nguyên tố">
+<meta property="og:description" content="Tự dựng vòng xoắn 3D, thử đối chứng, cược vào công thức Euler – và tin mới về giả thuyết Riemann.">
+<meta property="og:url" content="https://hlvsuckhoe.com/bai-viet/vong-xoan-ulam-so-nguyen-to.html">
+<meta property="og:image" content="https://hlvsuckhoe.com/img/og/vong-xoan-ulam-so-nguyen-to.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Vòng xoắn Ulam: khi con mắt gặp số nguyên tố">
+<meta property="og:site_name" content="HLV Sức Khỏe">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hlvsuckhoe.com/img/og/vong-xoan-ulam-so-nguyen-to.jpg">
+<link rel="canonical" href="https://hlvsuckhoe.com/bai-viet/vong-xoan-ulam-so-nguyen-to.html">
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,700;1,7..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/bai-viet.css">
+<link rel="stylesheet" href="../css/guide.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="../"><img src="../img/logo.svg" alt="">HLV Sức Khỏe</a>
+    <a class="back" href="../#goc-toan-hoc">← Góc toán học</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="kicker">Khoa học · Toán học</span>
+    <h1>Vòng xoắn Ulam: khi con mắt gặp <em>số nguyên tố</em></h1>
+    <p class="dek">Một nhà toán học chán buổi họp, viết các số thành hình xoắn ốc rồi khoanh số nguyên tố – và thấy chúng xếp thành đường chéo. Bài này cho bạn tự dựng vòng xoắn trên lưới 3D, tự kiểm tra xem mắt mình có bị lừa không, rồi nghe “tiếng nhạc” mà Riemann tìm ra trong các số nguyên tố.</p>
+    <div class="meta"><span>Nguyễn Đức Dũng</span><span>25/11/2026</span><span>Đọc và thử 8–15 phút</span></div>
+    <div class="post-actions" data-slug="vong-xoan-ulam-so-nguyen-to"></div>
+  </div>
+
+  <div class="lensbar" id="lensBar" aria-label="Góc nhìn và tầng nội dung"></div>
+
+  <section class="stage" id="stage" aria-labelledby="stageH">
+    <div class="stage-head"><h2 id="stageH">Lưới số 3D · cột cao là số nguyên tố</h2><p>Kéo để xoay · cuộn để phóng to · mọi con số do máy tính ngay trong trình duyệt của bạn</p></div>
+    <div class="view" id="view"></div>
+    <div class="tools" id="tools">
+      <div class="row"><span class="lab">Cách xếp</span><button type="button" data-mode="ulam" aria-pressed="true">Xoắn Ulam</button><button type="button" data-mode="bowl" aria-pressed="false">Cái bát 3D</button><button type="button" data-mode="klauber" aria-pressed="false">Tam giác Klauber</button><button type="button" data-mode="sacks" aria-pressed="false">Xoắn Sacks</button><button type="button" data-mode="riemann" aria-pressed="false">🎵 Tiếng nhạc Riemann</button></div><div class="row"><span class="lab">Lưới</span><button type="button" data-size="11" aria-pressed="false">11 × 11</button><button type="button" data-size="41" aria-pressed="false">41 × 41</button><button type="button" data-size="81" aria-pressed="false">81 × 81</button><button type="button" data-size="101" aria-pressed="true">101 × 101</button><button type="button" data-size="151" aria-pressed="false">151 × 151</button> <button type="button" data-center="1" aria-pressed="true">Tâm = 1</button><button type="button" data-center="41" aria-pressed="false">Tâm = 41</button></div><div class="row"><span class="lab">Tô màu</span><button type="button" data-even="1" aria-pressed="false">Số chẵn</button><button type="button" data-poly="none" aria-pressed="true">Không đa thức</button><button type="button" data-poly="euler" aria-pressed="false">n² + n + 41</button><button type="button" data-poly="n2" aria-pressed="false">n² + 1</button><button type="button" data-rank="1" aria-pressed="false">📏 Xếp hạng đường chéo</button></div><div class="row"><span class="lab">Được – mất</span><button type="button" data-act="build" aria-pressed="false" class="hot">▶ Xếp từng số</button><button type="button" data-act="euler" aria-pressed="false" class="hot">▶ Cược: công thức Euler đúng mãi</button><button type="button" data-act="rand" aria-pressed="false" class="hot">▶ Tin vào mắt? Đối chứng</button></div><div class="row"><span class="lab">Sóng</span><label style="display:flex;align-items:center;gap:10px;flex:1;min-width:220px;font-size:.9rem">Số sóng (không điểm zeta) <input type="range" id="zk" min="0" max="20" value="6" style="flex:1;accent-color:#ff5c9a"> <output id="zkOut">6</output></label></div><div class="row"><span class="lab">Góc máy</span><button type="button" data-cam="tilt" aria-pressed="true">Nhìn nghiêng</button><button type="button" data-cam="top" aria-pressed="false">Từ trên xuống</button><button type="button" data-cam="ant" aria-pressed="false">Mắt con kiến dọc đường chéo</button><button type="button" data-spin="1" aria-pressed="false">⟳ Tự xoay</button></div>
+      <div class="readout" id="readout" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <article class="guide">
+    <noscript><p>Vòng xoắn Ulam: viết 1 ở giữa, 2 bên phải, 3 phía trên, rồi xoay ngược chiều kim đồng hồ; khoanh số nguyên tố sẽ thấy đường chéo. Một nửa là do số chẵn – lẻ, nửa còn lại (vì sao có đường đặc hơn) vẫn là giả thuyết Hardy–Littlewood chưa chứng minh. Bật JavaScript để dùng lưới 3D.</p></noscript>
+    <div id="guide"></div>
+    <p class="ask">Bài viết có ích? Bấm <b>Thích</b> và <b>Chia sẻ</b> cho người bạn cùng sở thích.</p>
+    <div class="post-actions" data-slug="vong-xoan-ulam-so-nguyen-to"></div>
+    <h3 style="margin-top:2em">Đọc tiếp</h3>
+    <div class="more"><a href="nguoi-gieo-vien-thuoc-hieu-biet.html"><b>Người gieo “viên thuốc hiểu biết”</b><span>Chân dung · cảm hứng</span></a><a href="tho-4-7-8-truoc-khi-ngu.html"><b>Thở 4–7–8 trước khi ngủ</b><span>Tập thở · giấc ngủ</span></a><a href="nhac-co-dien-cho-nguoi-moi.html"><b>Nhạc cổ điển: nghệ thuật của thời gian</b><span>Nghệ thuật · âm nhạc</span></a><a href="khoi-dong-va-gian-co-dung-cach.html"><b>Khởi động và giãn cơ đúng cách</b><span>Thể thao · nên đọc trước khi ra sân</span></a></div>
+    <div class="src">
+      <p>Nguồn: Wikipedia – Ulam spiral (Ulam 1963, Stein và Wells trên MANIAC II khoảng 100.000 điểm, Gardner tháng 3/1964, Klauber 1932, Sacks 1994, giả thuyết F của Hardy–Littlewood 1923, Bateman–Horn, bài toán Landau) · Stein, Ulam, Wells, “A Visual Display of Some Properties of the Distribution of Primes”, Amer. Math. Monthly 71 (1964) 516–520 · MacTutor (St Andrews): Ulam’s spiral · MathWorld: Prime Spiral (Clarke, The City and the Stars, 1956) · Science News: thư của Arthur C. Clarke · Tin giả thuyết Riemann: Lean community blog “Lean verification of the Riemann Hypothesis” (21/11/2026); Scientific American (11/2026) về việc các nhà toán học độc lập biên dịch lại; Wikipedia – Alpöge’s proof of the Riemann hypothesis; Anthropic, “Learning more about Claude’s mathematical capabilities” (10/8/2026, tỉ lệ không điểm 41,6% → 67,2%); Quanta Magazine về chứng minh quasi-Riemann của OpenAI (10/2026). Giá trị 20 không điểm đầu của hàm zeta: Odlyzko. Mọi số đếm trong bài (40 số Euler, 1.199/2.398, 5 số của 4x² + 10x + 5, mật độ lưới) do máy tính kiểm tra khi viết bài.</p>
+      <p>Minh họa trong bài do HLV Sức Khỏe tự dựng bằng mã (không dùng ảnh, logo, tranh hay bản ghi có bản quyền). Bài viết mang tính giới thiệu, không thay thế huấn luyện viên hay lời khuyên y tế. HLV Sức Khỏe là trang cá nhân độc lập của Nguyễn Đức Dũng.</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap"><a href="../">← Về trang chủ HLV Sức Khỏe</a> · <a href="mailto:lienhe@hlvsuckhoe.com">lienhe@hlvsuckhoe.com</a></div>
+</footer>
+
+<script>
+(function(){var bar=document.getElementById('progress');function upd(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}window.addEventListener('scroll',upd,{passive:true});upd();})();
+</script>
+<script src="../js/guides/vong-xoan-ulam.js"></script>
+<script src="../js/guide.js"></script>
+<script type="importmap">{"imports":{"three":"../js/vendor/three/three.module.min.js","three/addons/":"../js/vendor/three/addons/"}}</script>
+<script type="module" src="../js/guides/stage-vong-xoan-ulam.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/post-actions.js" defer></script>
+<!-- Cloudflare Web Analytics (thống kê lượt xem, không cookie, không lưu IP) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1dd877b5432a4181b42a4b65990cb60c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

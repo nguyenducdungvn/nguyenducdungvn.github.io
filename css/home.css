@@ -411,3 +411,19 @@ details.vc[open]{padding-bottom:18px}
 .hb-posts a:hover{background:var(--forest);color:#fff}
 .hb-st{font-size:.75rem;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){.rm *{transition:none!important}}
+
+/* ===== Góc toán học (2.4.0, 25/11/2026): trò "Đố mắt" + thẻ bài ===== */
+.th-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.th-pick{display:flex;flex-direction:column;align-items:center;gap:6px;background:#0b1424;border:2px solid var(--line);border-radius:16px;padding:8px;cursor:pointer;color:#e9f3ee;font:inherit}
+.th-pick canvas{width:100%;height:auto;aspect-ratio:1;border-radius:10px;display:block}
+.th-pick:hover{border-color:var(--forest)}
+.th-pick:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.th-pick.ok{border-color:#2fae86;box-shadow:0 0 0 3px rgba(47,174,134,.35)}
+.th-pick.no{border-color:#d94a4a;box-shadow:0 0 0 3px rgba(217,74,74,.3)}
+.th-res{margin:10px 0 6px;font-size:.95rem;min-height:3em}
+.th-feat{display:flex;gap:14px;align-items:flex-start;text-decoration:none;color:inherit;background:linear-gradient(150deg,#1b2747,#0c1222);color:#e6ecf6;border-radius:18px;padding:16px 18px;margin-top:10px}
+.th-feat b{display:block;font-size:1.08rem;margin-bottom:4px}
+.th-feat span span{display:block;color:#b3bfd6;font-size:.92rem}
+.th-feat:hover{outline:2px solid #ffd27a}
+.th-ic{font-size:2rem;line-height:1}
+@media (max-width:520px){.th-pair{gap:8px}}
