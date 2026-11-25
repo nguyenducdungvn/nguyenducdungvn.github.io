@@ -12,16 +12,17 @@ function readout(h) { out.innerHTML = h; }
   function fmt(x, d) { return x.toLocaleString('vi-VN', { maximumFractionDigits: d === undefined ? 1 : d }); }
   function calc(box) {
     function v(k, def) { var e = box.querySelector('[data-k="' + k + '"]'), n = e ? parseFloat(String(e.value).replace(',', '.')) : NaN; return isFinite(n) && n > 0 ? n : def; }
-    var A = v('a', 30), H = v('h', 3.2), m = v('m', 1), V = A * H, Vg = m / 2.1, cmean = Vg / V * 100;
-    var Vmix = Math.min(V, Vg / 0.04), f = Vmix / V, dP = Math.min(800, 800 * f); // kPa, cận trên không xả áp
-    var mj = m * 46, tnt = mj / 4.18, m15 = 0.15 / 8 * V * 0.04 * 2.1;
-    var lv = dP >= 15 ? 'vượt mức làm sập một phần mái và tường (≈15 kPa) khoảng ' + fmt(dP / 15, 0) + ' lần' : dP >= 7 ? 'đủ phá hủy một phần nhà (≈7 kPa)' : dP >= 1 ? 'đủ làm vỡ kính (≈1 kPa)' : 'dưới mức làm vỡ kính';
+    var RHO = 1.83, HV = 46.1, G1 = 0.3; // propan kg/m³ (~20–25 °C), nhiệt trị MJ/kg, γ − 1
+    var A = v('a', 12), H = v('h', 2.7), m = v('m', 0.3), V = A * H, Vg = m / RHO, cmean = Vg / V * 100;
+    var Vmix = Math.min(V, Vg / 0.04), Q = m * HV, dP = Math.min(800, G1 * Q * 1000 / V), dP10 = dP * 0.1; // kPa
+    var tnt = Q / 4.184, mAll = V * 0.021 * RHO, m7 = 7 * V / (G1 * HV * 1000) * 10; // kg để 10% năng lượng đạt 7 kPa
+    function lv(p) { return p >= 50 ? 'đủ phá tường gạch không cốt thép (≈50 kPa)' : p >= 15 ? 'vượt mức làm sập một phần mái và tường (≈15 kPa)' : p >= 7 ? 'vượt mức phá hủy một phần nhà (≈7 kPa)' : p >= 2.5 ? 'làm vỡ nhiều cửa kính' : p >= 1 ? 'đủ để kính bắt đầu vỡ (≈1 kPa)' : 'dưới ngưỡng kính bắt đầu vỡ'; }
     box.querySelector('.gc-out').innerHTML =
-      '<div class="gc-big"><b>' + fmt(dP, 0) + ' kPa</b><span>quá áp ước tính nếu cháy trong phòng kín</span></div>' +
-      '<ul><li>Phòng ' + fmt(V, 0) + ' m³; ' + fmt(m, 2) + ' kg gas ≈ ' + fmt(Vg, 2) + ' m³ hơi – trộn đều cả phòng chỉ ' + fmt(cmean, 2) + '%' + (cmean >= 2 && cmean <= 9.5 ? ' (<b>cả căn phòng đã vào khoảng nổ</b>)' : cmean > 9.5 ? ' (quá đặc ở giữa, nhưng mép đám mây vẫn cháy được)' : ', nhưng gas đọng lại thành vùng đậm đặc chứ không trộn đều') + '.</li>' +
-      '<li>Vùng hỗn hợp vừa tỉ lệ (≈4%) có thể tới <b>' + fmt(Vmix, 1) + ' m³</b> = ' + fmt(f * 100, 0) + '% thể tích phòng → ' + lv + '.</li>' +
-      '<li>Hóa năng ' + fmt(mj, 0) + ' MJ ≈ ' + fmt(tnt, 1) + ' kg TNT. Chỉ cần khoảng <b>' + fmt(m15 * 1000, 0) + ' g</b> gas là trên giấy đã chạm mức 15 kPa với căn phòng này.</li></ul>' +
-      '<p class="fine">Ước lượng cận trên: bỏ qua xả áp khi kính vỡ (làm áp suất thấp hơn) và bỏ qua vật cản làm lửa tăng tốc (làm áp suất cao hơn). Hơi gas ≈ 2,1 kg/m³, P<sub>max</sub> ≈ 8 bar, 46 MJ/kg.</p>';
+      '<div class="gc-big"><b>' + fmt(dP, 0) + ' kPa</b><span>cận trên nếu cháy hết trong phòng kín · chỉ 10% năng lượng thành áp suất: <b>' + fmt(dP10, 1) + ' kPa</b></span></div>' +
+      '<ul><li>Phòng ' + fmt(V, 1) + ' m³; ' + fmt(m, 2) + ' kg gas ≈ ' + fmt(Vg, 2) + ' m³ hơi → tới khoảng <b>' + fmt(Vmix, 1) + ' m³ hỗn hợp nổ</b> ở 4%' + (Vmix >= V ? ' (cả căn phòng)' : '') + '. Trộn đều cả phòng: ' + fmt(cmean, 2) + '%' + (cmean >= 2.1 && cmean <= 9.5 ? ' – <b>cả phòng đã vào khoảng nổ</b>' : cmean > 9.5 ? ' – quá đặc ở giữa, mép đám mây vẫn cháy' : ' – chưa đủ để cả phòng cháy (cần ' + fmt(mAll, 1) + ' kg), nhưng gas đọng thành lớp đậm đặc sát sàn và lớp đó nổ được') + '.</li>' +
+      '<li>Cận trên: ' + lv(dP) + '. Chỉ 10%: ' + lv(dP10) + '.</li>' +
+      '<li>Năng lượng hóa học ' + fmt(Q, 1) + ' MJ ≈ ' + fmt(tnt, 1) + ' kg TNT – là năng lượng chứa trong gas, <b>không phải</b> sức công phá thực tế. Với căn phòng này, khoảng <b>' + fmt(m7 * 1000, 0) + ' g</b> gas đủ đạt 7 kPa ngay cả khi chỉ 10% năng lượng thành áp suất.</li></ul>' +
+      '<p class="fine">Δp ≈ (γ − 1)·Q / V, γ ≈ 1,3; Q = khối lượng × 46,1 MJ/kg; tối đa ≈ 8 bar. Bỏ qua nhiệt mất vào tường và xả áp khi kính, tường vỡ (làm áp suất thực thấp hơn), bỏ qua vật cản làm lửa tăng tốc. Hơi propan ≈ 1,83 kg/m³ (butan nặng hơn, ≈ 2,5).</p>';
   }
   function all() { document.querySelectorAll('.gas-calc').forEach(calc); }
   document.addEventListener('input', function (e) { var b = e.target.closest && e.target.closest('.gas-calc'); if (b) calc(b); });

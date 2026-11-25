@@ -379,3 +379,10 @@ Không dùng ảnh vận động viên, logo giải đấu/CLB, tranh hay bản 
   - `thoat-nan-chay-chung-cu` – `thoat-nan.js` + `stage-thoat-nan.js`: tòa 9 tầng một cầu thang, khói lên đỉnh rồi dồn xuống; liều khói Σ mật độ × thời gian; đầu báo khói, cửa ngăn cháy, cửa mái, lối thoát thứ hai; chạy xuống / lên / ở lại / mở cửa xem / thang máy. Mở đầu bằng vụ Khương Hạ 12/9/2023.
   - `so-cuu-bong-dung-cach` – `so-cuu-bong.js` + `stage-so-cuu-bong.js`: mặt cắt da, mô hình Pennes 1 chiều + tổn thương Henriques; nguồn nóng, áo thấm (cởi ngay / để 1 phút / xối nước lên áo), cách sơ cứu, ước tính diện tích (lòng bàn tay 1%, ngưỡng ANZBA 10%/5%).
 - Trang chủ: 3 thẻ bài, 3 dòng `js/posts.js` (`goc-an-toan`), danh sách bài trong mục Góc an toàn, `posts.js?v=2.7.0`, sitemap 28 URL, 3 ảnh og.
+
+## Bản 2.7.1 – Sửa số liệu độ lớn vụ nổ gas (25/11/2026)
+
+- `js/guides/khi-gas.js`, khối `quymo`: “130 kg TNT” nay là **năng lượng hóa học chứa trong bình**, không phải sức công phá; 46,1 MJ/kg và 4,184 MJ/kg (≈132 kg). “1 kPa” nay là ngưỡng **kính bắt đầu vỡ**; thêm bảng ngưỡng vỡ kính (0,7 / 1–1,5 / 1,34 → 0% / 2,49 → 10% / 4–5 kPa → 50–75% / 3,5–7 kPa).
+- Ví dụ mẫu 300 g propan trong phòng 3 × 4 × 2,7 m: Δp ≈ (γ − 1)·Q/V ≈ 130 kPa cận trên, ≈ 13 kPa nếu chỉ 10%; cần ≈ 1,2 kg để cả phòng đạt 2,1%.
+- Máy tính `.gas-calc` (`stage-khi-gas.js`): đổi sang phương pháp năng lượng Δp = 0,3·m·46,1 MJ/V (tối đa 800 kPa), propan 1,83 kg/m³, hiện cả cận trên và mức 10%; mặc định 12 m² × 2,7 m × 0,3 kg.
+- Nguồn bổ sung trong `tools/make_guides.py`.
