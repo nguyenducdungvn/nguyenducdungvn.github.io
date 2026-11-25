@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- HLV Sức Khỏe – bài tương tác (24/11/2026). Trang này được sinh bởi tools/make_guides.py: sửa ở đó hoặc ở js/guides/nha-mo-uoc.js -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ngôi nhà mơ ước: phong cách, lối sống và những lựa chọn | HLV Sức Khỏe</title>
+<meta name="description" content="Tự phác thảo ngôi nhà mơ ước: nhập kích thước đất, chọn phong cách (hiện đại, Nhật, tân cổ điển, Đông Dương, nhiệt đới) và lối sống, máy tự xếp phòng, vẽ mặt bằng và dựng nhà 3D. Thử nắng chiều hướng Tây, bỏ giếng trời, xếp ông bà lên tầng trên – và xem cái giá của từng lựa chọn.">
+<meta name="theme-color" content="#0f6a4b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ngôi nhà mơ ước: tự phác thảo và xem 3D">
+<meta property="og:description" content="Chọn mảnh đất, phong cách, lối sống – máy tự xếp phòng, vẽ mặt bằng và dựng ngôi nhà 3D cho bạn ngắm.">
+<meta property="og:url" content="https://hlvsuckhoe.com/bai-viet/ngoi-nha-mo-uoc.html">
+<meta property="og:image" content="https://hlvsuckhoe.com/img/og/ngoi-nha-mo-uoc.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ngôi nhà mơ ước: tự phác thảo và xem 3D">
+<meta property="og:site_name" content="HLV Sức Khỏe">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hlvsuckhoe.com/img/og/ngoi-nha-mo-uoc.jpg">
+<link rel="canonical" href="https://hlvsuckhoe.com/bai-viet/ngoi-nha-mo-uoc.html">
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,700;1,7..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/bai-viet.css">
+<link rel="stylesheet" href="../css/guide.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="../"><img src="../img/logo.svg" alt="">HLV Sức Khỏe</a>
+    <a class="back" href="../#bai-viet">← Bài viết</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="kicker">Nhà ở · Mới · 3D</span>
+    <h1>Ngôi nhà <em>mơ ước</em>: phong cách, lối sống và những lựa chọn</h1>
+    <p class="dek">Mặt tiền hẹp hay sân vườn rộng, ở ba thế hệ hay một mình, thích tối giản Nhật hay mái ngói Đông Dương? Bài này cho bạn tự nhập mảnh đất và nếp sống của gia đình: máy xếp phòng, vẽ mặt bằng có kích thước và dựng ngôi nhà 3D – rồi cho bạn thử những lựa chọn được và mất.</p>
+    <div class="meta"><span>Nguyễn Đức Dũng</span><span>25/11/2026</span><span>Đọc và thử 8–15 phút</span></div>
+    <div class="post-actions" data-slug="ngoi-nha-mo-uoc"></div>
+  </div>
+
+  <div class="lensbar" id="lensBar" aria-label="Góc nhìn và tầng nội dung"></div>
+
+  <section class="stage" id="stage" aria-labelledby="stageH">
+    <div class="stage-head"><h2 id="stageH">Ngôi nhà 3D</h2><p>Kéo để xoay · cuộn để phóng to · đúng tỉ lệ, đơn vị mét · phác thảo tự động, không phải bản vẽ thiết kế</p></div>
+    <div class="view" id="view"></div>
+    <div class="tools" id="tools">
+      <div class="row"><span class="lab">Mảnh đất</span><label class="nm">Rộng <input id="nW" type="number" min="3" max="40" step="0.1" value="5"> m</label><label class="nm">Dài <input id="nL" type="number" min="8" max="60" step="0.1" value="20"> m</label><label class="nm">Mặt tiền nhìn về <select id="nDir" aria-label="Hướng mặt tiền"><option value="N">Bắc</option><option value="NE">Đông Bắc</option><option value="E">Đông</option><option value="SE">Đông Nam</option><option value="S" selected>Nam</option><option value="SW">Tây Nam</option><option value="W">Tây</option><option value="NW">Tây Bắc</option></select></label></div><div class="row"><span class="lab">Mẫu nhanh</span><button type="button" data-pre="pho" aria-pressed="true">Nhà phố 5×20</button><button type="button" data-pre="ong" aria-pressed="false">Nhà ống 4×16</button><button type="button" data-pre="cap4" aria-pressed="false">Cấp 4 8×20</button><button type="button" data-pre="villa" aria-pressed="false">Nhà vườn 15×25</button><button type="button" data-pre="mama" aria-pressed="false">Nhà ống có giếng trời</button></div><div class="row"><span class="lab">Phong cách</span><button type="button" data-sty="hd" aria-pressed="true">Hiện đại</button><button type="button" data-sty="tg" aria-pressed="false">Tối giản Nhật</button><button type="button" data-sty="tcd" aria-pressed="false">Tân cổ điển</button><button type="button" data-sty="dd" aria-pressed="false">Đông Dương</button><button type="button" data-sty="nd" aria-pressed="false">Nhiệt đới</button></div><div class="row"><span class="lab">Lối sống</span><button type="button" data-life="bathe" aria-pressed="false">👵 Ba thế hệ</button><button type="button" data-life="tre" aria-pressed="true">👶 Vợ chồng trẻ, con nhỏ</button><button type="button" data-life="wfh" aria-pressed="false">💻 Làm việc tại nhà</button><button type="button" data-life="mot" aria-pressed="false">🙋 Sống một mình</button></div><div class="row"><span class="lab">Tùy chỉnh</span><span class="stp">Người lớn <button type="button" data-st="adults:-1" aria-label="Bớt người lớn">−</button><b id="v-adults">0</b><button type="button" data-st="adults:1" aria-label="Thêm người lớn">+</button></span><span class="stp">Trẻ em <button type="button" data-st="kids:-1" aria-label="Bớt trẻ em">−</button><b id="v-kids">0</b><button type="button" data-st="kids:1" aria-label="Thêm trẻ em">+</button></span><span class="stp">Người cao tuổi <button type="button" data-st="elders:-1" aria-label="Bớt người cao tuổi">−</button><b id="v-elders">0</b><button type="button" data-st="elders:1" aria-label="Thêm người cao tuổi">+</button></span><span class="stp">Ô tô <button type="button" data-st="cars:-1" aria-label="Bớt ô tô">−</button><b id="v-cars">0</b><button type="button" data-st="cars:1" aria-label="Thêm ô tô">+</button></span><span class="stp">Xe máy <button type="button" data-st="bikes:-1" aria-label="Bớt xe máy">−</button><b id="v-bikes">0</b><button type="button" data-st="bikes:1" aria-label="Thêm xe máy">+</button></span><select id="nBeds" aria-label="Số phòng ngủ"><option value="auto">Phòng ngủ: tự động</option><option value="1">1 phòng ngủ</option><option value="2">2 phòng ngủ</option><option value="3">3 phòng ngủ</option><option value="4">4 phòng ngủ</option><option value="5">5 phòng ngủ</option><option value="6">6 phòng ngủ</option><option value="7">7 phòng ngủ</option><option value="8">8 phòng ngủ</option></select><select id="nFl" aria-label="Số tầng"><option value="auto">Số tầng: tự động</option><option value="1">1 tầng</option><option value="2">2 tầng</option><option value="3">3 tầng</option><option value="4">4 tầng</option><option value="5">5 tầng</option><option value="6">6 tầng</option></select><button type="button" data-tg="tho" aria-pressed="true">Phòng thờ</button><button type="button" data-tg="work" aria-pressed="false">Phòng làm việc</button><button type="button" data-tg="gt" aria-pressed="true">Giếng trời</button><button type="button" data-tg="laundry" aria-pressed="true">Giặt phơi</button></div><div class="row"><span class="lab">Được – mất</span><button type="button" data-scen="sun-bad" aria-pressed="false" class="hot">▶ Kính lớn hướng Tây</button><button type="button" data-scen="sun-good" aria-pressed="false" class="hot">▶ Lam đứng + ban công</button><button type="button" data-scen="gt-off" aria-pressed="false" class="hot">▶ Bỏ giếng trời</button><button type="button" data-scen="gt-on" aria-pressed="false" class="hot">▶ Giữ giếng trời</button><button type="button" data-scen="ongba-up" aria-pressed="false" class="hot">▶ Ông bà ở tầng trên</button><button type="button" data-scen="ongba-down" aria-pressed="false" class="hot">▶ Ông bà ở tầng 1</button></div><div class="row"><span class="lab">Lớp đo</span><button type="button" data-layer="sun" aria-pressed="false">☀ Đường nắng</button><button type="button" data-layer="wind" aria-pressed="false">🌬 Gió</button><button type="button" data-layer="area" aria-pressed="false">📏 Diện tích</button><label class="nm">Giờ <input id="nT" type="range" min="6" max="18" step="0.25" value="16" aria-label="Giờ trong ngày"><output id="nTo">16:00</output></label><button type="button" data-season="he" aria-pressed="true">Ngày 21/6</button><button type="button" data-season="dong" aria-pressed="false">Ngày 21/12</button></div><div class="row"><span class="lab">Xem</span><button type="button" data-mode="3d" aria-pressed="true">Nhà 3D</button><button type="button" data-mode="2d" aria-pressed="false">Mặt bằng 2D</button><span id="flBtns" style="display:contents"></span><button type="button" data-mirror="1" aria-pressed="false">⇋ Lật trái phải</button></div><div class="row"><span class="lab">Góc máy</span><button type="button" data-cam="all" aria-pressed="true">Toàn cảnh</button><button type="button" data-cam="street" aria-pressed="false">Từ vỉa hè</button><button type="button" data-cam="back" aria-pressed="false">Phía sau</button><button type="button" data-cam="top" aria-pressed="false">Từ trên cao</button></div>
+      <div class="readout" id="readout" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <article class="guide">
+    <noscript><p>Bài viết về phong cách nhà ở và lối sống: nhà ống hẹp mặt tiền cần giếng trời và cầu thang giữa nhà; mặt tiền hướng Tây cần lam đứng; phòng ông bà nên ở tầng 1; lô đất ≤ 90 m² được xây tối đa 100%, 100 m² là 90%, 200 m² là 70% (QCVN 01:2021/BXD). Bật JavaScript để tự phác thảo và xem ngôi nhà 3D.</p></noscript>
+    <div id="guide"></div>
+    <p class="ask">Bài viết có ích? Bấm <b>Thích</b> và <b>Chia sẻ</b> cho người bạn cùng sở thích.</p>
+    <div class="post-actions" data-slug="ngoi-nha-mo-uoc"></div>
+    <h3 style="margin-top:2em">Đọc tiếp</h3>
+    <div class="more"><a href="no-khi-gas-va-no-binh-gas.html"><b>Nổ khí gas hay nổ bình gas?</b><span>An toàn trong nhà · 3D</span></a><a href="tho-4-7-8-truoc-khi-ngu.html"><b>Thở 4–7–8 trước khi ngủ</b><span>Tập thở · giấc ngủ</span></a><a href="hoi-hoa-cho-nguoi-moi.html"><b>Hội họa: học cách nhìn ánh sáng</b><span>Nghệ thuật · hội họa</span></a></div>
+    <div class="src">
+      <p>Nguồn: nhà cổ 87 Mã Mây – Hanoi Times (trùng tu 1998–1999 trong hợp tác Hà Nội – Toulouse; 5 hộ gia đình ở từ 1954 đến 1999), trang giới thiệu điểm đến của Ryo (nhà ở đô thị cuối thế kỷ 19, mở cửa 1999, di tích quốc gia 2004) · Nhà ống: Wikipedia “Tube house”; bề rộng 3–4 m, sâu 10–40 m – Local Vietnam; nhận định của giảng viên Trần Quốc Bảo (ĐH Xây dựng) về đất chật – Deccan Herald/AFP; giai thoại thuế theo mặt tiền – SEAsia, VnReview dẫn Business Insider (chưa thấy văn bản gốc) · Le Corbusier: “ngôi nhà là cỗ máy để ở”, Vers une architecture (1923); Villa Savoye 1928–1931; điều chỉnh quan điểm khoảng 1935 – EBSCO Research Starters, Wikipedia “Five Points of a New Architecture” · Phong cách Đông Dương, Ernest Hébrard (1875–1933): tòa nhà chính Đại học Đông Dương 1923–1925, thiết kế ban đầu theo tân cổ điển – Ashui, Bản tin ĐHQG Hà Nội số 302 (2016), Tạp chí Khoa học Công nghệ ĐH Đà Nẵng; Bảo tàng Louis Finot 1925/26–1932 – Tạp chí Kiến trúc số 236 (2021), Wikipedia · House for Trees (Võ Trọng Nghĩa Architects, Tân Bình, 2014, khoảng 155.000 USD) – Domus; giải nhất AR House Awards 2014 – DTiNews/VNS, Tuổi Trẻ News; WAF 2014 hạng mục Nhà ở – DTiNews · Quy mô hộ 3,5 người (thành thị 3,3) – Tổng cục Thống kê, Tổng điều tra dân số và nhà ở 1/4/2019; tỉ lệ hộ một người 10,4% (2020), 11,3% (2021) – Thông tin Khoa học và Công nghệ (VISTA) · Mật độ xây dựng thuần tối đa, hệ số sử dụng đất ≤ 7 lần – QCVN 01:2021/BXD, Bảng 2.8, ban hành kèm Thông tư 01/2021/TT-BXD ngày 19/5/2021 (qua LuatVietnam, Luật Minh Khuê, Cổng TTĐT tỉnh Lai Châu) · Sweet Home 3D ra bản đầu ngày 16/11/2006, tác giả Emmanuel Puybaret – Wikipedia, sweethome3d.com. Vị trí mặt trời tính bằng công thức thiên văn gần đúng cho vĩ độ 21,03° Bắc; quy tắc 2 lần chiều cao bậc + rộng bậc (Blondel) và quy tắc ánh sáng vào sâu 2–2,5 lần chiều cao cửa là quy tắc kinh nghiệm phổ biến. Lưu lượng gió giếng trời, % nắng, tỉ lệ che của lam, số bậc mỗi ngày là ví dụ giả định để minh họa.</p>
+      <p>Minh họa trong bài do HLV Sức Khỏe tự dựng bằng mã (không dùng ảnh, logo, tranh hay bản ghi có bản quyền). Bài viết mang tính giới thiệu, không thay thế huấn luyện viên hay lời khuyên y tế. HLV Sức Khỏe là trang cá nhân độc lập của Nguyễn Đức Dũng.</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap"><a href="../">← Về trang chủ HLV Sức Khỏe</a> · <a href="mailto:lienhe@hlvsuckhoe.com">lienhe@hlvsuckhoe.com</a></div>
+</footer>
+
+<script>
+(function(){var bar=document.getElementById('progress');function upd(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}window.addEventListener('scroll',upd,{passive:true});upd();})();
+</script>
+<script src="../js/guides/nha-mo-uoc.js"></script>
+<script src="../js/guide.js"></script>
+<script src="../js/guides/nha-engine.js"></script>
+<script type="importmap">{"imports":{"three":"../js/vendor/three/three.module.min.js","three/addons/":"../js/vendor/three/addons/"}}</script>
+<script type="module" src="../js/guides/stage-nha-mo-uoc.js"></script>
+<script src="../js/config.js"></script>
+<script src="../js/post-actions.js" defer></script>
+<!-- Cloudflare Web Analytics (thống kê lượt xem, không cookie, không lưu IP) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1dd877b5432a4181b42a4b65990cb60c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

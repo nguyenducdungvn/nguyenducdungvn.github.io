@@ -232,6 +232,7 @@ SELECT k, n FROM totals WHERE k LIKE 'view:%' OR k LIKE 'like:%' ORDER BY k;
 | Nệm thiền, nến | Thiền & hơi thở (thở 1 phút, hẹn giờ, BreathSync, bài 4–7–8) | `#thien` |
 | Thảm tập, tạ | Luyện tập (động tác hôm nay, HLV Sức Khỏe) | `#van-dong` |
 | Bình chữa cháy (góc dưới bên trái giá sách) | An toàn trong nhà (kiểm tra bếp gas 1 phút, số khẩn cấp 114/115/113, vòng tròn: Nổ khí gas hay nổ bình gas?) | `#goc-an-toan` |
+| Mô hình ngôi nhà (trên bậu cửa sổ, x 556–652, y 275–326; nhãn tại 546,250) | Nhà ở (5 câu hỏi trước khi thuê vẽ nhà, vòng tròn: Ngôi nhà mơ ước) | `#goc-nha-o` |
 | Khung ảnh | Gia đình (việc nhỏ cùng nhau, lời hay, Tôi & Gia Đình) | `#goc-gia-dinh` |
 | Đàn guitar | Âm nhạc (bài hát hôm nay, 20 bài, đặt bài hát riêng) | `#am-nhac`, `#goc-sang-tac` |
 | Tranh treo tường | Hội họa (vòng tròn: Hội họa, Nhạc cổ điển) | `#goc-nghe-thuat` |
@@ -364,3 +365,9 @@ Không dùng ảnh vận động viên, logo giải đấu/CLB, tranh hay bản 
 - Minh họa 3D: căn bếp 4 × 3 × 2,8 m, lưới 20 × 14 × 15 ô nồng độ gas (gas nặng chìm xuống sàn); công tắc 1,3 m / ổ cắm 0,3 m để tự gây nổ; khóa van – mở cửa – ra ngoài; chỉ mở cửa sổ / chỉ mở cửa ra vào; đầu báo đặt thấp / cao; thước đo nồng độ theo độ cao; bãi đất trống mô phỏng bình gas bị lửa nung (BLEVE) theo thí nghiệm BAM 2017. Mọi số trong mô phỏng là ví dụ giả định.
 - Trang chủ: đồ vật mới **bình chữa cháy** ở góc dưới bên trái giá sách → mục `#goc-an-toan` (kiểm tra bếp gas, số khẩn cấp, danh sách bài tự sinh từ `js/posts.js`), nút “🧯 An toàn” trong dải Đi tới các góc, thẻ bài đầu danh sách, `posts.js?v=2.5.0`, `home.css?v=2.5.0` (`.safe-list`, `.sos`), sitemap 24 địa chỉ, ảnh og `img/og/no-khi-gas-va-no-binh-gas.jpg`.
 - Thêm bài vào góc an toàn: dòng mới trong `js/posts.js` với `spots: ['goc-an-toan']`.
+
+## Bản 2.6.0 – Góc nhà ở, bài “Ngôi nhà mơ ước” (25/11/2026)
+- Bài mới `bai-viet/ngoi-nha-mo-uoc.html` (sinh bằng `tools/make_guides.py`; chữ ở `js/guides/nha-mo-uoc.js`, 3D ở `js/guides/stage-nha-mo-uoc.js`, bộ máy xếp phòng và vẽ mặt bằng SVG ở `js/guides/nha-engine.js` – nạp bằng khóa mới `pre` trong `make_guides.py`, là script thường chạy trước module 3D). Mở đầu và lời kết: nhà cổ 87 Mã Mây. Năm góc nhìn: Kiến trúc sư, Sử gia kiến trúc, Gia đình ba thế hệ, Vợ chồng trẻ, Người làm việc tại nhà.
+- Sân khấu 3D: nhập rộng/dài/hướng; mẫu nhanh; 5 phong cách (mái bằng, hip, mansard, gable; màu, lan can, chớp, lam); 4 lối sống; tùy chỉnh người, xe, phòng, tầng, tiện ích; được – mất: kính hướng Tây / lam đứng + ban công, bỏ / giữ giếng trời, ông bà tầng trên / tầng 1; lớp nắng (Hà Nội 21° Bắc, 21/6 hoặc 21/12), gió, diện tích; xem 3D / mặt bằng 2D, bóc từng tầng, lật trái phải. Chiều rộng khối nhà được giới hạn (nhà phố 12 m, cấp 4 14 m, nhà vườn 15 m) để lô rất rộng không sinh phòng khổng lồ.
+- Trang chủ: đồ vật mới **mô hình ngôi nhà** trên bậu cửa sổ → mục `#goc-nha-o` (5 câu hỏi trước khi thuê vẽ nhà, danh sách bài tự sinh), menu đầu trang “Nhà ở”, nút “🏠 Nhà ở” trong dải Đi tới các góc, thẻ bài đầu danh sách, `posts.js?v=2.6.0` (bài thuộc `goc-nha-o` và `goc-gia-dinh`; `HLV_SPOTS` thêm hai góc), sitemap thêm 1 địa chỉ, ảnh og `img/og/ngoi-nha-mo-uoc.jpg`.
+- Thêm bài vào góc nhà ở: dòng mới trong `js/posts.js` với `spots: ['goc-nha-o']`.

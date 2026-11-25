@@ -13,6 +13,7 @@
    ===================================================================== */
 window.HLV_MENU_MIN = 1;
 window.HLV_POSTS = [
+  { slug: 'ngoi-nha-mo-uoc', title: 'Ngôi nhà mơ ước', icon: '🏠', spots: ['goc-nha-o', 'goc-gia-dinh'] },
   { slug: 'no-khi-gas-va-no-binh-gas', title: 'Nổ khí gas hay nổ bình gas?', icon: '🔥', spots: ['goc-an-toan'] },
   { slug: 'vong-xoan-ulam-so-nguyen-to', title: 'Vòng xoắn Ulam', icon: '🌀', spots: ['goc-toan-hoc', 'goc-giai-do'] },
   { slug: 'khoi-dong-va-gian-co-dung-cach', title: 'Khởi động & giãn cơ', icon: '🤸', spots: ['goc-the-thao', 'van-dong'] },
@@ -33,5 +34,5 @@ window.HLV_SPOTS = {
   'goc-the-thao': ['⚽', 'Góc thể thao'], 'goc-nghe-thuat': ['🎨', 'Góc hội họa'], 'am-nhac': ['🎸', 'Nghe bài hát'],
   'van-dong': ['💪', 'Góc luyện tập'], 'thien': ['🧘', 'Góc thiền'], 'goc-than-tam-tri': ['🌱', 'Thân · Tâm · Trí'],
   'goc-toan-hoc': ['🔢', 'Góc toán học'], 'goc-giai-do': ['🧩', 'Góc giải đố'],
-  'goc-an-toan': ['🧯', 'Góc an toàn'], 'bai-viet': ['📚', 'Tất cả bài viết']
+  'goc-an-toan': ['🧯', 'Góc an toàn'], 'goc-nha-o': ['🏠', 'Góc nhà ở'], 'goc-gia-dinh': ['🏡', 'Góc gia đình'], 'bai-viet': ['📚', 'Tất cả bài viết']
 };
