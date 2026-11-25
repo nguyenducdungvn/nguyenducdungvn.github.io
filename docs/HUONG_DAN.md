@@ -386,3 +386,7 @@ Không dùng ảnh vận động viên, logo giải đấu/CLB, tranh hay bản 
 - Ví dụ mẫu 300 g propan trong phòng 3 × 4 × 2,7 m: Δp ≈ (γ − 1)·Q/V ≈ 130 kPa cận trên, ≈ 13 kPa nếu chỉ 10%; cần ≈ 1,2 kg để cả phòng đạt 2,1%.
 - Máy tính `.gas-calc` (`stage-khi-gas.js`): đổi sang phương pháp năng lượng Δp = 0,3·m·46,1 MJ/V (tối đa 800 kPa), propan 1,83 kg/m³, hiện cả cận trên và mức 10%; mặc định 12 m² × 2,7 m × 0,3 kg.
 - Nguồn bổ sung trong `tools/make_guides.py`.
+
+## Bản 2.7.2 – Kiểm Đếm Ca Đêm Mùa 2: Tập 1 trọn bộ (25/11/2026)
+- Thẻ Mùa 2 ở Góc giải đố và kệ ứng dụng: thay “Đã có Màn 1” / “Mới có Màn 1” bằng “Tập 1 trọn bộ 3 màn” (game `kiemdem2.hlvsuckhoe.com` bản v2.0.0).
+- Khi ra Tập 2 · Chợ Sớm: Ctrl + F `kiemdem2` trong `index.html`, sửa hai mô tả này.
