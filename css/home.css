@@ -435,3 +435,27 @@ details.vc[open]{padding-bottom:18px}
 .sos a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 6px;border-radius:14px;background:#fdecea;border:1px solid #f3c4bd;text-decoration:none;color:#8a1c12}
 .sos a b{font:700 1.6rem var(--display);line-height:1.1}
 .sos a span{font-size:.78rem;color:#8a1c12;text-align:center}
+/* ===== Kệ bài viết: ghim + bài viết cũ (2.9.0, js/post-shelf.js) ===== */
+.post.pinned{border:2px solid var(--sun);background:color-mix(in srgb,var(--sun) 7%,var(--card))}
+.post .pin-b{justify-self:start;font-size:.72rem;font-weight:700;letter-spacing:.4px;color:#5a3d00;background:var(--sun);border-radius:999px;padding:2px 9px}
+.shelf-old{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:4px 16px}
+.shelf-old>summary{cursor:pointer;list-style:none;display:flex;gap:12px;align-items:center;padding:12px 0}
+.shelf-old>summary::-webkit-details-marker{display:none}
+.shelf-old>summary:after{content:"▾";margin-left:auto;color:var(--muted);transition:transform .2s}
+.shelf-old[open]>summary:after{transform:rotate(180deg)}
+.shelf-old .so-ic{font-size:1.5rem}
+.shelf-old summary b{font-family:var(--display);font-size:1.1rem}
+.shelf-old summary i{display:block;font-style:normal;font-size:.85rem;color:var(--muted)}
+.shelf-old .so-filter{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.shelf-old .so-filter button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:5px 11px;font:500 .84rem var(--body);cursor:pointer}
+.shelf-old .so-filter button[aria-pressed="true"]{background:var(--forest);border-color:var(--forest);color:#fff}
+.shelf-old .so-grid{margin-bottom:16px}
+.shelf-soon{opacity:.9}
+.hb-all{border:1px dashed var(--line);background:transparent;color:var(--forest);border-radius:999px;padding:4px 11px;font:600 .82rem var(--body);cursor:pointer}
+/* ===== Góc công nghệ (2.9.0, js/cong-nghe.js) ===== */
+.cn-in{display:grid;gap:8px;margin:10px 0 4px}
+.cn-in label{display:flex;align-items:center;gap:10px;font-size:.92rem;flex-wrap:wrap}
+.cn-in input[type=range]{flex:1 1 160px;accent-color:var(--forest);min-height:32px}
+.cn-in output{min-width:5.5em;font-weight:700;color:var(--forest)}
+#cnSvg{width:100%;height:auto;display:block;margin:6px 0;color:var(--ink)}
+.cn-res{font-size:.95rem;margin:4px 0 0}

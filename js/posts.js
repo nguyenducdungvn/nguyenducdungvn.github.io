@@ -10,18 +10,29 @@
    - HLV_MENU_MIN: số bài tối thiểu để đồ vật hiện vòng tròn (mặc định 1).
      Đặt 2 nếu chỉ muốn vòng tròn hiện khi góc có từ hai bài trở lên.
    Thứ tự trong danh sách = thứ tự hiện (bài mới nên đặt đầu nhóm của nó).
+   GHIM (25/11/2026): thêm  pin: true  vào dòng của bài hấp dẫn, giữ chân
+   người đọc → bài luôn đứng đầu mục Bài viết (nhãn 📌), đầu vòng tròn đồ
+   vật và đầu danh sách trong góc. Bỏ ghim: xóa  pin: true .
+   HLV_SHOW: số bài mới (không ghim) hiện ở mục Bài viết; các bài còn lại
+   tự vào khung gập "📚 Bài viết cũ" (js/post-shelf.js). Bài cũ không xóa.
+   HLV_RING_MAX / HLV_LIST_MAX: số bài tối đa trong vòng tròn quanh đồ vật
+   và trong danh sách ở mỗi góc; thừa thì có lối "cả N bài" / "+ N bài cũ hơn".
    ===================================================================== */
 window.HLV_MENU_MIN = 1;
+window.HLV_SHOW = 6;
+window.HLV_RING_MAX = 6;
+window.HLV_LIST_MAX = 6;
 window.HLV_POSTS = [
+  { slug: 'fsd-v15-xe-tu-lai-co-giam-sat', title: 'FSD v15: xe tự lái có giám sát', icon: '🚗', spots: ['goc-cong-nghe', 'goc-lai-xe'] },
   { slug: 'ham-so-hay-quan-so', title: 'Hàm số hay Quan số?', icon: '🈳', spots: ['goc-toan-hoc'] },
   { slug: 'so-cuu-bong-dung-cach', title: 'Sơ cứu bỏng đúng cách', icon: '💧', spots: ['goc-an-toan'] },
   { slug: 'thoat-nan-chay-chung-cu', title: 'Thoát nạn khi cháy chung cư', icon: '🚪', spots: ['goc-an-toan'] },
   { slug: 'binh-chua-chay-trong-nha', title: 'Bình chữa cháy trong nhà', icon: '🧯', spots: ['goc-an-toan'] },
-  { slug: 'ngoi-nha-mo-uoc', title: 'Ngôi nhà mơ ước', icon: '🏠', spots: ['goc-nha-o', 'goc-gia-dinh'] },
-  { slug: 'no-khi-gas-va-no-binh-gas', title: 'Nổ khí gas hay nổ bình gas?', icon: '🔥', spots: ['goc-an-toan'] },
+  { slug: 'ngoi-nha-mo-uoc', title: 'Ngôi nhà mơ ước', icon: '🏠', spots: ['goc-nha-o', 'goc-gia-dinh'], pin: true },
+  { slug: 'no-khi-gas-va-no-binh-gas', title: 'Nổ khí gas hay nổ bình gas?', icon: '🔥', spots: ['goc-an-toan'], pin: true },
   { slug: 'vong-xoan-ulam-so-nguyen-to', title: 'Vòng xoắn Ulam', icon: '🌀', spots: ['goc-toan-hoc', 'goc-giai-do'] },
   { slug: 'khoi-dong-va-gian-co-dung-cach', title: 'Khởi động & giãn cơ', icon: '🤸', spots: ['goc-the-thao', 'van-dong'] },
-  { slug: 'bong-da-cho-nguoi-moi', title: 'Bóng đá', icon: '⚽', spots: ['goc-the-thao'] },
+  { slug: 'bong-da-cho-nguoi-moi', title: 'Bóng đá', icon: '⚽', spots: ['goc-the-thao'], pin: true },
   { slug: 'golf-cho-nguoi-moi', title: 'Golf', icon: '⛳', spots: ['goc-the-thao'] },
   { slug: 'boi-loi-cho-nguoi-moi', title: 'Bơi lội', icon: '🏊', spots: ['goc-the-thao'] },
   { slug: 'dem-guitar-bon-hop-am', title: 'Đệm guitar', icon: '🎸', spots: ['am-nhac'] },
@@ -38,5 +49,5 @@ window.HLV_SPOTS = {
   'goc-the-thao': ['⚽', 'Góc thể thao'], 'goc-nghe-thuat': ['🎨', 'Góc hội họa'], 'am-nhac': ['🎸', 'Nghe bài hát'],
   'van-dong': ['💪', 'Góc luyện tập'], 'thien': ['🧘', 'Góc thiền'], 'goc-than-tam-tri': ['🌱', 'Thân · Tâm · Trí'],
   'goc-toan-hoc': ['🔢', 'Góc toán học'], 'goc-giai-do': ['🧩', 'Góc giải đố'],
-  'goc-an-toan': ['🧯', 'Góc an toàn'], 'goc-nha-o': ['🏠', 'Góc nhà ở'], 'goc-gia-dinh': ['🏡', 'Góc gia đình'], 'bai-viet': ['📚', 'Tất cả bài viết']
+  'goc-an-toan': ['🧯', 'Góc an toàn'], 'goc-lai-xe': ['🚗', 'Góc lái xe'], 'goc-cong-nghe': ['🤖', 'Góc công nghệ'], 'goc-nha-o': ['🏠', 'Góc nhà ở'], 'goc-gia-dinh': ['🏡', 'Góc gia đình'], 'bai-viet': ['📚', 'Tất cả bài viết']
 };

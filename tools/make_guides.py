@@ -32,7 +32,27 @@ SAFE_MORE = [('no-khi-gas-va-no-binh-gas', 'Nổ khí gas hay nổ bình gas?', 
 SCI_MORE = [('ham-so-hay-quan-so', 'Hàm số hay Quan số? Dịch toán học bằng chữ Hán', 'Khoa học · toán học & chữ nghĩa'),
             ('vong-xoan-ulam-so-nguyen-to', 'Vòng xoắn Ulam: khi con mắt gặp số nguyên tố', 'Khoa học · toán học')]
 
+DRIVE_MORE = [('no-khi-gas-va-no-binh-gas', 'Nổ khí gas hay nổ bình gas?', 'An toàn · căn bếp 3D'),
+              ('thoat-nan-chay-chung-cu', 'Thoát nạn khi cháy chung cư', 'An toàn · khói đi đường nào'),
+              ('tho-4-7-8-truoc-khi-ngu', 'Thở 4–7–8 trước khi ngủ', 'Giấc ngủ · ngủ đủ trước khi lái'),
+              ('vong-xoan-ulam-so-nguyen-to', 'Vòng xoắn Ulam: khi con mắt gặp số nguyên tố', 'Khoa học · toán học')]
+
 PAGES = [
+ dict(slug='fsd-v15-xe-tu-lai-co-giam-sat', date='25/11/2026', data='fsd-v15', stage='stage-fsd-v15.js', three=False, back='#goc-cong-nghe', backtxt='← Góc công nghệ',
+  title='FSD v15: khi chiếc xe cho bạn xem nó đang nghĩ gì – tự lái có giám sát | HLV Sức Khỏe',
+  desc='Tesla FSD (Supervised) v15 có gì mới, con số “an toàn hơn 25 lần” nên hiểu thế nào, và vì sao người ngồi ghế giám sát vẫn phải tỉnh táo. Tự thử trên con đường mô phỏng: màn hình kiểu cũ và Reality View, quãng đường dừng xe, đo phản xạ của bạn.',
+  ogt='FSD v15: khi chiếc xe cho bạn xem nó đang nghĩ gì', ogd='So màn hình cũ với Reality View, liếc điện thoại 3 giây trên con đường mô phỏng, và tự đo phản xạ của người giám sát.',
+  kicker='Công nghệ · Lái xe an toàn · Mới', h1='FSD v15: khi chiếc xe cho bạn xem <em>nó đang nghĩ gì</em>',
+  dek='Ngày 21/11/2026, Tesla bắt đầu phát hành bản 15 của phần mềm “tự lái có giám sát”, kèm một màn hình mới đẹp như phim và lời hứa xử lý tình huống nguy hiểm tốt hơn 25 lần. Bài này cho bạn ngồi thử ghế giám sát trên một con đường mô phỏng – và tự thấy vì sao đôi mắt người lái vẫn chưa thể nghỉ.',
+  read='Đọc và thử 7–12 phút', stitle='Con đường mô phỏng · nhìn từ trên cao', ssub='Xe và vật cản phóng to 1,8 lần cho dễ nhìn · cách máy phát hiện vật cản là ví dụ giả định, không phải dữ liệu của Tesla',
+  tools=row('Xem', b('data-view','world','Thực tế',True)+b('data-view','old','Màn hình kiểu cũ')+b('data-view','rv','Kiểu Reality View')+b('data-view','split','Chia đôi'))
+       +row('Được – mất', b('data-scen','auto','▶ Máy thấy kịp',cls='hot')+b('data-scen','watch','▶ Ca hiếm · bạn nhìn đường',cls='hot')+b('data-scen','phone','▶ Ca hiếm · liếc điện thoại 3 s',cls='hot')+b('data-scen','trust','▶ Ca hiếm · tin máy hoàn toàn',cls='hot'))
+       +row('Thử sức', b('data-scen','test','▶ Thử làm người giám sát',cls='hot')+'<button type="button" data-act="reset">Đặt lại</button>')
+       +row('Tình huống', b('data-haz','box','📦 Thùng hàng rơi',True)+b('data-haz','dog','🐕 Chó chạy ra')+b('data-haz','moto','🛵 Xe máy tạt đầu')+b('data-speed','40','40 km/h')+b('data-speed','60','60 km/h',True)+b('data-speed','90','90 km/h')+b('data-road','dry','Đường khô',True)+b('data-road','wet','Đường ướt'))
+       +row('Lớp đo', '<button type="button" data-layer="stop" aria-pressed="false">📏 Quãng dừng xe</button><button type="button" data-layer="cams" aria-pressed="false">🎥 Vùng nhìn 8 camera</button>'),
+  noscript='FSD (Supervised) v15 bắt đầu phát hành ngày 21/11/2026. Đây vẫn là hệ thống hỗ trợ lái cấp 2: người lái chịu trách nhiệm và phải nhìn đường liên tục. Ở 60 km/h, mỗi giây xe đi gần 17 m; liếc điện thoại 3 giây là 50 m đi mù. Bật JavaScript để dùng con đường mô phỏng.',
+  src='Nguồn (đúng tới 25/11/2026): Not a Tesla App – ghi chú phát hành 2026.38.6.11 (FSD 15) và bài “FSD v15 rolls out” · Electrek, 21/11/2026 “Tesla launches FSD v15…” · Forbes (Brad Templeton), 22/11/2026 “Tesla FSD V15 offers stunning visualizations that distract from 25x” · Digital Trends; Teslarati (ghi chú phát hành đầy đủ); Tesla Oracle (phát hành rộng tháng 12); Basenor (theo dõi đợt phát hành) · RDW cấp phép tại Hà Lan 4/2026 (Electrek, The Next Web, electrive) · EU hoãn bỏ phiếu tới tháng 12 (Electrek 25/9/2026; Reuters) · Đổi tên Tesla Assisted Driving (electrive 12/10/2026) · Giới hạn vượt tốc độ 10% (Electrek 3/11/2026) · Các nước có FSD và gói 99 USD/tháng (The Next Web) · Tesla Motors Việt Nam (Drive Tesla Canada 14/9/2026) · v14 Lite cho HW3, mục tiêu không giám sát quý II/2027 (DigitalToday) · WHO, Global status report on road safety 2023 (1,19 triệu người tử vong mỗi năm) · NTSB, báo cáo vụ Tempe 2018 (HAR-19/03) · L. Bainbridge (1983), “Ironies of automation”, Automatica · A. Eriksson &amp; N. Stanton (2017), “Takeover time in highly automated vehicles”, Human Factors · AASHTO (thời gian phản ứng 2,5 s cho tầm nhìn dừng xe). Vùng nhìn camera theo thông số Tesla công bố cho hệ camera đời trước (250 / 150 / 60 / 80 / 100 / 50 m), hệ AI4 có thể khác. Hệ số bám đường, khoảng cách máy phát hiện vật cản và mọi số trong mô phỏng là ví dụ giả định.',
+  more=DRIVE_MORE),
  dict(slug='bong-da-cho-nguoi-moi', data='bong-da', stage='stage-bong-da.js', three=True, back='#goc-the-thao', backtxt='← Góc thể thao',
   title='Bóng đá cho người mới: nhìn ra khoảng trống | HLV Sức Khỏe',
   desc='Bóng đá cho người chưa biết gì: luật việt vị tự thử trên sân 3D đúng tỉ lệ, sơ đồ 4-4-2, 4-3-3, 3-5-2, cách xem trận như huấn luyện viên. Năm góc nhìn, ba tầng nội dung.',

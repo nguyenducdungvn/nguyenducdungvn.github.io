@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- HLV Sức Khỏe – bài tương tác (24/11/2026). Trang này được sinh bởi tools/make_guides.py: sửa ở đó hoặc ở js/guides/fsd-v15.js -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FSD v15: khi chiếc xe cho bạn xem nó đang nghĩ gì – tự lái có giám sát | HLV Sức Khỏe</title>
+<meta name="description" content="Tesla FSD (Supervised) v15 có gì mới, con số “an toàn hơn 25 lần” nên hiểu thế nào, và vì sao người ngồi ghế giám sát vẫn phải tỉnh táo. Tự thử trên con đường mô phỏng: màn hình kiểu cũ và Reality View, quãng đường dừng xe, đo phản xạ của bạn.">
+<meta name="theme-color" content="#0f6a4b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FSD v15: khi chiếc xe cho bạn xem nó đang nghĩ gì">
+<meta property="og:description" content="So màn hình cũ với Reality View, liếc điện thoại 3 giây trên con đường mô phỏng, và tự đo phản xạ của người giám sát.">
+<meta property="og:url" content="https://hlvsuckhoe.com/bai-viet/fsd-v15-xe-tu-lai-co-giam-sat.html">
+<meta property="og:image" content="https://hlvsuckhoe.com/img/og/fsd-v15-xe-tu-lai-co-giam-sat.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="FSD v15: khi chiếc xe cho bạn xem nó đang nghĩ gì">
+<meta property="og:site_name" content="HLV Sức Khỏe">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hlvsuckhoe.com/img/og/fsd-v15-xe-tu-lai-co-giam-sat.jpg">
+<link rel="canonical" href="https://hlvsuckhoe.com/bai-viet/fsd-v15-xe-tu-lai-co-giam-sat.html">
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,700;1,7..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/bai-viet.css">
+<link rel="stylesheet" href="../css/guide.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="../"><img src="../img/logo.svg" alt="">HLV Sức Khỏe</a>
+    <a class="back" href="../#goc-cong-nghe">← Góc công nghệ</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="kicker">Công nghệ · Lái xe an toàn · Mới</span>
+    <h1>FSD v15: khi chiếc xe cho bạn xem <em>nó đang nghĩ gì</em></h1>
+    <p class="dek">Ngày 21/11/2026, Tesla bắt đầu phát hành bản 15 của phần mềm “tự lái có giám sát”, kèm một màn hình mới đẹp như phim và lời hứa xử lý tình huống nguy hiểm tốt hơn 25 lần. Bài này cho bạn ngồi thử ghế giám sát trên một con đường mô phỏng – và tự thấy vì sao đôi mắt người lái vẫn chưa thể nghỉ.</p>
+    <div class="meta"><span>Nguyễn Đức Dũng</span><span>25/11/2026</span><span>Đọc và thử 7–12 phút</span></div>
+    <div class="post-actions" data-slug="fsd-v15-xe-tu-lai-co-giam-sat"></div>
+  </div>
+
+  <div class="lensbar" id="lensBar" aria-label="Góc nhìn và tầng nội dung"></div>
+
+  <section class="stage" id="stage" aria-labelledby="stageH">
+    <div class="stage-head"><h2 id="stageH">Con đường mô phỏng · nhìn từ trên cao</h2><p>Xe và vật cản phóng to 1,8 lần cho dễ nhìn · cách máy phát hiện vật cản là ví dụ giả định, không phải dữ liệu của Tesla</p></div>
+    <div class="view" id="view"></div>
+    <div class="tools" id="tools">
+      <div class="row"><span class="lab">Xem</span><button type="button" data-view="world" aria-pressed="true">Thực tế</button><button type="button" data-view="old" aria-pressed="false">Màn hình kiểu cũ</button><button type="button" data-view="rv" aria-pressed="false">Kiểu Reality View</button><button type="button" data-view="split" aria-pressed="false">Chia đôi</button></div><div class="row"><span class="lab">Được – mất</span><button type="button" data-scen="auto" aria-pressed="false" class="hot">▶ Máy thấy kịp</button><button type="button" data-scen="watch" aria-pressed="false" class="hot">▶ Ca hiếm · bạn nhìn đường</button><button type="button" data-scen="phone" aria-pressed="false" class="hot">▶ Ca hiếm · liếc điện thoại 3 s</button><button type="button" data-scen="trust" aria-pressed="false" class="hot">▶ Ca hiếm · tin máy hoàn toàn</button></div><div class="row"><span class="lab">Thử sức</span><button type="button" data-scen="test" aria-pressed="false" class="hot">▶ Thử làm người giám sát</button><button type="button" data-act="reset">Đặt lại</button></div><div class="row"><span class="lab">Tình huống</span><button type="button" data-haz="box" aria-pressed="true">📦 Thùng hàng rơi</button><button type="button" data-haz="dog" aria-pressed="false">🐕 Chó chạy ra</button><button type="button" data-haz="moto" aria-pressed="false">🛵 Xe máy tạt đầu</button><button type="button" data-speed="40" aria-pressed="false">40 km/h</button><button type="button" data-speed="60" aria-pressed="true">60 km/h</button><button type="button" data-speed="90" aria-pressed="false">90 km/h</button><button type="button" data-road="dry" aria-pressed="true">Đường khô</button><button type="button" data-road="wet" aria-pressed="false">Đường ướt</button></div><div class="row"><span class="lab">Lớp đo</span><button type="button" data-layer="stop" aria-pressed="false">📏 Quãng dừng xe</button><button type="button" data-layer="cams" aria-pressed="false">🎥 Vùng nhìn 8 camera</button></div>
+      <div class="readout" id="readout" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <article class="guide">
+    <noscript><p>FSD (Supervised) v15 bắt đầu phát hành ngày 21/11/2026. Đây vẫn là hệ thống hỗ trợ lái cấp 2: người lái chịu trách nhiệm và phải nhìn đường liên tục. Ở 60 km/h, mỗi giây xe đi gần 17 m; liếc điện thoại 3 giây là 50 m đi mù. Bật JavaScript để dùng con đường mô phỏng.</p></noscript>
+    <div id="guide"></div>
+    <p class="ask">Bài viết có ích? Bấm <b>Thích</b> và <b>Chia sẻ</b> cho người bạn cùng sở thích.</p>
+    <div class="post-actions" data-slug="fsd-v15-xe-tu-lai-co-giam-sat"></div>
+    <h3 style="margin-top:2em">Đọc tiếp</h3>
+    <div class="more"><a href="no-khi-gas-va-no-binh-gas.html"><b>Nổ khí gas hay nổ bình gas?</b><span>An toàn · căn bếp 3D</span></a><a href="thoat-nan-chay-chung-cu.html"><b>Thoát nạn khi cháy chung cư</b><span>An toàn · khói đi đường nào</span></a><a href="tho-4-7-8-truoc-khi-ngu.html"><b>Thở 4–7–8 trước khi ngủ</b><span>Giấc ngủ · ngủ đủ trước khi lái</span></a><a href="vong-xoan-ulam-so-nguyen-to.html"><b>Vòng xoắn Ulam: khi con mắt gặp số nguyên tố</b><span>Khoa học · toán học</span></a></div>
+    <div class="src">
+      <p>Nguồn (đúng tới 25/11/2026): Not a Tesla App – ghi chú phát hành 2026.38.6.11 (FSD 15) và bài “FSD v15 rolls out” · Electrek, 21/11/2026 “Tesla launches FSD v15…” · Forbes (Brad Templeton), 22/11/2026 “Tesla FSD V15 offers stunning visualizations that distract from 25x” · Digital Trends; Teslarati (ghi chú phát hành đầy đủ); Tesla Oracle (phát hành rộng tháng 12); Basenor (theo dõi đợt phát hành) · RDW cấp phép tại Hà Lan 4/2026 (Electrek, The Next Web, electrive) · EU hoãn bỏ phiếu tới tháng 12 (Electrek 25/9/2026; Reuters) · Đổi tên Tesla Assisted Driving (electrive 12/10/2026) · Giới hạn vượt tốc độ 10% (Electrek 3/11/2026) · Các nước có FSD và gói 99 USD/tháng (The Next Web) · Tesla Motors Việt Nam (Drive Tesla Canada 14/9/2026) · v14 Lite cho HW3, mục tiêu không giám sát quý II/2027 (DigitalToday) · WHO, Global status report on road safety 2023 (1,19 triệu người tử vong mỗi năm) · NTSB, báo cáo vụ Tempe 2018 (HAR-19/03) · L. Bainbridge (1983), “Ironies of automation”, Automatica · A. Eriksson &amp; N. Stanton (2017), “Takeover time in highly automated vehicles”, Human Factors · AASHTO (thời gian phản ứng 2,5 s cho tầm nhìn dừng xe). Vùng nhìn camera theo thông số Tesla công bố cho hệ camera đời trước (250 / 150 / 60 / 80 / 100 / 50 m), hệ AI4 có thể khác. Hệ số bám đường, khoảng cách máy phát hiện vật cản và mọi số trong mô phỏng là ví dụ giả định.</p>
+      <p>Minh họa trong bài do HLV Sức Khỏe tự dựng bằng mã (không dùng ảnh, logo, tranh hay bản ghi có bản quyền). Bài viết mang tính giới thiệu, không thay thế huấn luyện viên hay lời khuyên y tế. HLV Sức Khỏe là trang cá nhân độc lập của Nguyễn Đức Dũng.</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap"><a href="../">← Về trang chủ HLV Sức Khỏe</a> · <a href="mailto:lienhe@hlvsuckhoe.com">lienhe@hlvsuckhoe.com</a></div>
+</footer>
+
+<script>
+(function(){var bar=document.getElementById('progress');function upd(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}window.addEventListener('scroll',upd,{passive:true});upd();})();
+</script>
+<script src="../js/guides/fsd-v15.js"></script>
+<script src="../js/guide.js"></script>
+<script src="../js/guides/stage-fsd-v15.js" defer></script>
+<script src="../js/config.js"></script>
+<script src="../js/post-actions.js" defer></script>
+<!-- Cloudflare Web Analytics (thống kê lượt xem, không cookie, không lưu IP) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1dd877b5432a4181b42a4b65990cb60c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

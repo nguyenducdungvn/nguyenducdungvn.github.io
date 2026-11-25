@@ -3,13 +3,17 @@
 (function () {
   'use strict';
   var P = window.HLV_POSTS || [], SP = window.HLV_SPOTS || {}, MIN = window.HLV_MENU_MIN || 1;
-  function postsFor(id) { return P.filter(function (p) { return p.spots.indexOf(id) >= 0; }); }
+  var RING = window.HLV_RING_MAX || 6, LIST = window.HLV_LIST_MAX || 6;
+  // bài ghim (pin: true) đứng đầu, sau đó theo thứ tự trong posts.js (mới trước)
+  function postsFor(id) { var a = P.filter(function (p) { return p.spots.indexOf(id) >= 0; }); return a.filter(function (p) { return p.pin; }).concat(a.filter(function (p) { return !p.pin; })); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   // 1) danh sách bài trong các ô có data-posts
   document.querySelectorAll('[data-posts]').forEach(function (ul) {
     var ps = postsFor(ul.getAttribute('data-posts')); if (!ps.length) return;
-    ul.innerHTML = ps.map(function (p) { return '<li><a href="bai-viet/' + p.slug + '.html"><span aria-hidden="true">' + p.icon + '</span> ' + esc(p.title) + '</a> <span class="hb-st" data-post-stats="' + p.slug + '"></span></li>'; }).join('');
+    ul.innerHTML = ps.map(function (p, i) { return '<li' + (i >= LIST ? ' class="hb-more" hidden' : '') + '><a href="bai-viet/' + p.slug + '.html"><span aria-hidden="true">' + (p.pin ? '📌' : p.icon) + '</span> ' + esc(p.title) + '</a> <span class="hb-st" data-post-stats="' + p.slug + '"></span></li>'; }).join('') +
+      (ps.length > LIST ? '<li><button type="button" class="hb-all">+ ' + (ps.length - LIST) + ' bài cũ hơn</button></li>' : '');
+    var bt = ul.querySelector('.hb-all'); if (bt) bt.addEventListener('click', function () { ul.querySelectorAll('.hb-more').forEach(function (li) { li.hidden = false; }); bt.parentNode.remove(); });
   });
 
   // 2) vòng tròn tỏa ra khi bấm đồ vật
@@ -33,8 +37,8 @@
   function open(spot, id, ps) {
     close(); lastSpot = spot;
     var obj = spot.querySelector('.obj') || spot;
-    var items = ps.map(function (p) { return { href: 'bai-viet/' + p.slug + '.html', icon: p.icon, t: p.title }; });
-    var s = SP[id] || ['📍', 'Vào góc này']; items.push({ href: '#' + id, icon: s[0], t: s[1], corner: true });
+    var items = ps.slice(0, RING).map(function (p) { return { href: 'bai-viet/' + p.slug + '.html', icon: p.pin ? '📌' : p.icon, t: p.title }; });
+    var s = SP[id] || ['📍', 'Vào góc này']; items.push({ href: '#' + id, icon: s[0], t: ps.length > RING ? s[1] + ' · cả ' + ps.length + ' bài' : s[1], corner: true });
     var n = items.length, small = innerWidth < 600, base = small ? 96 : 128, gap = small ? 92 : 112;
     // đưa đồ vật vào giữa màn hình nếu nó sát mép trên/dưới
     var r0 = obj.getBoundingClientRect(), c0 = r0.top + r0.height / 2, need = base + 100;
