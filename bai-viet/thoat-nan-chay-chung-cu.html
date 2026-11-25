@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- HLV Sức Khỏe – bài tương tác (24/11/2026). Trang này được sinh bởi tools/make_guides.py: sửa ở đó hoặc ở js/guides/thoat-nan.js -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thoát nạn khi cháy chung cư: khói đi đường nào và bạn nên đi đường nào | HLV Sức Khỏe</title>
+<meta name="description" content="Từ vụ cháy chung cư mini Khương Hạ (12/9/2023, 56 người tử vong, 54 người do ngạt khói): vì sao khói giết người trước lửa, khi nào đi xuống, khi nào ở lại sau cánh cửa đóng, lối thoát thứ hai. Mô phỏng tòa nhà một cầu thang.">
+<meta name="theme-color" content="#0f6a4b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Thoát nạn khi cháy chung cư">
+<meta property="og:description" content="Khói đi lên theo cầu thang và giết người trước lửa. Thử chọn đường thoát trong một tòa nhà một cầu thang – và xem một cánh cửa đóng thay đổi điều gì.">
+<meta property="og:url" content="https://hlvsuckhoe.com/bai-viet/thoat-nan-chay-chung-cu.html">
+<meta property="og:image" content="https://hlvsuckhoe.com/img/og/thoat-nan-chay-chung-cu.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Thoát nạn khi cháy chung cư">
+<meta property="og:site_name" content="HLV Sức Khỏe">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hlvsuckhoe.com/img/og/thoat-nan-chay-chung-cu.jpg">
+<link rel="canonical" href="https://hlvsuckhoe.com/bai-viet/thoat-nan-chay-chung-cu.html">
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,700;1,7..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/bai-viet.css">
+<link rel="stylesheet" href="../css/guide.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="../"><img src="../img/logo.svg" alt="">HLV Sức Khỏe</a>
+    <a class="back" href="../#goc-an-toan">← Góc an toàn</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="kicker">An toàn trong nhà · Mới</span>
+    <h1>Thoát nạn khi cháy chung cư: <em>khói</em> đi đường nào</h1>
+    <p class="dek">Trong vụ cháy chung cư mini Khương Hạ, 54 trong 56 nạn nhân tử vong vì ngạt khói. Bài này cho bạn xem khói lan trong một tòa nhà một cầu thang, rồi tự chọn: chạy xuống, chạy lên, ở lại sau cánh cửa đóng, hay đi lối thoát thứ hai.</p>
+    <div class="meta"><span>Nguyễn Đức Dũng</span><span>25/11/2026</span><span>Đọc và thử 6–10 phút</span></div>
+    <div class="post-actions" data-slug="thoat-nan-chay-chung-cu"></div>
+  </div>
+
+  <div class="lensbar" id="lensBar" aria-label="Góc nhìn và tầng nội dung"></div>
+
+  <section class="stage" id="stage" aria-labelledby="stageH">
+    <div class="stage-head"><h2 id="stageH">Tòa nhà 9 tầng, một cầu thang</h2><p>Mặt cắt minh họa, không phải tòa nhà nào có thật · mô hình khói định tính, thời gian giả định</p></div>
+    <div class="view" id="view"></div>
+    <div class="tools" id="tools">
+      <div class="row"><span class="lab">Bạn ở</span><button type="button" data-floor="3" aria-pressed="false">Tầng 3</button><button type="button" data-floor="6" aria-pressed="true">Tầng 6</button><button type="button" data-floor="9" aria-pressed="false">Tầng 9</button></div><div class="row"><span class="lab">Tòa nhà</span><button type="button" data-alarm="1" aria-pressed="false">🔔 Đầu báo khói</button><button type="button" data-fdoor="1" aria-pressed="false">🚪 Cửa ngăn cháy cầu thang</button><button type="button" data-roof="1" aria-pressed="false">🔓 Cửa mái mở</button><button type="button" data-second="1" aria-pressed="false">🪜 Lối thoát thứ hai</button></div><div class="row"><span class="lab">Được – mất</span><button type="button" data-act="down" aria-pressed="false" class="hot">▶ Chạy xuống</button><button type="button" data-act="up" aria-pressed="false" class="hot">▶ Chạy lên mái</button><button type="button" data-act="stay" aria-pressed="false" class="hot">▶ Ở lại, đóng cửa, ra hiệu</button><button type="button" data-act="peek" aria-pressed="false" class="hot">▶ Mở cửa xem thử</button><button type="button" data-act="lift" aria-pressed="false" class="hot">▶ Đi thang máy</button><button type="button" data-act="second" aria-pressed="false" class="hot">▶ Lối thoát thứ hai</button></div><div class="row"><span class="lab">Xem</span><button type="button" data-act="fire" aria-pressed="false">▶ Xem khói lan</button><button type="button" data-act="reset">Đặt lại</button></div>
+      <div class="readout" id="readout" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <article class="guide">
+    <noscript><p>Khói giết người trước lửa. Đi xuống bằng cầu thang bộ, cúi thấp, đóng cửa sau lưng; không dùng thang máy. Bị kẹt: ở lại phòng có cửa sổ, đóng cửa, chèn khăn ướt, ra hiệu, gọi 114. Không nhảy từ trên cao.</p></noscript>
+    <div id="guide"></div>
+    <p class="ask">Bài viết có ích? Bấm <b>Thích</b> và <b>Chia sẻ</b> cho người bạn cùng sở thích.</p>
+    <div class="post-actions" data-slug="thoat-nan-chay-chung-cu"></div>
+    <h3 style="margin-top:2em">Đọc tiếp</h3>
+    <div class="more"><a href="no-khi-gas-va-no-binh-gas.html"><b>Nổ khí gas hay nổ bình gas?</b><span>An toàn · căn bếp 3D</span></a><a href="binh-chua-chay-trong-nha.html"><b>Bình chữa cháy trong nhà</b><span>An toàn · 15 giây đầu tiên</span></a><a href="so-cuu-bong-dung-cach.html"><b>Sơ cứu bỏng đúng cách</b><span>An toàn · 20 phút nước mát</span></a></div>
+    <div class="src">
+      <p>Nguồn: vụ cháy chung cư mini số 37 ngõ 29/70 Khương Hạ, đêm 12/9/2023 – 56 người tử vong, 37 người bị thương (VnExpress, Tuổi Trẻ, VOV, Vneconomy); 54/56 nạn nhân tử vong do ngạt khói (Báo Nhân Dân); nguyên nhân chập mạch điện khu vực ắc quy xe máy theo kết luận giám định (Công an Hà Nội qua Tuổi Trẻ, VOV, VTC News); một cầu thang bộ, khói nóng bốc lên khiến nhiều nạn nhân tử vong trên đường lên tầng cao (VnExpress); khoảng 150 cư dân (VnExpress) · Phòng đóng cửa ≈ 100 °F, 100 ppm CO so với &gt; 1.000 °F, 10.000 ppm CO; 3 phút để thoát; phương án A, B, C; khảo sát kế hoạch thoát nạn – UL Fire Safety Research Institute (Close Before You Doze, 2016–2020) · Hà Nội vận động mở lối thoát thứ hai – Lao Động · Lộ trình thiết bị truyền tin báo cháy – Nghị định 105/2025/NĐ-CP qua LuatVietnam. Mô phỏng là mô hình định tính với số liệu giả định.</p>
+      <p>Minh họa trong bài do HLV Sức Khỏe tự dựng bằng mã (không dùng ảnh, logo, tranh hay bản ghi có bản quyền). Bài viết mang tính giới thiệu, không thay thế huấn luyện viên hay lời khuyên y tế. HLV Sức Khỏe là trang cá nhân độc lập của Nguyễn Đức Dũng.</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap"><a href="../">← Về trang chủ HLV Sức Khỏe</a> · <a href="mailto:lienhe@hlvsuckhoe.com">lienhe@hlvsuckhoe.com</a></div>
+</footer>
+
+<script>
+(function(){var bar=document.getElementById('progress');function upd(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}window.addEventListener('scroll',upd,{passive:true});upd();})();
+</script>
+<script src="../js/guides/thoat-nan.js"></script>
+<script src="../js/guide.js"></script>
+<script src="../js/guides/stage-thoat-nan.js" defer></script>
+<script src="../js/config.js"></script>
+<script src="../js/post-actions.js" defer></script>
+<!-- Cloudflare Web Analytics (thống kê lượt xem, không cookie, không lưu IP) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1dd877b5432a4181b42a4b65990cb60c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

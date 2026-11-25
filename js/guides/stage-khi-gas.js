@@ -7,6 +7,29 @@ import { makeScene, THREE, mat, label, bindGroup, press, flatLine, circlePts } f
 var view = document.getElementById('view'), tools = document.getElementById('tools'), out = document.getElementById('readout');
 var tier = 1; document.addEventListener('guide:change', function (e) { tier = e.detail.tier; });
 function readout(h) { out.innerHTML = h; }
+// ===== Máy tính “gas gia đình nổ được to đến đâu?” (trong khối quymo; chạy cả khi không có WebGL) =====
+(function () {
+  function fmt(x, d) { return x.toLocaleString('vi-VN', { maximumFractionDigits: d === undefined ? 1 : d }); }
+  function calc(box) {
+    function v(k, def) { var e = box.querySelector('[data-k="' + k + '"]'), n = e ? parseFloat(String(e.value).replace(',', '.')) : NaN; return isFinite(n) && n > 0 ? n : def; }
+    var A = v('a', 30), H = v('h', 3.2), m = v('m', 1), V = A * H, Vg = m / 2.1, cmean = Vg / V * 100;
+    var Vmix = Math.min(V, Vg / 0.04), f = Vmix / V, dP = Math.min(800, 800 * f); // kPa, cận trên không xả áp
+    var mj = m * 46, tnt = mj / 4.18, m15 = 0.15 / 8 * V * 0.04 * 2.1;
+    var lv = dP >= 15 ? 'vượt mức làm sập một phần mái và tường (≈15 kPa) khoảng ' + fmt(dP / 15, 0) + ' lần' : dP >= 7 ? 'đủ phá hủy một phần nhà (≈7 kPa)' : dP >= 1 ? 'đủ làm vỡ kính (≈1 kPa)' : 'dưới mức làm vỡ kính';
+    box.querySelector('.gc-out').innerHTML =
+      '<div class="gc-big"><b>' + fmt(dP, 0) + ' kPa</b><span>quá áp ước tính nếu cháy trong phòng kín</span></div>' +
+      '<ul><li>Phòng ' + fmt(V, 0) + ' m³; ' + fmt(m, 2) + ' kg gas ≈ ' + fmt(Vg, 2) + ' m³ hơi – trộn đều cả phòng chỉ ' + fmt(cmean, 2) + '%' + (cmean >= 2 && cmean <= 9.5 ? ' (<b>cả căn phòng đã vào khoảng nổ</b>)' : cmean > 9.5 ? ' (quá đặc ở giữa, nhưng mép đám mây vẫn cháy được)' : ', nhưng gas đọng lại thành vùng đậm đặc chứ không trộn đều') + '.</li>' +
+      '<li>Vùng hỗn hợp vừa tỉ lệ (≈4%) có thể tới <b>' + fmt(Vmix, 1) + ' m³</b> = ' + fmt(f * 100, 0) + '% thể tích phòng → ' + lv + '.</li>' +
+      '<li>Hóa năng ' + fmt(mj, 0) + ' MJ ≈ ' + fmt(tnt, 1) + ' kg TNT. Chỉ cần khoảng <b>' + fmt(m15 * 1000, 0) + ' g</b> gas là trên giấy đã chạm mức 15 kPa với căn phòng này.</li></ul>' +
+      '<p class="fine">Ước lượng cận trên: bỏ qua xả áp khi kính vỡ (làm áp suất thấp hơn) và bỏ qua vật cản làm lửa tăng tốc (làm áp suất cao hơn). Hơi gas ≈ 2,1 kg/m³, P<sub>max</sub> ≈ 8 bar, 46 MJ/kg.</p>';
+  }
+  function all() { document.querySelectorAll('.gas-calc').forEach(calc); }
+  document.addEventListener('input', function (e) { var b = e.target.closest && e.target.closest('.gas-calc'); if (b) calc(b); });
+  document.addEventListener('guide:change', function () { setTimeout(all, 0); });
+  new MutationObserver(function () { document.querySelectorAll('.gas-calc').forEach(function (b) { if (!b.querySelector('.gc-out').innerHTML) calc(b); }); }).observe(document.body, { childList: true, subtree: true });
+  setTimeout(all, 0);
+})();
+
 var LEL = 2.0, UEL = 9.5, ALARM = 0.3, SPEED = 40, YX = 70; // YX: toạ độ x của bãi đất trống
 
 var S = makeScene(view, { bg: 0x0f1a27, cam: [6.6, 4.3, 7.4], target: [2, .8, 1.3], maxDist: 900, minDist: 1.2, shadowSize: 7, sun: [5, 9, 7], maxPolar: Math.PI * .49 });

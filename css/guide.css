@@ -87,3 +87,13 @@ noscript p{background:var(--wash);border-radius:12px;padding:12px 16px}
 .deep details>div p:last-child{margin-bottom:0}
 .deep .debate{border-left:3px solid var(--sun);padding-left:12px;color:var(--muted)}
 .deep .calc{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.88rem;background:var(--wash);border-radius:10px;padding:10px 12px;overflow-x:auto;white-space:pre-wrap}
+
+/* Máy tính nhỏ trong bài (bài khí gas) */
+.gas-calc{margin:14px 0;padding:14px 16px;border-radius:16px;background:#fff7ed;border:1px solid #f6d3ad}
+.gas-calc .gc-in{display:flex;flex-wrap:wrap;gap:10px 18px}
+.gas-calc label{display:flex;align-items:center;gap:6px;font-size:.95rem}
+.gas-calc input{width:5.5em;font:inherit;font-size:16px;padding:6px 8px;border:1px solid #e3b98d;border-radius:10px;background:#fff}
+.gas-calc .gc-big{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:12px 0 4px}
+.gas-calc .gc-big b{font:700 2rem var(--display,Georgia);color:#b4410e}
+.gas-calc ul{margin:6px 0;padding-left:1.2em}
+.gas-calc .fine{font-size:.82rem;opacity:.8;margin:6px 0 0}

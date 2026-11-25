@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- HLV Sức Khỏe – bài tương tác (24/11/2026). Trang này được sinh bởi tools/make_guides.py: sửa ở đó hoặc ở js/guides/binh-chua-chay.js -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bình chữa cháy trong nhà: chọn đúng, dùng đúng, biết lúc nào phải chạy | HLV Sức Khỏe</title>
+<meta name="description" content="Bình bột, CO₂, nước hay chăn chữa cháy? Rút – Hướng – Bóp – Quét, đứng cách bao xa, vì sao không đổ nước vào chảo dầu, vì sao chậm 45 giây lửa to gấp 16 lần. Tự thử dập lửa trong minh họa tương tác.">
+<meta name="theme-color" content="#0f6a4b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bình chữa cháy trong nhà: 15 giây đầu tiên">
+<meta property="og:description" content="Chọn bình, chọn cách phun, chọn thời điểm – xem lửa thắng hay bình thắng. Và biết lúc nào phải đặt bình xuống để chạy.">
+<meta property="og:url" content="https://hlvsuckhoe.com/bai-viet/binh-chua-chay-trong-nha.html">
+<meta property="og:image" content="https://hlvsuckhoe.com/img/og/binh-chua-chay-trong-nha.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bình chữa cháy trong nhà: 15 giây đầu tiên">
+<meta property="og:site_name" content="HLV Sức Khỏe">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hlvsuckhoe.com/img/og/binh-chua-chay-trong-nha.jpg">
+<link rel="canonical" href="https://hlvsuckhoe.com/bai-viet/binh-chua-chay-trong-nha.html">
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,700;1,7..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/bai-viet.css">
+<link rel="stylesheet" href="../css/guide.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="../"><img src="../img/logo.svg" alt="">HLV Sức Khỏe</a>
+    <a class="back" href="../#goc-an-toan">← Góc an toàn</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="kicker">An toàn trong nhà · Mới</span>
+    <h1>Bình chữa cháy trong nhà: <em>mười lăm giây</em> đầu tiên</h1>
+    <p class="dek">Một căn phòng có thể không còn sống nổi sau khoảng ba phút cháy; một bình bột 4 kg chỉ phun được chừng mười lăm giây. Bài này cho bạn tự chọn bình, cách phun và thời điểm – để thấy vì sao đúng loại, đúng gốc lửa và đúng lúc quan trọng như nhau.</p>
+    <div class="meta"><span>Nguyễn Đức Dũng</span><span>25/11/2026</span><span>Đọc và thử 6–10 phút</span></div>
+    <div class="post-actions" data-slug="binh-chua-chay-trong-nha"></div>
+  </div>
+
+  <div class="lensbar" id="lensBar" aria-label="Góc nhìn và tầng nội dung"></div>
+
+  <section class="stage" id="stage" aria-labelledby="stageH">
+    <div class="stage-head"><h2 id="stageH">Dập thử một đám cháy</h2><p>Lửa lớn theo đường cong t², chiều cao ngọn lửa theo công thức Heskestad · hệ số dập lửa là giả định</p></div>
+    <div class="view" id="view"></div>
+    <div class="tools" id="tools">
+      <div class="row"><span class="lab">Đám cháy</span><button type="button" data-fire="giay" aria-pressed="true">🗑 Thùng giấy</button><button type="button" data-fire="chao" aria-pressed="false">🍳 Chảo dầu</button><button type="button" data-fire="dien" aria-pressed="false">🔌 Ổ điện</button><button type="button" data-fire="xang" aria-pressed="false">⛽ Xăng tràn</button><button type="button" data-fire="pin" aria-pressed="false">🛵 Xe điện</button></div><div class="row"><span class="lab">Dùng gì</span><button type="button" data-ag="bot1" aria-pressed="false">Bột 1 kg</button><button type="button" data-ag="bot4" aria-pressed="true">Bột 4 kg</button><button type="button" data-ag="co2" aria-pressed="false">CO₂ 3 kg</button><button type="button" data-ag="nuoc" aria-pressed="false">Nước 6 lít</button><button type="button" data-ag="chan" aria-pressed="false">Chăn chữa cháy</button></div><div class="row"><span class="lab">Cách phun</span><button type="button" data-aim="goc" aria-pressed="true">Nhằm gốc lửa</button><button type="button" data-aim="ngon" aria-pressed="false">Nhằm ngọn lửa</button><button type="button" data-dist="1" aria-pressed="false">Đứng 1 m</button><button type="button" data-dist="2" aria-pressed="true">Đứng 2 m</button><button type="button" data-dist="5" aria-pressed="false">Đứng 5 m</button></div><div class="row"><span class="lab">Lấy bình mất</span><button type="button" data-delay="15" aria-pressed="true">15 giây</button><button type="button" data-delay="30" aria-pressed="false">30 giây</button><button type="button" data-delay="60" aria-pressed="false">60 giây</button></div><div class="row"><span class="lab">Được – mất</span><button type="button" data-act="go" aria-pressed="false" class="hot">▶ Dập lửa</button><button type="button" data-act="run" aria-pressed="false" class="hot">▶ Thoát ra, đóng cửa, gọi 114</button><button type="button" data-act="reset">Đặt lại</button></div>
+      <div class="readout" id="readout" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <article class="guide">
+    <noscript><p>Bình bột ABC dùng cho hầu hết đám cháy trong nhà; chăn chữa cháy cho chảo dầu; không dùng nước cho chảo dầu, xăng, điện. Rút chốt – hướng vòi vào gốc lửa – bóp cò – quét, đứng cách 1,5–2 m. Lửa lan, khói dày, bình hết: thoát ra, đóng cửa, gọi 114.</p></noscript>
+    <div id="guide"></div>
+    <p class="ask">Bài viết có ích? Bấm <b>Thích</b> và <b>Chia sẻ</b> cho người bạn cùng sở thích.</p>
+    <div class="post-actions" data-slug="binh-chua-chay-trong-nha"></div>
+    <h3 style="margin-top:2em">Đọc tiếp</h3>
+    <div class="more"><a href="no-khi-gas-va-no-binh-gas.html"><b>Nổ khí gas hay nổ bình gas?</b><span>An toàn · căn bếp 3D</span></a><a href="thoat-nan-chay-chung-cu.html"><b>Thoát nạn khi cháy chung cư</b><span>An toàn · khói đi đường nào</span></a><a href="so-cuu-bong-dung-cach.html"><b>Sơ cứu bỏng đúng cách</b><span>An toàn · 20 phút nước mát</span></a></div>
+    <div class="src">
+      <p>Nguồn: thời gian thoát khỏi đám cháy nhà ở khoảng 3 phút, phòng đóng cửa và mở cửa – UL Fire Safety Research Institute (2020; chương trình Close Before You Doze) · Các bước PASS, đứng cách 1,5–2 m – Kidde, Sở Cứu hỏa NSW, Sở Cứu hỏa Queensland, Phòng vệ dân sự Sharjah · Thời gian và tầm phun bình bột – bảng thông số bình đạt chuẩn EN 3 (Kidde PD2G, Safelincs, Firex) và Sở Cứu hỏa Queensland · Đường cong t² và công thức chiều cao ngọn lửa Heskestad – tài liệu kỹ thuật an toàn cháy (NFPA, SFPE Handbook) · Luật Phòng cháy, chữa cháy và cứu nạn, cứu hộ số 55/2024/QH15 (hiệu lực 01/7/2025), Nghị định 105/2025/NĐ-CP, QCVN 10:2025/BCA qua Báo Hà Tĩnh, Hệ thống pháp luật · Phân loại đám cháy ISO 3941 / TCVN 4878. Hệ số dập lửa trong minh họa là giả định.</p>
+      <p>Minh họa trong bài do HLV Sức Khỏe tự dựng bằng mã (không dùng ảnh, logo, tranh hay bản ghi có bản quyền). Bài viết mang tính giới thiệu, không thay thế huấn luyện viên hay lời khuyên y tế. HLV Sức Khỏe là trang cá nhân độc lập của Nguyễn Đức Dũng.</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap"><a href="../">← Về trang chủ HLV Sức Khỏe</a> · <a href="mailto:lienhe@hlvsuckhoe.com">lienhe@hlvsuckhoe.com</a></div>
+</footer>
+
+<script>
+(function(){var bar=document.getElementById('progress');function upd(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}window.addEventListener('scroll',upd,{passive:true});upd();})();
+</script>
+<script src="../js/guides/binh-chua-chay.js"></script>
+<script src="../js/guide.js"></script>
+<script src="../js/guides/stage-binh-chua-chay.js" defer></script>
+<script src="../js/config.js"></script>
+<script src="../js/post-actions.js" defer></script>
+<!-- Cloudflare Web Analytics (thống kê lượt xem, không cookie, không lưu IP) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1dd877b5432a4181b42a4b65990cb60c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

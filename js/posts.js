@@ -13,6 +13,9 @@
    ===================================================================== */
 window.HLV_MENU_MIN = 1;
 window.HLV_POSTS = [
+  { slug: 'so-cuu-bong-dung-cach', title: 'Sơ cứu bỏng đúng cách', icon: '💧', spots: ['goc-an-toan'] },
+  { slug: 'thoat-nan-chay-chung-cu', title: 'Thoát nạn khi cháy chung cư', icon: '🚪', spots: ['goc-an-toan'] },
+  { slug: 'binh-chua-chay-trong-nha', title: 'Bình chữa cháy trong nhà', icon: '🧯', spots: ['goc-an-toan'] },
   { slug: 'ngoi-nha-mo-uoc', title: 'Ngôi nhà mơ ước', icon: '🏠', spots: ['goc-nha-o', 'goc-gia-dinh'] },
   { slug: 'no-khi-gas-va-no-binh-gas', title: 'Nổ khí gas hay nổ bình gas?', icon: '🔥', spots: ['goc-an-toan'] },
   { slug: 'vong-xoan-ulam-so-nguyen-to', title: 'Vòng xoắn Ulam', icon: '🌀', spots: ['goc-toan-hoc', 'goc-giai-do'] },

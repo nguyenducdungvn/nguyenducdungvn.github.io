@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- HLV Sức Khỏe – bài tương tác (24/11/2026). Trang này được sinh bởi tools/make_guides.py: sửa ở đó hoặc ở js/guides/so-cuu-bong.js -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sơ cứu bỏng đúng cách: 20 phút nước mát và những thứ không được bôi | HLV Sức Khỏe</title>
+<meta name="description" content="Nước mát đang chảy 20 phút, cởi quần áo thấm nước nóng, không đá, không kem đánh răng, nước mắm, mỡ trăn. Khi nào đi viện, quy tắc lòng bàn tay 1%. Mặt cắt da với mô hình truyền nhiệt để thấy vết bỏng sâu tới đâu.">
+<meta name="theme-color" content="#0f6a4b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sơ cứu bỏng đúng cách">
+<meta property="og:description" content="Vòi nước là tủ thuốc tốt nhất. Xem vết bỏng sâu tới đâu khi áo thấm nước sôi, và vì sao không được chườm đá, bôi kem đánh răng.">
+<meta property="og:url" content="https://hlvsuckhoe.com/bai-viet/so-cuu-bong-dung-cach.html">
+<meta property="og:image" content="https://hlvsuckhoe.com/img/og/so-cuu-bong-dung-cach.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sơ cứu bỏng đúng cách">
+<meta property="og:site_name" content="HLV Sức Khỏe">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hlvsuckhoe.com/img/og/so-cuu-bong-dung-cach.jpg">
+<link rel="canonical" href="https://hlvsuckhoe.com/bai-viet/so-cuu-bong-dung-cach.html">
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,700;1,7..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/bai-viet.css">
+<link rel="stylesheet" href="../css/guide.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="../"><img src="../img/logo.svg" alt="">HLV Sức Khỏe</a>
+    <a class="back" href="../#goc-an-toan">← Góc an toàn</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="kicker">An toàn trong nhà · Sức khỏe · Mới</span>
+    <h1>Sơ cứu bỏng đúng cách: <em>20 phút</em> nước mát</h1>
+    <p class="dek">Khoảng hai phần ba người nhập viện vì bỏng là trẻ em. Bài này giải thích bằng một mặt cắt da và mô hình truyền nhiệt: vì sao vài giây đầu quyết định độ sâu, vì sao phải cởi ngay áo thấm nước nóng, và vì sao 20 phút nước mát vẫn đáng làm.</p>
+    <div class="meta"><span>Nguyễn Đức Dũng</span><span>25/11/2026</span><span>Đọc và thử 6–10 phút</span></div>
+    <div class="post-actions" data-slug="so-cuu-bong-dung-cach"></div>
+  </div>
+
+  <div class="lensbar" id="lensBar" aria-label="Góc nhìn và tầng nội dung"></div>
+
+  <section class="stage" id="stage" aria-labelledby="stageH">
+    <div class="stage-head"><h2 id="stageH">Mặt cắt da và nhiệt độ theo độ sâu</h2><p>Mô hình Pennes + Henriques – Moritz, thông số mô tham khảo · nguồn nóng và thời gian là giả định</p></div>
+    <div class="view" id="view"></div>
+    <div class="tools" id="tools">
+      <div class="row"><span class="lab">Nguồn nóng</span><button type="button" data-src="soi" aria-pressed="true">☕ Nước sôi</button><button type="button" data-src="canh" aria-pressed="false">🍲 Canh, cháo nóng</button><button type="button" data-src="dau" aria-pressed="false">🍳 Dầu ăn</button></div><div class="row"><span class="lab">Quần áo</span><button type="button" data-cloth="tran" aria-pressed="true">Da trần</button><button type="button" data-cloth="coi5" aria-pressed="false">Áo thấm – cởi ngay</button><button type="button" data-cloth="coi60" aria-pressed="false">Áo thấm – để 1 phút</button><button type="button" data-cloth="xoi" aria-pressed="false">Áo thấm – xối nước lên áo</button></div><div class="row"><span class="lab">Sơ cứu</span><button type="button" data-aid="water20" aria-pressed="true">💧 Nước mát 20 phút</button><button type="button" data-aid="water5" aria-pressed="false">Nước mát 5 phút</button><button type="button" data-aid="ice" aria-pressed="false">🧊 Chườm đá</button><button type="button" data-aid="paste" aria-pressed="false">🪥 Kem đánh răng</button><button type="button" data-aid="none" aria-pressed="false">Không làm gì</button></div><div class="row"><span class="lab">Bắt đầu sau</span><button type="button" data-delay="s10" aria-pressed="true">10 giây</button><button type="button" data-delay="m10" aria-pressed="false">10 phút</button><button type="button" data-delay="m60" aria-pressed="false">1 giờ</button></div><div class="row"><span class="lab">Diện tích</span><button type="button" data-palms="0.5" aria-pressed="false">Nhỏ hơn lòng bàn tay</button><button type="button" data-palms="1" aria-pressed="true">1 lòng bàn tay</button><button type="button" data-palms="3" aria-pressed="false">3</button><button type="button" data-palms="6" aria-pressed="false">6</button><button type="button" data-palms="12" aria-pressed="false">12</button><button type="button" data-child="1" aria-pressed="false">👶 Trẻ em</button><button type="button" data-special="1" aria-pressed="false">Mặt, tay, chân, khớp</button></div>
+      <div class="readout" id="readout" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <article class="guide">
+    <noscript><p>Tách khỏi nguồn nóng, cởi quần áo và trang sức ở vùng bỏng (trừ chỗ dính da), xối nước mát đang chảy 20 phút, che bằng màng bọc thực phẩm. Không đá, không kem đánh răng, nước mắm, mỡ trăn. Đi khám với trẻ em, bỏng mặt, tay, chân, sinh dục, khớp, bỏng điện, hóa chất; gọi 115 khi bỏng rộng hoặc khó thở.</p></noscript>
+    <div id="guide"></div>
+    <p class="ask">Bài viết có ích? Bấm <b>Thích</b> và <b>Chia sẻ</b> cho người bạn cùng sở thích.</p>
+    <div class="post-actions" data-slug="so-cuu-bong-dung-cach"></div>
+    <h3 style="margin-top:2em">Đọc tiếp</h3>
+    <div class="more"><a href="no-khi-gas-va-no-binh-gas.html"><b>Nổ khí gas hay nổ bình gas?</b><span>An toàn · căn bếp 3D</span></a><a href="binh-chua-chay-trong-nha.html"><b>Bình chữa cháy trong nhà</b><span>An toàn · 15 giây đầu tiên</span></a><a href="thoat-nan-chay-chung-cu.html"><b>Thoát nạn khi cháy chung cư</b><span>An toàn · khói đi đường nào</span></a></div>
+    <div class="src">
+      <p>Nguồn: sơ cứu bằng nước mát đang chảy 20 phút, trong vòng 3 giờ, không dùng đá – NHS (Anh), Hội Chữ thập đỏ Anh, Mỹ, Úc, Bệnh viện Nhi Hoàng gia Melbourne, Bộ Y tế Tây Úc; tránh làm mát quá 40 phút – hướng dẫn Hội Chữ thập đỏ Mỹ · Nghiên cứu 20 phút nước chảy ở trẻ em – Griffin và cộng sự, Annals of Emergency Medicine 2020 (qua Medical Xpress, QUT) · 180.000 ca tử vong mỗi năm do bỏng – WHO · Viện Bỏng Quốc gia: hai phần ba người nhập viện vì bỏng là trẻ em (Đại Đoàn Kết), nước sạch 10–20 °C trong 15–20 phút (Tuổi Trẻ), tác hại của kem đánh răng, nước mắm, mỡ trăn, nghệ (VOV, VietNamNet, VnExpress) · Tiêu chí chuyển viện &gt; 10% người lớn, &gt; 5% trẻ em, lòng bàn tay ≈ 1% – ANZBA, Bộ Y tế Tasmania, NSW ACI, Counties Manukau Health · Không đặt bình nóng lạnh quá 50 °C – UNICEF · Mô hình tổn thương Henriques – Moritz (1947), phương trình Pennes. Kết quả mô phỏng chỉ để thấy xu hướng.</p>
+      <p>Minh họa trong bài do HLV Sức Khỏe tự dựng bằng mã (không dùng ảnh, logo, tranh hay bản ghi có bản quyền). Bài viết mang tính giới thiệu, không thay thế huấn luyện viên hay lời khuyên y tế. HLV Sức Khỏe là trang cá nhân độc lập của Nguyễn Đức Dũng.</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap"><a href="../">← Về trang chủ HLV Sức Khỏe</a> · <a href="mailto:lienhe@hlvsuckhoe.com">lienhe@hlvsuckhoe.com</a></div>
+</footer>
+
+<script>
+(function(){var bar=document.getElementById('progress');function upd(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}window.addEventListener('scroll',upd,{passive:true});upd();})();
+</script>
+<script src="../js/guides/so-cuu-bong.js"></script>
+<script src="../js/guide.js"></script>
+<script src="../js/guides/stage-so-cuu-bong.js" defer></script>
+<script src="../js/config.js"></script>
+<script src="../js/post-actions.js" defer></script>
+<!-- Cloudflare Web Analytics (thống kê lượt xem, không cookie, không lưu IP) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1dd877b5432a4181b42a4b65990cb60c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
