@@ -390,3 +390,9 @@ Không dùng ảnh vận động viên, logo giải đấu/CLB, tranh hay bản 
 ## Bản 2.7.2 – Kiểm Đếm Ca Đêm Mùa 2: Tập 1 trọn bộ (25/11/2026)
 - Thẻ Mùa 2 ở Góc giải đố và kệ ứng dụng: thay “Đã có Màn 1” / “Mới có Màn 1” bằng “Tập 1 trọn bộ 3 màn” (game `kiemdem2.hlvsuckhoe.com` bản v2.0.0).
 - Khi ra Tập 2 · Chợ Sớm: Ctrl + F `kiemdem2` trong `index.html`, sửa hai mô tả này.
+
+## Bản 2.8.0 – Góc toán học: bài “Hàm số hay Quan số?” (25/11/2026)
+- Bài mới `bai-viet/ham-so-hay-quan-so.html` (SVG, không cần WebGL; sinh bằng `tools/make_guides.py`, nằm trong `SCI_MORE`). Chữ ở `js/guides/thuat-ngu-han.js` (6 khối, 3 tầng, hộp Đào sâu), minh họa ở `js/guides/stage-thuat-ngu-han.js`.
+- Minh họa: ba thẻ Nhật – Việt – Trung cho 17 thuật ngữ (nghĩa từng chữ Hán, mũi tên “tiếng Việt theo ai”); dòng thời gian 1859–1985; được – mất: năm 1946 chữ 函 bị loại (函数 → 関数), dịch “rational” theo reason / ratio; đố vui 8 câu (kỷ lục trong localStorage `hlv-tnh-best`); lớp đo “Đếm nguồn gốc”; đọc bằng mắt người Việt / Nhật / Trung. **Phát âm:** mỗi dòng chữ trên thẻ ghi romaji / pinyin (vàng, nghiêng) cạnh âm Hán Việt; bấm chữ, bấm “🔊 nghe” hoặc hàng nút **Nghe** để máy đọc bằng giọng Web Speech có sẵn (vi-VN, ja-JP, zh-CN). Tiếng Nhật đọc qua kana (`JA`, `JW`) để không bị đọc âm Kun; chữ Trung nhiều âm (`POLY`: 行 差 数 率) thì đọc cả từ. Thêm chữ mới: bổ sung `JA`, `JW`, `ZH`. Góc nhìn: Sử gia, Thầy cô dạy toán, Người học tiếng Nhật, Nhà ngôn ngữ học, Học sinh.
+- Thêm/sửa thuật ngữ: sửa đối tượng `T` và mảng `ORDER` (đếm nguồn gốc), `QUIZ` (đố vui) trong `stage-thuat-ngu-han.js`; bảng tầng 3 ở khối `theoai` trong `thuat-ngu-han.js`.
+- Trang chủ: dòng đầu `js/posts.js` (`goc-toan-hoc`), `posts.js?v=2.8.0`, thẻ bài đầu mục Bài viết, thẻ thứ hai trong Góc toán học, sitemap thêm 1 địa chỉ, ảnh og `img/og/ham-so-hay-quan-so.jpg`.

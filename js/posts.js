@@ -13,6 +13,7 @@
    ===================================================================== */
 window.HLV_MENU_MIN = 1;
 window.HLV_POSTS = [
+  { slug: 'ham-so-hay-quan-so', title: 'Hàm số hay Quan số?', icon: '🈳', spots: ['goc-toan-hoc'] },
   { slug: 'so-cuu-bong-dung-cach', title: 'Sơ cứu bỏng đúng cách', icon: '💧', spots: ['goc-an-toan'] },
   { slug: 'thoat-nan-chay-chung-cu', title: 'Thoát nạn khi cháy chung cư', icon: '🚪', spots: ['goc-an-toan'] },
   { slug: 'binh-chua-chay-trong-nha', title: 'Bình chữa cháy trong nhà', icon: '🧯', spots: ['goc-an-toan'] },

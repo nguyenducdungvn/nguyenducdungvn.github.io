@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<!-- HLV Sức Khỏe – bài tương tác (24/11/2026). Trang này được sinh bởi tools/make_guides.py: sửa ở đó hoặc ở js/guides/thuat-ngu-han.js -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hàm số hay Quan số? Người Việt và người Nhật dịch toán học bằng chữ Hán | HLV Sức Khỏe</title>
+<meta name="description" content="Vì sao tiếng Việt nói “hàm số” mà tiếng Nhật viết 関数 (quan số)? Đặt thuật ngữ toán học Việt – Nhật – Trung cạnh nhau, đọc nghĩa từng chữ, xem năm 1946 chữ 函 bị thay, thử dịch “rational” và đoán xem tiếng Việt học của ai.">
+<meta name="theme-color" content="#0f6a4b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hàm số hay Quan số?">
+<meta property="og:description" content="Cùng chữ Hán, ba cách dịch toán học: Việt, Nhật, Trung. Xem chữ 函 bị thay năm 1946, và vì sao “số hữu tỉ” dịch đúng hơn 有理数.">
+<meta property="og:url" content="https://hlvsuckhoe.com/bai-viet/ham-so-hay-quan-so.html">
+<meta property="og:image" content="https://hlvsuckhoe.com/img/og/ham-so-hay-quan-so.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Hàm số hay Quan số?">
+<meta property="og:site_name" content="HLV Sức Khỏe">
+<meta property="og:locale" content="vi_VN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://hlvsuckhoe.com/img/og/ham-so-hay-quan-so.jpg">
+<link rel="canonical" href="https://hlvsuckhoe.com/bai-viet/ham-so-hay-quan-so.html">
+<link rel="icon" href="../img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,700;1,7..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/bai-viet.css">
+<link rel="stylesheet" href="../css/guide.css">
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="../"><img src="../img/logo.svg" alt="">HLV Sức Khỏe</a>
+    <a class="back" href="../#goc-toan-hoc">← Góc toán học</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <span class="kicker">Khoa học · Toán học & chữ nghĩa</span>
+    <h1>Hàm số hay <em>Quan số</em>? Dịch toán học bằng chữ Hán</h1>
+    <p class="dek">Người Việt, người Nhật và người Trung đều dùng chữ Hán để gọi tên toán học phương Tây – nhưng mỗi bên chọn chữ theo một cách hiểu riêng. Bài này đặt các tên gọi cạnh nhau, cho bạn đọc từng chữ, xem một bảng chữ năm 1946 biến “hàm số” thành “quan số”, và tự đoán xem tiếng Việt đã học của ai.</p>
+    <div class="meta"><span>Nguyễn Đức Dũng</span><span>25/11/2026</span><span>Đọc và thử 8–12 phút</span></div>
+    <div class="post-actions" data-slug="ham-so-hay-quan-so"></div>
+  </div>
+
+  <div class="lensbar" id="lensBar" aria-label="Góc nhìn và tầng nội dung"></div>
+
+  <section class="stage" id="stage" aria-labelledby="stageH">
+    <div class="stage-head"><h2 id="stageH">Ba cách viết một khái niệm</h2><p>Trái: tiếng Nhật · giữa: tiếng Việt · phải: tiếng Trung · mũi tên chỉ tiếng Việt trùng với bên nào · bấm vào chữ để nghe (giọng đọc có sẵn của máy)</p></div>
+    <div class="view" id="view"></div>
+    <div class="tools" id="tools">
+      <div class="row"><span class="lab">Khái niệm</span><button type="button" data-term="function" aria-pressed="true">Hàm số</button><button type="button" data-term="probability" aria-pressed="false">Xác suất</button><button type="button" data-term="reciprocal" aria-pressed="false">Nghịch đảo</button><button type="button" data-term="matrix" aria-pressed="false">Ma trận</button><button type="button" data-term="rational" aria-pressed="false">Số hữu tỉ</button><button type="button" data-term="field" aria-pressed="false">Trường</button><button type="button" data-term="equation" aria-pressed="false">Phương trình</button><button type="button" data-term="mapping" aria-pressed="false">Ánh xạ</button><button type="button" data-term="oxygen" aria-pressed="false">Ôxy</button><button type="button" data-term="math" aria-pressed="false">Toán học</button></div><div class="row"><span class="lab">Xem</span><button type="button" data-mode="concept" aria-pressed="true">Ba cách viết</button><button type="button" data-mode="timeline" aria-pressed="false">🕰 Dòng thời gian</button><button type="button" data-mode="count" aria-pressed="false">📏 Đếm nguồn gốc</button></div><div class="row"><span class="lab">Được – mất</span><button type="button" data-act="ban" aria-pressed="false" class="hot">▶ Năm 1946: chữ 函 bị loại</button><button type="button" data-act="rat-bad" aria-pressed="false" class="hot">▶ Dịch “rational” theo “reason”</button><button type="button" data-act="rat-good" aria-pressed="false" class="hot">▶ Dịch theo “ratio”</button></div><div class="row"><span class="lab">Đố vui</span><button type="button" data-act="quiz" aria-pressed="false" class="hot">▶ Câu đố mới</button><button type="button" data-guess="trung" aria-pressed="false">Theo Trung</button><button type="button" data-guess="nhat" aria-pressed="false">Theo Nhật</button><button type="button" data-guess="ghep" aria-pressed="false">Ghép cả hai</button><button type="button" data-guess="tu" aria-pressed="false">Tự đặt</button><button type="button" data-guess="phien" aria-pressed="false">Phiên âm</button><button type="button" data-act="next" aria-pressed="false">Câu tiếp →</button></div><div class="row"><span class="lab">Nghe</span><button type="button" data-say="all" aria-pressed="false" class="hot">🔊 Cả ba lần lượt</button><button type="button" data-say="vi" aria-pressed="false">🔊 Việt</button><button type="button" data-say="ja" aria-pressed="false">🔊 Nhật</button><button type="button" data-say="zh" aria-pressed="false">🔊 Trung</button></div><div class="row"><span class="lab">Đọc bằng mắt</span><button type="button" data-eye="all" aria-pressed="true">Cả ba</button><button type="button" data-eye="vi" aria-pressed="false">Người Việt</button><button type="button" data-eye="ja" aria-pressed="false">Người Nhật</button><button type="button" data-eye="zh" aria-pressed="false">Người Trung</button></div>
+      <div class="readout" id="readout" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <article class="guide">
+    <noscript><p>Từ 函數 (hàm số) do Lý Thiện Lan đặt năm 1859. Tiếng Việt và tiếng Trung giữ nguyên; tiếng Nhật đổi thành 関数 (quan số) sau năm 1946 vì chữ 函 bị loại khỏi bảng chữ Hán thường dùng. Khác biệt thật nằm ở những từ như số hữu tỉ (Nhật, Trung: 有理数 – “số có lý”), ma trận (行列, 矩阵), xác suất (Nhật 確率, Trung 概率). Bật JavaScript để dùng minh họa.</p></noscript>
+    <div id="guide"></div>
+    <p class="ask">Bài viết có ích? Bấm <b>Thích</b> và <b>Chia sẻ</b> cho người bạn cùng sở thích.</p>
+    <div class="post-actions" data-slug="ham-so-hay-quan-so"></div>
+    <h3 style="margin-top:2em">Đọc tiếp</h3>
+    <div class="more"><a href="vong-xoan-ulam-so-nguyen-to.html"><b>Vòng xoắn Ulam: khi con mắt gặp số nguyên tố</b><span>Khoa học · toán học</span></a><a href="sang-tac-bai-hat-cho-nguoi-moi.html"><b>Sáng tác bài hát: tám chữ đầu tiên</b><span>Nghệ thuật · tiếng Việt sáu thanh</span></a></div>
+    <div class="src">
+      <p>Nguồn: <a href="https://zh.wikisource.org/wiki/%E4%BB%A3%E5%BE%AE%E7%A9%8D%E6%8B%BE%E7%B4%9A">Đại vi tích thập cấp (Wikisource)</a> – Lý Thiện Lan, Wylie dịch Loomis, 1859, đặt 函數, 微分, 積分 · <a href="https://www.zdic.net/hant/%E5%87%BD%E6%95%B0">Zdic: 函數</a> · <a href="https://www.kurims.kyoto-u.ac.jp/~kyodo/kokyuroku/contents/pdf/1787-23.pdf">Kôkyûroku RIMS 1787 (ĐH Kyoto)</a>: định nghĩa của Lý, âm <i>han</i> · <a href="https://repository.kulib.kyoto-u.ac.jp/dspace/bitstream/2433/232882/1/B50-13.pdf">Kota Osamu: khái niệm hàm số ở Nhật cận đại</a> · <a href="https://ja.wikid.org/%E9%96%A2%E6%95%B0_(%E6%95%B0%E5%AD%A6)">関数 (数学) – Wikipedia tiếng Nhật</a>: 当用漢字, 干数, 1958/1960/1985 · <a href="https://kotobank.jp/jazhword/%E6%95%B0%E5%AD%A6">Kotobank: thuật ngữ toán khác nhau Nhật – Trung</a> · <a href="https://www.math.kyoto-u.ac.jp/alumni/bulletin3/kono.pdf">Lịch sử từ 確率 (ĐH Kyoto)</a> · <a href="https://www.diendan.org/phe-binh-nghien-cuu/tap-chi-khoa-hoc-va-nha-khoa-hoc-nguyen-cong-tieu/HXH_Danhtu%20Khoahoc_Loi%20dan.pdf">Hoàng Xuân Hãn, Lời dẫn “Danh từ khoa học” (1942)</a> · <a href="https://www.vms.org.vn/storage/attachments/T16S3.pdf">Hội Toán học Việt Nam: về GS Hoàng Xuân Hãn</a> · <a href="https://vjol.info.vn/tudienhoc/article/download/139764/114267/">Tạp chí Từ điển học & Bách khoa thư</a>: từ điển thuật ngữ đầu tiên · <a href="https://hackmd.io/@TaigiSTEM/math_forum">TaigiSTEM: tranh luận về 有理數, 有比數</a> · <a href="https://kaweah.freedombox.rocks/kiwix/wiktionary_en_all_maxi_2023-04/ma_tr%E1%BA%ADn">Wiktionary: ma trận</a> · <a href="https://languagelog.ldc.upenn.edu/nll/?p=70137">Language Log: Nishi Amane, 哲学</a> · <a href="https://www.akita-u.ac.jp/eduhuman/graduate/abstract_pdf/08-015.pdf">ĐH Akita: từ Hán do Nhật chế đi ngược về Trung Quốc</a> · <a href="https://kumanichi.com/articles/2007764">Kumamoto Nichinichi (29/6/2026): bàn đổi tên 算数 thành 数学</a>. Tên nguyên tố cũ (dưỡng khí, khinh khí) theo kiến thức chung, chưa đối chiếu nguồn in. Cột “tiếng Việt theo ai” là suy luận từ việc so chữ Hán.</p>
+      <p>Minh họa trong bài do HLV Sức Khỏe tự dựng bằng mã (không dùng ảnh, logo, tranh hay bản ghi có bản quyền). Bài viết mang tính giới thiệu, không thay thế huấn luyện viên hay lời khuyên y tế. HLV Sức Khỏe là trang cá nhân độc lập của Nguyễn Đức Dũng.</p>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap"><a href="../">← Về trang chủ HLV Sức Khỏe</a> · <a href="mailto:lienhe@hlvsuckhoe.com">lienhe@hlvsuckhoe.com</a></div>
+</footer>
+
+<script>
+(function(){var bar=document.getElementById('progress');function upd(){var h=document.documentElement;var max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?(h.scrollTop/max*100):0)+'%';}window.addEventListener('scroll',upd,{passive:true});upd();})();
+</script>
+<script src="../js/guides/thuat-ngu-han.js"></script>
+<script src="../js/guide.js"></script>
+<script src="../js/guides/stage-thuat-ngu-han.js" defer></script>
+<script src="../js/config.js"></script>
+<script src="../js/post-actions.js" defer></script>
+<!-- Cloudflare Web Analytics (thống kê lượt xem, không cookie, không lưu IP) --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1dd877b5432a4181b42a4b65990cb60c"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
