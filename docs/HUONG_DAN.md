@@ -194,7 +194,9 @@ Bộ đếm ở Bước 4 là con số **công khai cho khách xem**. Web Analyt
 ## Tôi & Gia Đình – đã ra mắt (bản 1.3.0, 22/11/2026)
 
 - Thẻ ứng dụng đã có mô tả chính thức, logo `img/logo-giadinh.svg` (lấy từ ứng dụng), nút **Mở Tôi & Gia Đình** → `https://giadinh.hlvsuckhoe.com/` (`var FAM_URL`). Muốn tạm ẩn: để `FAM_URL = ''` – nút tự quay về "Báo cho tôi khi ra mắt".
-- Repo ứng dụng: `nddzungx/giadinh`; hướng dẫn riêng trong `docs/HUONG_DAN_CAP_NHAT.md` của repo đó (bật Pages, CNAME `giadinh`, Google Client ID).
+- Repo ứng dụng: `nguyenducdungvn/giadinh` (**riêng tư** từ 27/11/2026). Ứng dụng **chạy trên Netlify** (`giadinh-hlvsuckhoe.netlify.app`), không còn dùng GitHub Pages; CNAME `giadinh` trên Cloudflare trỏ tới Netlify. Đẩy lên nhánh `main` là Netlify tự phát hành. Hướng dẫn riêng trong `docs/HUONG_DAN_CAP_NHAT.md` của repo đó (Google Client ID…).
+- **Luôn dùng `https://giadinh.hlvsuckhoe.com/`** khi chia sẻ, in, làm mã QR (không dùng `…netlify.app` hay `…github.io`): đổi nơi chạy chỉ cần sửa DNS, link không đổi.
+- Link cũ `hlvsuckhoe.com/giadinh/` và `nguyenducdungvn.github.io/giadinh/` tự chuyển tới tên miền nhờ trang `giadinh/index.html` trong kho này (thêm 27/11/2026). Không xoá thư mục `giadinh/`.
 - Mục mới **Cài lên điện thoại** (`hlvsuckhoe.com/#cai-dat`): bước 1 chọn ứng dụng (mỗi nút mở thẳng `…/#cai-dat` của ứng dụng, nơi có hướng dẫn chi tiết và nút "Cài ngay"), bước 2 hướng dẫn theo máy, tự đánh dấu "Máy của bạn".
 - Việc nên làm tiếp: gửi bản tin EmailOctopus "Ra mắt Tôi & Gia Đình" cho những người đã đăng ký.
 
@@ -260,7 +262,7 @@ SELECT k, n FROM totals WHERE k LIKE 'view:%' OR k LIKE 'like:%' ORDER BY k;
 | HLV Sức Khỏe | https://app.hlvsuckhoe.com/ | hlv-suc-khoe |
 | BreathSync | https://tho.hlvsuckhoe.com/ | breathsync |
 | Xưởng kính thiên văn | https://thienvan.hlvsuckhoe.com/ | xuong-kinh-thien-van |
-| Tôi & Gia Đình | https://giadinh.hlvsuckhoe.com/ | giadinh |
+| Tôi & Gia Đình | https://giadinh.hlvsuckhoe.com/ | giadinh (riêng tư, chạy trên Netlify) |
 | Phù thủy Phân kim | https://phankim.hlvsuckhoe.com/ | phu-thuy-phan-kim |
 | The Invisible Flaw | https://hvflaw.hlvsuckhoe.com/ | the_invisible_flaw |
 | Kiểm Đếm Ca Đêm | https://kiemdem.hlvsuckhoe.com/ | kiem-dem-ca-dem |
