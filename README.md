@@ -19,3 +19,4 @@ Các ứng dụng ở tên miền con (app., tho., giadinh., thienvan., phankim.
 ## Khi tên miền hết hạn
 1. Mở `Settings → Pages` của kho này, kiểm tra trang đang chạy.
 2. Báo cho người đọc địa chỉ mới.
+3. Tôi & Gia Đình chạy trên Netlify: địa chỉ dự phòng là `https://giadinh-hlvsuckhoe.netlify.app/`. Trong `hlvsuckhoe-web` đổi `FAM_URL` (index.html) và trang `giadinh/index.html` sang địa chỉ này; bản sao tự cập nhật sau lần đồng bộ kế tiếp.
